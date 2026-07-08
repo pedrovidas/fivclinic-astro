@@ -1,0 +1,212 @@
+---
+import { treatments, mainNav, ctaHref } from '../data/nav';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="FIVclínic+ — home">
+      <img
+        src="https://fivclinic.es/international-patients/wp-content/uploads/2026/02/Carpeta-1.svg"
+        alt="FIVclínic+ — Barnaclínic+"
+        width="140"
+        height="44"
+      />
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li class="has-dropdown">
+          <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+            Treatments
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu">
+            {treatments.map((item) => (
+              <li><a href={item.href}>{item.label}</a></li>
+            ))}
+          </ul>
+        </li>
+        {mainNav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" aria-label="Language">
+        <a href="/es/" class="lang-item">Español</a>
+        <span aria-hidden="true">/</span>
+        <a href="/" class="lang-item is-active">English</a>
+      </div>
+      <a href={ctaHref} class="btn btn-primary header-cta">Get a free expert review</a>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-block: 16px;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .logo-main {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--color-heading);
+    letter-spacing: -0.01em;
+  }
+  .logo-main strong {
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+  .logo-main sup {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+  }
+  .logo-sub {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+    margin-top: 2px;
+  }
+
+  .main-nav > ul {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-nav > ul > li > a,
+  .dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
+    color: var(--color-heading);
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    cursor: pointer;
+    padding: 8px 0;
+  }
+  .main-nav > ul > li > a:hover,
+  .dropdown-toggle:hover {
+    color: var(--color-accent);
+  }
+
+  .has-dropdown {
+    position: relative;
+  }
+  .dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 340px;
+    background: var(--color-white);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-card);
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  }
+  .has-dropdown:hover .dropdown-menu,
+  .has-dropdown:focus-within .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .dropdown-menu li a {
+    display: block;
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 0.95rem;
+    color: var(--color-heading);
+  }
+  .dropdown-menu li a:hover {
+    background: var(--color-accent);
+    color: var(--color-white);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+  .lang-item.is-active {
+    color: var(--color-heading);
+    font-weight: 600;
+  }
+
+  .header-cta {
+    white-space: nowrap;
+    padding: 0.85em 1.6em;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .menu-toggle span {
+    width: 22px;
+    height: 2px;
+    background: var(--color-heading);
+    display: block;
+  }
+
+  @media (max-width: 960px) {
+    .main-nav,
+    .lang-switch,
+    .header-cta {
+      display: none;
+    }
+    .menu-toggle {
+      display: flex;
+    }
+  }
+</style>

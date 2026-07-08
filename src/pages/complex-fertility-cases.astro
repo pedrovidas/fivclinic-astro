@@ -1,0 +1,322 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import ProfileSelector from '../components/treatment/ProfileSelector.astro';
+import SplitSection from '../components/treatment/SplitSection.astro';
+import ScientificRigor from '../components/treatment/ScientificRigor.astro';
+import WhyBarcelonaCards from '../components/treatment/WhyBarcelonaCards.astro';
+import TreatmentProcess from '../components/treatment/TreatmentProcess.astro';
+import ExperienceCounters from '../components/treatment/ExperienceCounters.astro';
+import PlanningAbroad from '../components/treatment/PlanningAbroad.astro';
+import FAQAccordion from '../components/treatment/FAQAccordion.astro';
+import PatientVoices from '../components/home/PatientVoices.astro';
+import MedicalRecognition from '../components/home/MedicalRecognition.astro';
+import LeadForm from '../components/home/LeadForm.astro';
+import { cfcRigorIcons } from '../data/cfcRigorIcons';
+
+const u = 'https://fivclinic.es/international-patients/wp-content/uploads/';
+
+const profileCards = [
+  { icon: u + '2026/06/Group-1102-1.svg', title: 'Seeking second opinion after failed IVF cycles', quote: '\u201cI\u2019ve had one or more IVF cycles that didn\u2019t work, and I want to understand why before trying again.\u201d', cta: 'View second-opinion pathway' },
+  { icon: u + '2026/06/Group-1100-1.svg', title: 'Women 40+ or with Low Ovarian Reserve', quote: '\u201cI\u2019m over 40, or I\u2019ve been told my ovarian reserve is low, and I want realistic guidance.\u201d', cta: 'View 40+ or low reserve pathway' },
+  { icon: u + '2026/06/Group-1104-1.svg', title: 'Genetic Complexity', quote: '\u201cGenetics may be part of our fertility journey, and we need clear answers before deciding.\u201d', cta: 'View genetic guidance' },
+];
+
+const rigorItems = [
+  { text: 'Each case is reviewed in detail, not summarized', icon: cfcRigorIcons[0] },
+  { text: 'Decisions are based on evidence, not routines', icon: cfcRigorIcons[1] },
+  { text: 'Recommendations are clearly explained, not imposed', icon: cfcRigorIcons[2] },
+  { text: 'Clinical care is combined with emotional support', icon: cfcRigorIcons[3] },
+];
+
+const blocks = [
+  {
+    title: 'For patients seeking a second opinion after failed IVF cycles',
+    intro: 'When IVF treatments haven\u2019t worked, repeating the same protocol rarely changes the outcome.',
+    groups: [
+      { intro: 'We take time to analyze:', items: ['Ovarian response and stimulation protocols', 'Embryo development and laboratory patterns', 'Fertilization, fragmentation, and development rhythm', 'Endometrial factors and timing', 'Semen parameters that may influence results', 'Possible genetic contributors'], boxed: true },
+    ],
+    closing: [],
+    hint: 'Had one or more IVF cycles that didn\u2019t work? Understand what should be reviewed before trying again.',
+    image: u + '2026/02/Captura-de-pantalla-2026-01-15-a-las-11.14.48-1.png',
+    imageSide: 'left',
+  },
+  {
+    title: 'For women aged 40+ or with low ovarian reserve',
+    intro: 'At this stage, every decision has greater impact.',
+    groups: [
+      { intro: 'We evaluate your fertility beyond a single number, including:', items: ['AMH and AFC', 'Functional ovarian age', 'Previous response to stimulation', 'Egg quality indicators', 'Hormonal factors influencing outcomes'], boxed: true },
+      { intro: 'Based on this, we design <strong>personalized strategies</strong>, which may include:', items: ['Adapted stimulation protocols', 'Mild stimulation or natural IVF cycles', 'Oocyte accumulation', 'PGT-A when it adds real value', 'Honest discussion of alternatives when appropriate'], boxed: false },
+    ],
+    closing: ['Always with transparency and respect.'],
+    hint: 'Over 40 or dealing with low ovarian reserve and unsure what your next fertility step should be? Understand your realistic options before deciding.',
+    image: u + '2026/02/Group-765.png',
+    imageSide: 'right',
+  },
+  {
+    title: 'For patients with genetic complexity',
+    intro: 'When genetics are part of the journey, answers require integration \u2014 not isolated tests.',
+    groups: [
+      { intro: 'Your case is reviewed collaboratively by specialists in:', items: ['Reproductive medicine', 'Embryology', 'Clinical genetics', 'Fetal medicine'], boxed: true },
+      { intro: 'We recommend only the <strong>genetic studies that truly add clarity</strong>, such as:', items: ['PGT-A', 'Carrier screening panels', 'Advanced genetic analysis when indicated'], boxed: false },
+    ],
+    closing: ['Every recommendation is explained so you can decide <strong>calmly and confidently.</strong>'],
+    hint: 'Facing recurrent miscarriage or genetic questions? Learn when a more specialized fertility review may help.',
+    image: u + '2026/02/Group-766.png',
+    imageSide: 'left',
+  },
+];
+
+const processSteps = [
+  { icon: u + '2026/02/Group-767.svg', title: 'Expert case review', text: 'We carefully review your medical history, reports, and previous treatments.' },
+  { icon: u + '2026/02/Group-768.svg', title: 'Multidisciplinary evaluation', text: 'Your case is assessed jointly by the specialists relevant to your situation. This joint perspective allows us to identify issues that may previously have gone unnoticed.' },
+  { icon: u + '2026/02/Group-769.svg', title: 'Clear explanation and recommendations', listIntro: 'We explain:', list: ['What has happened', 'Which factors are influencing outcomes', 'What options are realistic', 'What makes sense to try \u2014 and what doesn\u2019t'] },
+  { icon: u + '2026/02/Group-657.svg', title: 'Accompanied decision-making', text: 'You are guided clinically and emotionally at every stage.' },
+];
+
+const counters = [
+  { value: 30, suffix: '+', label: 'years', sub: 'of specialized experience in reproductive medicine at FIVClínic' },
+  { value: 65, suffix: '%', label: 'pregnancy rate', sub: 'in IVF treatments with own eggs', subItalic: 'Clinic-reported outcomes' },
+  { value: 80, suffix: '%', label: 'pregnancy rate', sub: 'donor egg cycles', subItalic: 'Clinic-reported outcomes' },
+  { value: 642, suffix: 'K+', label: 'outpatient visits', sub: 'per year at Hospital Clínic Barcelona' },
+  { value: 31, suffix: 'K+', label: 'surgical interventions', sub: 'performed at Hospital Clínic Barcelona' },
+  { value: 100, suffix: '+', label: 'years', sub: 'of clinical, research, and teaching activity', subItalic: 'Hospital Clínic Barcelona, founded in 1906' },
+];
+
+const intlFaqs = [
+  { q: 'What is the process like for patients from abroad?', a: 'Your journey begins with an expert case review, which can be initiated online. Our team evaluates your medical information and provides clear guidance on next steps before any trip is planned.' },
+  { q: 'Can consultations be done online?', a: 'Yes. Initial consultations and case reviews can be carried out online, allowing you to receive expert guidance without traveling until it is truly necessary.' },
+  { q: 'Is support offered to help prepare for the trip?', a: 'Yes. Our international patient team assists with:', list: ['Scheduling and coordination of appointments', 'Guidance on timing and duration of stay', 'Preparation of medical documentation', 'Communication in English throughout the process'], foot: 'Our goal is to make the process as smooth and predictable as possible.' },
+  { q: 'Is the first consultation free?', a: 'The initial expert case review is offered without obligation. Any subsequent steps are clearly explained in advance so you can make informed decisions.' },
+  { q: 'Who will support me during the process?', a: 'You will be supported by:', list: ['A medical team specialized in your case', 'An international patient coordinator', 'English-speaking staff available throughout your journey'], foot: 'You are never navigating the process alone.' },
+];
+
+const faqs = [
+  { q: 'What should I do after a failed IVF cycle?', a: 'The most important step is a thorough review of what happened. Repeating the same protocol without understanding why it failed rarely changes the outcome. A second opinion can help identify factors that were previously overlooked.' },
+  { q: 'When is PGT-A recommended?', a: 'PGT-A is recommended only when it can provide meaningful information about embryo viability or help guide treatment decisions. It is not necessary in all cases.' },
+  { q: 'When should I seek a second opinion?', a: 'When explanations have not been clear, when the same protocol is repeated without changes, or when results don\u2019t align with what would be expected for your situation.' },
+  { q: 'Is egg donation always the only option for women over 40?', a: 'No. Egg donation is considered only when the chances of success with one\u2019s own eggs are very low. It is discussed transparently and respectfully, based on individual circumstances.' },
+  { q: 'Can IVF failure be related to genetic causes?', a: 'Yes. In some cases, genetic factors can affect embryo development or implantation. When appropriate, genetic studies such as PGT-A may help clarify the situation and guide decisions.' },
+  { q: 'Are genetic tests mandatory?', a: 'No. Genetic tests are recommended only when they can add clarity or change the treatment strategy. The decision is always explained and made together with the patient.' },
+  { q: 'Is it possible to get pregnant with my own eggs after 40?', a: 'Yes. In some cases, genetic factors can affect embryo development or implantation. When appropriate, genetic studies such as PGT-A may help clarify the situation and guide decisions.' },
+  { q: 'Does a second opinion really improve the chances of success?', a: 'It can, when it helps correct strategy, identify hidden factors, or avoid repeating ineffective approaches.' },
+];
+
+const cfcTestimonials = [
+  { quote: 'For the first time, we understood what had happened in each IVF cycle.', author: 'Patient after failed IVF' },
+  { quote: 'They were honest with me without taking away hope.', author: 'Woman aged 41' },
+  { quote: 'They explained our genetic situation clearly and without fear.', author: 'Couple with genetic concerns' },
+];
+---
+
+<Layout
+  title="Complex Fertility Cases in Barcelona | FIVClínic"
+  description="Complex fertility and IVF care in Barcelona — expert second opinions, care for women 40+, and reproductive genetics guidance, backed by Hospital Clínic Barcelona."
+>
+  <TreatmentHero
+    titlePlain="Complex"
+    titleAccent="fertility and IVF care:"
+    accentFirst={false}
+    titleTail="clear answers, expert guidance"
+    paragraphs={[
+      'Advanced fertility care backed by <strong>Hospital Clínic Barcelona</strong>, one of Europe\u2019s leading hospitals, with a multidisciplinary team <strong>experienced in complex and international cases.</strong>',
+    ]}
+    checks={[
+      'Expert second opinions after failed IVF cycles',
+      'Specialized care for women 40+ and with low ovarian reserve',
+      'Advanced reproductive genetics and PGT-A guidance',
+    ]}
+    note="FIVClínic is the assisted reproduction department of barnaclínic+, backed by<br /><strong>Hospital Clínic Barcelona</strong> \u2013 an internationally ranked, tier-1 university hospital group."
+    formTitle="Understand your IVF treatment options with an expert"
+    bgImage={u + '2026/02/HERO-IMG-2-1.png'}
+  />
+
+  <ProfileSelector cards={profileCards} />
+
+  <SplitSection
+    titlePlain="When fertility becomes complex,"
+    titleAccent="uncertainty is often the hardest part."
+    paragraphs={[
+      'After failed IVF cycles, with age-related fertility changes, or when genetic factors are involved, many patients face the same situation: they don\u2019t lack treatments \u2014 <strong>they lack clear explanations and confident decisions.</strong>',
+    ]}
+    image={u + '2026/02/Rectangle-866.png'}
+    imageSide="left"
+  >
+    <p style="margin-top:20px"><strong class="accent-text">You may be asking yourself:</strong></p>
+    <ul class="slot-bullets">
+      <li>Why previous IVF treatments didn\u2019t work</li>
+      <li>Whether age or ovarian reserve limits your real options</li>
+      <li>If genetics could be affecting embryo development</li>
+      <li>What makes sense to try next \u2014 and what doesn\u2019t</li>
+    </ul>
+    <p style="margin-top:18px;color:var(--color-body)">Without clarity, moving forward becomes emotionally and medically exhausting.</p>
+  </SplitSection>
+
+  <SplitSection
+    titlePlain="Why FIVClínic is the right place"
+    titleAccent="for your journey"
+    paragraphs={[
+      '<strong>You don\u2019t need more opinions. You need the right one.</strong>',
+      '<strong>FIVClínic</strong> specializes in complex fertility cases that require time, experience, and honest medical guidance.',
+      'Our clinical approach is supported by the standards and medical environment of Hospital Clínic Barcelona, one of Europe\u2019s most respected university hospitals.',
+      'We act as your guide \u2014 listening carefully, reviewing your case in depth, and helping you understand what is truly happening and what options make sense for you.',
+    ]}
+    image={u + '2026/02/Group-763.png'}
+    imageSide="right"
+    surface={true}
+    wideImage={true}
+  />
+
+  <ScientificRigor
+    titlePlain="Scientific rigor, explained clearly."
+    titleAccent="Human care, always present."
+    subtitle="Complex fertility decisions cannot be standardized or rushed.<br />At <strong>FIVClínic:</strong>"
+    items={rigorItems}
+    note="Here, clarity is part of the treatment."
+  />
+
+  <WhyBarcelonaCards
+    intro="Barcelona is one of Europe\u2019s leading destinations for advanced medical care, combining <strong>clinical excellence, innovation, and an international healthcare ecosystem.</strong>"
+    footer="<strong>FIVClínic+</strong> benefits directly from this ecosystem, with its clinical approach supported by the medical excellence and standards of Hospital Clínic Barcelona, one of the most respected academic hospitals in Spain and Europe."
+  />
+
+  <section class="section section-surface cfc-blocks">
+    <div class="container">
+      <h2 class="cfc-title">A specialized approach for <span class="accent">complex fertility journeys</span></h2>
+
+      {blocks.map((b) => (
+        <div class:list={['cfc-grid', { 'image-left': b.imageSide === 'left' }]}>
+          <div class="cfc-copy">
+            <h3><span class="plus">+</span> {b.title}</h3>
+            <p set:html={b.intro} />
+            {b.groups.map((g) => (
+              g.boxed ? (
+                <div class="cfc-box">
+                  <p class="cfc-group-intro" set:html={g.intro} />
+                  <ul>
+                    {g.items.map((it) => <li>{it}</li>)}
+                  </ul>
+                </div>
+              ) : (
+                <div class="cfc-plain">
+                  <p class="cfc-group-intro" set:html={g.intro} />
+                  <ul>
+                    {g.items.map((it) => <li>{it}</li>)}
+                  </ul>
+                </div>
+              )
+            ))}
+            {b.closing.map((cl) => <p class="cfc-closing" set:html={cl} />)}
+            <div class="cfc-hint">
+              <span class="hint-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="2"><path d="M12 16V4m0 12l-4-4m4 4l4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 18v2h16v-2" stroke-linecap="round"/></svg>
+              </span>
+              <p>{b.hint}</p>
+            </div>
+            <a href="#" class="btn cfc-cta">Download the free complex fertility guide</a>
+          </div>
+          <div class="cfc-media">
+            <img src={b.image} alt="" loading="lazy" />
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <TreatmentProcess steps={processSteps} titleAccent="A clear, step-by-step process" titlePlain="designed around you" />
+
+  <ExperienceCounters counters={counters} />
+
+  <PlanningAbroad
+    titlePlain="Support for"
+    titleAccent="international patients"
+    titleTail="at every step"
+    intro="We understand that pursuing fertility treatment abroad requires clarity, coordination, and trust. <strong>FIVClínic</strong> offers a structured and supportive process designed specifically for international patients."
+    faqs={intlFaqs}
+  />
+
+  <FAQAccordion faqs={faqs} columns={2} />
+
+  <SplitSection
+    titlePlain="Clarity"
+    titleAccent="changes everything."
+    paragraphs={['When you truly understand your situation and your real options:']}
+    bullets={['PGT-A', 'Carrier screening panels', 'Advanced genetic analysis when indicated']}
+    image={u + '2026/02/Rectangle-884.png'}
+    imageSide="right"
+  >
+    <p style="margin-top:18px;color:var(--color-body)">Whether the next step involves treatment, adjustment, or a different approach, clarity allows you to move forward with confidence.</p>
+  </SplitSection>
+
+  <section class="section avoid-outer">
+    <div class="container">
+      <div class="avoid-head">
+        <span class="avoid-plus" aria-hidden="true">+</span>
+        <h2 class="avoid-title">Avoid moving forward without understanding why.</h2>
+      </div>
+      <div class="avoid-box">
+        <p class="avoid-sub">Repeated treatments without proper analysis can lead to:</p>
+        <ul>
+          <li>Emotional exhaustion</li>
+          <li>Loss of trust</li>
+          <li>Missed opportunities to adjust strategy</li>
+        </ul>
+        <p class="avoid-foot">A thorough, honest review helps prevent repeating the same path without answers.</p>
+      </div>
+    </div>
+  </section>
+
+  <PatientVoices testimonials={cfcTestimonials} titlePlain="" titleAccent="What patients say about us" eyebrow="" variant="gray" />
+
+  <MedicalRecognition />
+
+  <LeadForm titlePlain="Take the next step with" titleAccent="clarity and expert guidance." />
+</Layout>
+
+<style>
+  .accent-text { color: var(--color-accent); }
+
+  .cfc-title { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 500; margin-bottom: 40px; }
+  .cfc-title .accent { color: var(--color-accent); }
+  .cfc-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; padding-block: 40px; border-bottom: 1px solid var(--color-accent); }
+  .cfc-grid:last-child { border-bottom: none; }
+  .cfc-grid.image-left { grid-template-columns: 0.9fr 1.1fr; }
+  .cfc-grid.image-left .cfc-media { order: -1; }
+  .cfc-copy h3 { font-size: 1.2rem; font-weight: 600; color: var(--color-accent); display: flex; gap: 8px; align-items: baseline; margin-bottom: 14px; }
+  .cfc-copy h3 .plus { font-weight: 400; }
+  .cfc-copy > p { font-size: 0.95rem; color: var(--color-body); }
+  .cfc-box { background: var(--color-white); border-radius: var(--radius-md); padding: 22px 24px; margin: 18px 0; }
+  .cfc-plain { margin: 18px 0; }
+  .cfc-group-intro { font-weight: 600; color: var(--color-heading); margin: 0 0 10px; }
+  .cfc-box ul, .cfc-plain ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .cfc-box li, .cfc-plain li { position: relative; padding-left: 22px; font-size: 0.9rem; color: var(--color-heading); }
+  .cfc-box li::before, .cfc-plain li::before { content: ''; position: absolute; left: 0; top: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); }
+  .cfc-closing { font-size: 0.95rem; color: var(--color-body); }
+  .cfc-hint { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0; }
+  .hint-icon { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; }
+  .cfc-hint p { font-size: 0.88rem; color: var(--color-accent); margin: 0; }
+  .cfc-cta {
+    display: inline-block; width: 100%; text-align: center;
+    background: var(--color-white); border: 1px solid var(--color-accent); color: var(--color-accent);
+    border-radius: var(--radius-pill); padding: 1.1em 2em;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .cfc-cta:hover { background: var(--color-accent); color: var(--color-white); }
+  .cfc-media img { width: 100%; border-radius: 160px 12px 12px 12px; aspect-ratio: 4 / 5; object-fit: cover; }
+
+  .avoid-outer { background: #F5F5F5; }
+  .avoid-head { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 24px; }
+  .avoid-plus { font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 300; color: var(--color-accent-light); line-height: 1; }
+  .avoid-title { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 600; color: var(--color-accent); margin: 0; text-align: center; }
+  .avoid-box { background: var(--color-white); border-radius: var(--radius-md); padding: clamp(28px, 4vw, 48px); max-width: 900px; margin-inline: auto; }
+  .avoid-sub { font-weight: 600; color: var(--color-heading); margin: 0 0 20px; }
+  .avoid-box ul { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .avoid-box li { position: relative; padding-left: 22px; font-size: 0.95rem; color: var(--color-body); }
+  .avoid-box li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent); }
+  .avoid-foot { margin: 0; color: var(--color-body); font-size: 0.95rem; }
+
+  @media (max-width: 900px) {
+    .cfc-grid, .cfc-grid.image-left { grid-template-columns: 1fr; }
+    .cfc-media, .cfc-grid.image-left .cfc-media { order: -1; }
+  }
+</style>

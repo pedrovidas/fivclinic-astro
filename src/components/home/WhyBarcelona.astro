@@ -1,0 +1,94 @@
+---
+const barcelonaImg = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/barcelona-ciudad-condal.png';
+
+const reasons = [
+  { title: 'Renowned university hospitals', text: "Hospital Clínic is one of Europe's top university medical institutions." },
+  { title: 'Highly specialized teams', text: 'Multidisciplinary experts in gynaecology, embryology, genetics, and psychology.' },
+  { title: 'Easy access from major cities', text: 'Direct flights from across Europe, the Americas, and the Middle East.' },
+  { title: 'Full English-language support', text: 'Our international patient team is with you at every stage.' },
+  { title: 'A calm, welcoming city', text: 'A safe, beautiful environment where you can feel supported throughout treatment.' },
+];
+---
+
+<section class="section why-barcelona">
+  <div class="container why-grid">
+    <div class="why-media">
+      <img src={barcelonaImg} alt="Barcelona" loading="lazy" />
+    </div>
+    <div class="why-copy">
+      <p class="eyebrow">Why Barcelona</p>
+      <h2>Why patients from around the world <span class="accent">choose Barcelona</span></h2>
+      <p>
+        Barcelona combines medical excellence with quality of life, making it
+        one of Europe&rsquo;s leading destinations for international patients.
+      </p>
+      <ul class="why-list">
+        {reasons.map((r) => (
+          <li>
+            <span class="why-dot" aria-hidden="true"></span>
+            <div>
+              <h3>{r.title}</h3>
+              <p>{r.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .why-media img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 220px 220px 12px 12px;
+  }
+  .why-copy h2 .accent {
+    color: var(--color-accent);
+  }
+  .why-list {
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .why-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .why-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .why-list h3 {
+    font-size: 1rem;
+    margin-bottom: 3px;
+  }
+  .why-list p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--color-body);
+  }
+  @media (max-width: 900px) {
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+    .why-media {
+      order: -1;
+    }
+  }
+</style>

@@ -1,0 +1,148 @@
+---
+const uploads = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/';
+const collageImg = uploads + 'clinic-barcelona.png';
+
+const points = [
+  {
+    title: 'Advanced reproductive medicine',
+    text: 'Cutting-edge IVF technology, genetic screening, and real-time embryo monitoring.',
+  },
+  {
+    title: 'Research & innovation',
+    text: 'Pioneer in biomedical research, publishing in leading scientific journals.',
+  },
+  {
+    title: 'International clinical standards',
+    text: 'Regulated under EU clinical frameworks with full transparency and patient rights.',
+  },
+];
+
+const badges = [
+  { text: 'Recognized as a World Health Organization (WHO) Collaborating Centre in multiple medical fields', icon: uploads + 'WHO.png' },
+  { text: 'Consistently ranked among the top hospitals in Spain and internationally by rankings such as Newsweek', icon: uploads + 'world-best-hospitals.png' },
+  { text: 'Designated national and European reference center for complex and rare diseases', icon: uploads + 'european-reference-networks.png' },
+];
+---
+
+<section class="section clinical-env">
+  <div class="container clinical-grid">
+    <div class="clinical-copy">
+      <p class="eyebrow">Clinical environment</p>
+      <h2 class="clinical-title">
+        Care supported by a top <span class="accent">European university hospital</span>
+      </h2>
+      <p>
+        <strong>FIVClínic</strong> operates within the clinical ecosystem of
+        <strong>Hospital Clínic Barcelona</strong> – a European reference
+        center for advanced reproductive medicine, clinical research, and
+        complex multidisciplinary cases.
+      </p>
+
+      <ul class="clinical-points">
+        {points.map((p) => (
+          <li>
+            <span class="point-dot"></span>
+            <div>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="clinical-media">
+      <img src={collageImg} alt="Hospital Clínic Barcelona" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="container badges-row">
+    {badges.map((badge) => (
+      <div class="badge-item">
+        <img src={badge.icon} alt="" class="badge-icon" loading="lazy" />
+        <p>{badge.text}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .clinical-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+  .clinical-title {
+    font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+  }
+  .clinical-title .accent {
+    color: var(--color-accent);
+  }
+  .clinical-points {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .clinical-points li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .point-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+  .clinical-points h3 {
+    font-size: 1.02rem;
+    margin-bottom: 4px;
+  }
+  .clinical-points p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  .clinical-media img {
+    width: 100%;
+    border-radius: var(--radius-md);
+  }
+
+  .badges-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .badge-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .badge-item .badge-icon {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  .badge-item p {
+    font-size: 0.85rem;
+    color: var(--color-heading);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .clinical-grid,
+    .badges-row {
+      grid-template-columns: 1fr;
+    }
+    .badges-row {
+      gap: 24px;
+    }
+  }
+</style>

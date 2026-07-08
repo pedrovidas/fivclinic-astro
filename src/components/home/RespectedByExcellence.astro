@@ -1,0 +1,244 @@
+---
+const uploads = 'https://fivclinic.es/international-patients/wp-content/uploads/';
+const teamPhoto = uploads + '2026/02/fiv2024-124-2.png';
+
+// Logos institucionales (fila superior) y Members (SEF + ESHRE)
+const instStrip = uploads + '2026/04/fivclinic-barnaclinic-1.png';   // Clínic Barcelona · Universitat · barnaclínic+
+const grupLogo  = uploads + '2026/04/grup-hospital-clinic.png';
+const sefLogo   = uploads + '2026/04/sociedad-espanola-de-fertilidad-1.png';
+
+// Valores reales de los contadores (data-to-value + sufijo del HTML original)
+const stats = [
+  { value: 100, suffix: '+',  label: 'years of clinical, research, and teaching activity' },
+  { value: 750, suffix: '+',  label: 'active beds' },
+  { value: 642, suffix: 'K+', label: 'outpatient consultations' },
+  { value: 31,  suffix: 'K+', label: 'operations performed' },
+];
+---
+
+<section class="section respected">
+  <div class="container respected-grid">
+    <div class="respected-copy">
+      <p class="eyebrow">Clinical experience</p>
+      <h2>Respected by <span class="accent">institutional excellence</span></h2>
+      <p class="section-lead">
+        Over 30 years of reproductive medicine, supported by the
+        infrastructure and clinical standards of one of Europe&rsquo;s great
+        university hospitals.
+      </p>
+
+      <div class="stats-box">
+        {stats.map((s, i) => (
+          <div class:list={['stat-cell', { 'has-divider': i > 0 }]}>
+            <p class="stat-number">
+              <span class="js-counter" data-to={s.value}>0</span>{s.suffix}
+            </p>
+            <p class="stat-label">{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="inst-logos">
+        <img src={instStrip} alt="Clínic Barcelona · Universitat de Barcelona" />
+        <span class="inst-divider"></span>
+        <img src={grupLogo} alt="barnaclínic+ · Grup Hospital Clínic" />
+      </div>
+
+      <div class="members">
+        <span class="members-label">Members:</span>
+        <img src={sefLogo} alt="Sociedad Española de Fertilidad" class="sef-logo" />
+        <div class="eshre-badge">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <circle cx="12" cy="12" r="11" fill="none" stroke="var(--color-muted)" stroke-width="1.5"/>
+            <path d="M7 12.5l3 3 7-7" fill="none" stroke="var(--color-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p>
+            <strong>ESHRE-Certified Senior Clinical Embryologists</strong>,
+            meeting the highest European standards for embryo handling and safety.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="respected-media">
+      <svg class="rings" viewBox="0 0 400 400" aria-hidden="true">
+        <circle cx="60" cy="90" r="70" fill="none" stroke="var(--color-accent-light)" stroke-width="10" opacity="0.5"/>
+        <circle cx="60" cy="90" r="45" fill="none" stroke="var(--color-accent-light)" stroke-width="10" opacity="0.5"/>
+        <circle cx="330" cy="320" r="90" fill="none" stroke="var(--color-accent-light)" stroke-width="10" opacity="0.5"/>
+        <circle cx="330" cy="320" r="60" fill="none" stroke="var(--color-accent-light)" stroke-width="10" opacity="0.5"/>
+        <circle cx="330" cy="320" r="30" fill="none" stroke="var(--color-accent-light)" stroke-width="10" opacity="0.5"/>
+      </svg>
+      <img src={teamPhoto} alt="FIVclínic medical team" class="team-photo" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .respected-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .respected-copy h2 .accent {
+    color: var(--color-accent);
+  }
+  .section-lead {
+    color: var(--color-body);
+    max-width: 46ch;
+  }
+
+  /* Caja de contadores con bordes y divisores */
+  .stats-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin: 32px 0 28px;
+    overflow: hidden;
+  }
+  .stat-cell {
+    padding: 22px 16px;
+    text-align: left;
+  }
+  .stat-cell.has-divider {
+    border-left: 1px solid var(--color-border);
+  }
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+    color: var(--color-accent);
+    font-weight: 700;
+    margin: 0 0 6px;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--color-body);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  /* Fila de logos institucionales */
+  .inst-logos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .inst-logos img {
+    height: 34px;
+    width: auto;
+    object-fit: contain;
+  }
+  .inst-divider {
+    width: 1px;
+    height: 30px;
+    background: var(--color-border);
+  }
+
+  /* Members: SEF + ESHRE badge */
+  .members {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .members-label {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  .sef-logo {
+    height: 44px;
+    width: auto;
+  }
+  .eshre-badge {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    max-width: 280px;
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+  .eshre-badge svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .eshre-badge p {
+    font-size: 0.68rem;
+    color: var(--color-muted);
+    margin: 0;
+    line-height: 1.35;
+  }
+  .eshre-badge strong {
+    color: var(--color-body);
+    font-weight: 600;
+  }
+
+  /* Foto del equipo con círculos naranjas */
+  .respected-media {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rings {
+    position: absolute;
+    inset: -8%;
+    width: 116%;
+    height: 116%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .team-photo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    border-top-left-radius: 160px;
+  }
+
+  @media (max-width: 900px) {
+    .respected-grid {
+      grid-template-columns: 1fr;
+    }
+    .respected-media {
+      order: -1;
+    }
+    .stats-box {
+      grid-template-columns: 1fr 1fr;
+    }
+    .stat-cell:nth-child(3) {
+      border-left: none;
+    }
+    .stat-cell:nth-child(3),
+    .stat-cell:nth-child(4) {
+      border-top: 1px solid var(--color-border);
+    }
+  }
+</style>
+
+<script>
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const counters = document.querySelectorAll('.respected .js-counter');
+  const animate = (el) => {
+    const to = Number(el.dataset.to ?? '0');
+    if (prefersReduced) { el.textContent = String(to); return; }
+    const dur = 1600, start = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = String(Math.round(to * eased));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { animate(e.target); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.4 });
+  counters.forEach((c) => obs.observe(c));
+</script>

@@ -1,0 +1,172 @@
+---
+const uploads = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/06/';
+const faviconIg = uploads + 'fivclinic-favicon-1-1.svg';
+const heroPost = uploads + 'mama-con-bebe-en-cama-fivclinic.png';
+
+// Los 2 posts pequeños de la columna central, con su caption que se revela en hover
+const posts = [
+  {
+    img: uploads + 'mother-and-baby-sleep.png',
+    caption: 'A wish that has come true. "Thanks to you and after a lot of work, this photo exists"',
+  },
+  {
+    img: uploads + 'motherhood-fivclinic.png',
+    caption:
+      'Eva has shared with the FIVclinic team two moments of her life: the fertility treatments that have resulted in her first son, Jac, now 5 years old, and recently with her second daughter Nora.',
+  },
+];
+---
+
+<section class="section social-path">
+  <div class="container path-grid">
+    <div class="path-copy">
+      <h2 class="path-title">
+        Get on a path to the family
+        <span class="accent">you&rsquo;ve always dreamed of.</span>
+      </h2>
+      <p class="path-lead accent">Your journey starts here.</p>
+      <a href="/fertility-assessment/" class="btn btn-primary path-cta">Request a free expert case review</a>
+      <p class="path-note">Quick response | Confidential | No obligation</p>
+    </div>
+
+    <div class="path-posts">
+      {posts.map((post) => (
+        <figure class="ig-post">
+          <img src={post.img} alt="" class="ig-photo" loading="lazy" />
+          <figcaption class="ig-caption">
+            <span class="ig-head">
+              <img src={faviconIg} alt="" class="ig-favicon" />
+              <strong>fivclinic</strong>
+            </span>
+            <span class="ig-text">{post.caption}</span>
+            <span class="ig-heart">&#10084;</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <div class="path-hero">
+      <img src={heroPost} alt="Mamá celebrando con bebé en hospital" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .social-path {
+    background: var(--color-accent-pale);
+    border-top-right-radius: 220px;
+    overflow: hidden;
+  }
+  .path-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.75fr 1.1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .path-title {
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--color-heading);
+  }
+  .path-title .accent,
+  .path-lead.accent {
+    color: var(--color-accent);
+  }
+  .path-lead {
+    font-size: 1.25rem;
+    margin: 12px 0 28px;
+  }
+  .path-cta {
+    font-size: 0.95rem;
+    padding: 1.1em 2.4em;
+  }
+  .path-note {
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: var(--color-body);
+  }
+
+  .path-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .ig-post {
+    position: relative;
+    margin: 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+  .ig-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .ig-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transform: translateY(calc(100% - 0px));
+    transition: transform 0.35s ease;
+  }
+  .ig-post:hover .ig-caption {
+    transform: translateY(0);
+  }
+  .ig-post:hover .ig-photo {
+    transform: scale(1.04);
+  }
+  .ig-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--color-heading);
+  }
+  .ig-favicon {
+    width: 18px;
+    height: 18px;
+  }
+  .ig-text {
+    font-size: 0.8rem;
+    color: var(--color-body);
+    line-height: 1.4;
+  }
+  .ig-heart {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+  }
+
+  .path-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    aspect-ratio: 3 / 4;
+  }
+
+  @media (max-width: 960px) {
+    .path-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .path-copy {
+      grid-column: 1 / -1;
+    }
+    .social-path {
+      border-top-right-radius: 120px;
+    }
+  }
+  @media (max-width: 600px) {
+    .path-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

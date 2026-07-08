@@ -1,0 +1,98 @@
+---
+interface Stat {
+  value: number;
+  suffix: string;
+  label: string;
+  sublabel?: string;
+}
+interface Props {
+  stats: Stat[];
+  variant?: 'light' | 'dark';
+}
+const { stats, variant = 'light' } = Astro.props;
+---
+
+<div class={`stats-bar stats-bar--${variant}`}>
+  {stats.map((s) => (
+    <div class="stat">
+      <p class="stat-number">
+        <span class="js-counter" data-to={s.value}>0</span>{s.suffix}
+      </p>
+      <p class="stat-label">{s.label}</p>
+      {s.sublabel && <p class="stat-sublabel">{s.sublabel}</p>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 32px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.4vw, 2.8rem);
+    color: var(--color-accent);
+    font-weight: 600;
+    margin: 0;
+  }
+  .stat-label {
+    margin: 6px 0 0;
+    font-size: 0.95rem;
+    color: var(--color-heading);
+    font-weight: 500;
+  }
+  .stat-sublabel {
+    margin: 2px 0 0;
+    font-size: 0.78rem;
+    color: var(--color-muted);
+  }
+  .stats-bar--dark .stat-number {
+    color: var(--color-white);
+  }
+  .stats-bar--dark .stat-label {
+    color: #e8e2dc;
+  }
+  .stats-bar--dark .stat-sublabel {
+    color: #b3b3b3;
+  }
+</style>
+
+<script>
+  // Animación simple de conteo, respeta prefers-reduced-motion
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const counters = document.querySelectorAll<HTMLElement>('.js-counter');
+
+  const animate = (el: HTMLElement) => {
+    const to = Number(el.dataset.to ?? '0');
+    if (prefersReduced) {
+      el.textContent = String(to);
+      return;
+    }
+    const duration = 1400;
+    const start = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = String(Math.round(to * eased));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animate(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  counters.forEach((c) => observer.observe(c));
+</script>

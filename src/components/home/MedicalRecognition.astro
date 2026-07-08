@@ -1,0 +1,162 @@
+---
+const uploads = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/02/';
+
+const list1 = [
+  'A reference center in complex medical care',
+  'Closely linked to university-level research and teaching',
+  'Recognized internationally for clinical excellence and scientific output',
+];
+const list2 = [
+  'Evidence-based medicine',
+  'Multidisciplinary collaboration',
+  'Transparent, ethical clinical decision-making',
+];
+
+const cards = [
+  {
+    img: uploads + 'image-157.png',
+    text: 'Recognized as a World Health Organization (WHO) Collaborating Centre in multiple medical fields',
+  },
+  {
+    img: uploads + 'image-158.png',
+    text: 'Leading university hospital linked to the University of Barcelona, one of Europe\u2019s top public universities.',
+  },
+  {
+    img: uploads + 'Clip-path-group.png',
+    text: 'Consistently ranked among the top hospitals in Spain and internationally by rankings such as Newsweek',
+  },
+  {
+    img: uploads + 'image-159.png',
+    text: 'Designated national and European reference center for complex and rare diseases',
+  },
+];
+---
+
+<section class="section medical-recognition">
+  <div class="container">
+    <div class="section-head text-center">
+      <h2 class="accent-full">Medical recognition and institutional credibility</h2>
+    </div>
+
+    <div class="recognition-grid">
+      <div class="recognition-text">
+        <p>
+          <strong>FIVClínic</strong>&rsquo;s clinical approach is aligned with
+          the medical standards, research environment, and academic excellence
+          of <strong>Hospital Clínic Barcelona</strong>, a leading university
+          hospital internationally recognized for its contribution to medicine,
+          research, and innovation.
+        </p>
+
+        <p class="list-title"><strong>Hospital Clínic Barcelona</strong> is:</p>
+        <ul class="check-list">
+          {list1.map((li) => <li>{li}</li>)}
+        </ul>
+
+        <p class="list-title">
+          This institutional environment reinforces <strong>FIVClínic</strong>&rsquo;s
+          commitment to:
+        </p>
+        <ul class="check-list">
+          {list2.map((li) => <li>{li}</li>)}
+        </ul>
+
+        <p class="closing">Every recommendation is grounded in rigor, not routine.</p>
+      </div>
+
+      <div class="recognition-box">
+        <div class="recognition-cards">
+          {cards.map((card) => (
+            <div class="rec-card">
+              <img src={card.img} alt="" loading="lazy" />
+              <p set:html={card.text} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-head {
+    margin-bottom: 48px;
+  }
+  .section-head h2 .accent,
+  .section-head h2.accent-full {
+    color: var(--color-accent);
+  }
+  .recognition-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .list-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .check-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .check-list li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 0.92rem;
+    color: var(--color-heading);
+  }
+  .check-list li::before {
+    content: '\2022';
+    position: absolute;
+    left: 6px;
+    color: var(--color-heading);
+  }
+  .closing {
+    margin-top: 20px;
+    font-style: italic;
+    color: var(--color-body);
+  }
+
+  .recognition-box {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: clamp(20px, 3vw, 36px);
+    background: var(--color-white);
+  }
+  .recognition-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px 28px;
+  }
+  .rec-card {
+    text-align: center;
+    padding: 0;
+  }
+  .rec-card img {
+    height: 72px;
+    width: auto;
+    margin: 0 auto 16px;
+    object-fit: contain;
+  }
+  .rec-card p {
+    font-size: 0.82rem;
+    color: var(--color-heading);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .recognition-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 520px) {
+    .recognition-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

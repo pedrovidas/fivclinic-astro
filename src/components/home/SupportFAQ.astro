@@ -1,0 +1,153 @@
+---
+const supportImg = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/02/fiv2024-124-2.png';
+
+const faqs = [
+  {
+    q: 'Can I start the process before traveling?',
+    a: 'Yes. The first step can begin with expert consultation and fertility assessment planning, so you can understand your options before organizing treatment travel.',
+    list: null,
+  },
+  {
+    q: 'Will I know which treatment is best before coming to Barcelona?',
+    a: 'In many cases, yes. Initial evaluation and medical review can help clarify whether insemination, IVF, or shared motherhood should be explored first.',
+    list: null,
+  },
+  {
+    q: 'Who will support me during treatment?',
+    a: null,
+    list: [
+      'A reproductive medicine team',
+      'Professionals experienced in donor sperm treatment and IVF',
+      'A coordinated hospital-based care environment',
+      'Staff used to caring for patients who may need remote planning before treatment',
+    ],
+  },
+];
+---
+
+<section class="section support-faq">
+  <div class="container support-grid">
+    <div class="support-copy">
+      <h2>
+        Support for patients coming to
+        <span class="accent">Barcelona from elsewhere in Spain or abroad</span>
+      </h2>
+      <p>
+        We understand that fertility treatment sometimes needs to be planned
+        around work, travel, family logistics, or life in another city or
+        country.
+      </p>
+      <p>
+        <strong>FIVClinic+</strong> offers a structured process that can begin
+        with specialist guidance and coordinated planning.
+      </p>
+      <img src={supportImg} alt="FIVclínic care" class="support-img" loading="lazy" />
+    </div>
+
+    <div class="faq-list">
+      {faqs.map((item, i) => (
+        <details class="faq-item" open={i === 0}>
+          <summary>
+            <span>{item.q}</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-answer">
+            {item.a && <p>{item.a}</p>}
+            {item.list && (
+              <ul>
+                {item.list.map((li) => <li>{li}</li>)}
+              </ul>
+            )}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .support-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .support-copy h2 .accent {
+    color: var(--color-accent);
+  }
+  .support-img {
+    width: 100%;
+    border-radius: var(--radius-md);
+    margin-top: 24px;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--color-heading);
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-icon {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--color-accent);
+    transition: opacity 0.2s ease;
+  }
+  .faq-icon::before {
+    top: 8px;
+    left: 0;
+    width: 18px;
+    height: 2px;
+  }
+  .faq-icon::after {
+    top: 0;
+    left: 8px;
+    width: 2px;
+    height: 18px;
+  }
+  .faq-item[open] .faq-icon::after {
+    opacity: 0;
+  }
+  .faq-answer {
+    padding: 0 0 22px;
+    color: var(--color-body);
+    font-size: 0.95rem;
+  }
+  .faq-answer ul {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  @media (max-width: 900px) {
+    .support-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

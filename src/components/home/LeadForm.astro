@@ -1,0 +1,171 @@
+---
+import { countries } from '../../data/countries';
+
+interface Props {
+  titlePlain?: string;
+  titleAccent?: string;
+}
+const {
+  titlePlain = 'Take the next step with',
+  titleAccent = 'clarity and expert guidance',
+} = Astro.props;
+
+const bgImage = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/02/FORM-final-cta.png';
+
+const ageGroups = ['Under 35', '35–39', '40–42', '43 or over'];
+const reasons = [
+  'Natural or low-stimulation IVF',
+  'Single woman or female couple',
+  'Genetic concerns or inherited conditions',
+  'Recurrent pregnancy loss (RPL)',
+  'Exploring options / not sure',
+];
+---
+
+<section class="lead-form-section" id="request-review">
+  <img src={bgImage} alt="" class="form-bg" aria-hidden="true" loading="lazy" />
+  <div class="container form-wrap">
+    <div class="section-head">
+      <h2>{titlePlain} <span class="accent">{titleAccent}</span></h2>
+    </div>
+
+    <form class="lead-form">
+      <div class="form-row">
+        <label class="field">
+          <span>Full name*</span>
+          <input type="text" name="full_name" required />
+        </label>
+        <label class="field">
+          <span>Email address*</span>
+          <input type="email" name="email" required />
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label class="field">
+          <span>Phone number*</span>
+          <input type="tel" name="phone" required />
+        </label>
+        <label class="field">
+          <span>Country of Residence*</span>
+          <select name="country" required>
+            <option value="">Select a country</option>
+            {countries.map((c) => <option value={c}>{c}</option>)}
+          </select>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label class="field">
+          <span>Age of the patient*</span>
+          <select name="age_group" required>
+            <option value="">Select age group</option>
+            {ageGroups.map((a) => <option value={a}>{a}</option>)}
+          </select>
+        </label>
+        <label class="field">
+          <span>Main reason for consultation*</span>
+          <select name="reason" required>
+            <option value="">Select one</option>
+            {reasons.map((r) => <option value={r}>{r}</option>)}
+          </select>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary form-submit">Request an expert case review</button>
+      <p class="form-note">Quick response | Confidential | No obligation</p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .lead-form-section {
+    position: relative;
+    padding-block: var(--space-section);
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+  .form-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .form-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container-width);
+  }
+  .section-head {
+    max-width: 520px;
+    margin-bottom: 32px;
+  }
+  .section-head h2 .accent {
+    color: var(--color-accent);
+  }
+  .lead-form {
+    max-width: 560px;
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: 40px;
+    box-shadow: var(--shadow-card);
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--color-heading);
+    font-weight: 500;
+  }
+  .field input,
+  .field select {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 12px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    color: var(--color-ink);
+  }
+  .field input:focus,
+  .field select:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+  .form-submit {
+    width: 100%;
+    margin-top: 8px;
+  }
+  .form-note {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--color-muted);
+    margin-top: 14px;
+  }
+  @media (max-width: 900px) {
+    .form-bg {
+      display: none;
+    }
+    .lead-form {
+      max-width: 100%;
+    }
+  }
+  @media (max-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    .lead-form {
+      padding: 24px;
+    }
+  }
+</style>

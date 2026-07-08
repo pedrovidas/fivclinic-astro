@@ -1,0 +1,89 @@
+---
+const heroImg = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/06/motherhood-at-FIVCLINIC.png';
+const instLogos = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/universitat-barcelona.png';
+---
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Advanced fertility and IVF clinic in Barcelona</p>
+      <h1 class="hero-title">
+        <span class="accent">World-class fertility care</span> in a leading medical destination in Europe
+      </h1>
+      <p class="hero-lead">
+        Barcelona is not only a premier travel destination, it is a place
+        patients from around the world choose for high-quality, specialized
+        medical care.
+      </p>
+      <p>
+        At <strong>FIVClínic</strong>, we provide personalized fertility
+        treatment and expert guidance for complex cases, supported by the
+        clinical environment of <strong>Hospital Clínic Barcelona</strong>.
+      </p>
+      <p>
+        Whether you are exploring treatment options, seeking a second
+        opinion, or planning your fertility journey from abroad, our team is
+        here to guide you with clarity, care, and expertise.
+      </p>
+      <p class="hero-note">
+        FIVClínic is the assisted reproduction department of barnaclínic+,
+        backed by <strong>Hospital Clínic Barcelona</strong> — an
+        internationally ranked, tier-1 university hospital group.
+      </p>
+      <img src={instLogos} alt="Hospital Clínic Barcelona · IDIBAPS · Universitat de Barcelona" class="hero-inst-logos" loading="eager" />
+    </div>
+    <div class="hero-media">
+      <img src={heroImg} alt="FIVclínic — patient care" class="hero-img" loading="eager" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(40px, 5vw, 72px);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .hero-title {
+    font-size: clamp(2.2rem, 3.6vw, 3.3rem);
+    font-weight: 400;
+    line-height: 1.12;
+    margin-bottom: 0.6em;
+  }
+  .hero-title .accent {
+    color: var(--color-accent);
+  }
+  .hero-lead {
+    font-size: 1.05rem;
+    color: var(--color-body);
+  }
+  .hero-note {
+    font-size: 0.9rem;
+    color: var(--color-body);
+    margin-bottom: 1.6em;
+  }
+  .hero-inst-logos {
+    max-width: 420px;
+    width: 100%;
+    height: auto;
+    margin-top: 8px;
+  }
+  .hero-img {
+    width: 100%;
+    aspect-ratio: 5 / 6;
+    object-fit: cover;
+    border-radius: 200px 200px 12px 12px;
+  }
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-media {
+      order: -1;
+    }
+  }
+</style>

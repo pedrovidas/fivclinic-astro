@@ -1,0 +1,58 @@
+---
+interface Props { intro?: string; footer?: string; }
+const {
+  intro = `Barcelona is <strong>one of Europe&rsquo;s leading destinations for advanced reproductive medicine</strong>, combining specialised expertise, research excellence, and a strong hospital-based medical ecosystem. Patients who travel to Barcelona for fertility care find access to a level of clinical infrastructure, laboratory support, and institutional rigour that is difficult to match elsewhere.`,
+  footer = `<strong>FIVClínic+</strong> sits at the centre of this ecosystem as part of barnaclínic+, the private medicine programme of Hospital Clínic Barcelona, an institution recognised internationally for its contribution to medicine and innovation.`,
+} = Astro.props;
+const el = 'https://fivclinic.es/international-patients/wp-content/uploads/elementor/thumbs/';
+const u = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/02/';
+
+const cards = [
+  { img: el + 'clinic-bcn-1-riwgaj3zxjevsehprk2olk1ea3x5h92421s0yzqcrc.png', text: 'Renowned university hospitals and research institutions' },
+  { img: u + 'clinic-bcn-1-4.png', text: 'Highly specialized medical professionals with clinical expertise' },
+  { img: u + 'clinic-bcn-1-2.png', text: 'International standards of clinical care and safety' },
+  { img: u + 'clinic-bcn-1-3.png', text: 'Excellent connectivity with major cities worldwide' },
+  { img: u + 'Rectangle-898-1.png', text: 'A welcoming, safe, and patient-friendly environment' },
+];
+---
+
+<section class="section why-bcn">
+  <div class="container">
+    <div class="why-bcn-box">
+      <h2>Why <span class="accent">Barcelona</span>?</h2>
+      <p set:html={intro} />
+      <p class="why-bcn-lead">Patients from around the world choose Barcelona because it offers:</p>
+
+      <div class="bcn-cards">
+        {cards.map((c) => (
+          <div class="bcn-card">
+            <div class="bcn-card-img"><img src={c.img} alt="" loading="lazy" /></div>
+            <p>{c.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="why-bcn-foot" set:html={footer} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-bcn-box {
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    padding: clamp(28px, 4vw, 48px);
+  }
+  .why-bcn-box h2 { font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 500; margin-bottom: 18px; }
+  .why-bcn-box h2 .accent { color: var(--color-accent); }
+  .why-bcn-box > p { color: var(--color-body); font-size: 0.95rem; }
+  .why-bcn-lead { margin-top: 18px; }
+  .bcn-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin: 24px 0 32px; }
+  .bcn-card { border: 1px solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; display: flex; flex-direction: column; }
+  .bcn-card-img { aspect-ratio: 1 / 1; overflow: hidden; }
+  .bcn-card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .bcn-card p { font-size: 0.9rem; color: var(--color-heading); font-weight: 500; margin: 0; padding: 16px; }
+  .why-bcn-foot { margin: 0; font-size: 0.92rem; color: var(--color-body); }
+  @media (max-width: 1000px) { .bcn-cards { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .bcn-cards { grid-template-columns: 1fr 1fr; } }
+</style>

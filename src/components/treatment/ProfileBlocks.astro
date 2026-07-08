@@ -1,0 +1,119 @@
+---
+const base = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/';
+const blocks = [
+  {
+    title: 'For women with low ovarian reserve or ovarian failure',
+    intro: 'When the ovaries can no longer produce eggs with a realistic chance of pregnancy, egg donation may offer the most appropriate path forward.',
+    listTitle: 'This may apply in situations such as:',
+    bullets: ['Very low ovarian reserve', 'Premature ovarian insufficiency', 'Early menopause', 'Previous ovarian surgery', 'Fertility loss after treatment such as chemotherapy'],
+    outro: 'At this stage, what matters is not false reassurance, but a medically grounded recommendation that takes into account your present situation and your goals.',
+    hint: 'Understand when IVF with donor eggs may offer a more realistic path if you are dealing with low ovarian reserve or ovarian failure.',
+    cta: 'Get the low ovarian reserve guide',
+    image: base + 'ovarion-reserve.png',
+    imageSide: 'left',
+  },
+  {
+    title: 'For patients after failed IVF cycles',
+    intro: 'When previous IVF treatments have not worked, repeating the same approach rarely changes the outcome.',
+    listTitle: 'We review factors such as:',
+    bullets: ['Ovarian response to stimulation', 'Egg quality and embryo development', 'Repeated failed implantation', 'Recurrent miscarriage', 'Previous treatment history and how your body responded'],
+    outro: 'Our role is to help you understand what has happened so far and whether egg donation now represents a more promising and realistic treatment strategy.',
+    hint: 'Had unsuccessful IVF cycles? Learn when donor eggs may be the right next step.',
+    cta: 'Download the failed IVF guide',
+    image: base + 'ivf-eggs-donation-fivclinic.png',
+    imageSide: 'right',
+  },
+  {
+    title: 'For women over 40 seeking a realistic path forward',
+    intro: 'At this stage, fertility decisions carry more weight. Honest, individualised assessment matters more than general statistics.',
+    listTitle: 'We evaluate your situation across:',
+    bullets: ['Ovarian reserve markers', 'Previous fertility history', 'Response to prior treatment', 'Embryo development patterns', 'General reproductive prognosis'],
+    outro: 'For some patients, egg donation offers the most effective route to pregnancy. What matters is reaching that conclusion through careful medical assessment, not assumption.',
+    hint: 'Over 40 and considering your options? Understand how donor egg IVF may change your chances.',
+    cta: 'Download the IVF after 40 guide',
+    image: base + 'fivclinic-eggs-donation.png',
+    imageSide: 'left',
+  },
+  {
+    title: 'For patients with genetic concerns or complex reproductive history',
+    intro: 'When genetics are part of the picture, answers require integration, not isolated tests.',
+    listTitle: 'Your case is reviewed collaboratively by specialists in:',
+    bullets: ['Reproductive medicine', 'Embryology', 'Genetics', 'Maternal-fetal medicine'],
+    outro: 'Every recommendation is approached with precision, sensitivity, and respect for the patient\u2019s values and decisions.',
+    hint: 'Explore when donor eggs may be considered in complex reproductive or genetic cases.',
+    cta: 'Download the complex cases guide',
+    image: base + 'fertility-experts-fivclinic.png',
+    imageSide: 'right',
+  },
+];
+---
+
+<section class="section section-surface profile-blocks">
+  <div class="container">
+    <h2 class="text-center blocks-title">A specialized approach <span class="accent">for patients considering egg donation</span></h2>
+
+    {blocks.map((b) => (
+      <div class:list={['block-grid', { 'image-left': b.imageSide === 'left' }]}>
+        <div class="block-copy">
+          <h3><span class="plus">+</span> {b.title}</h3>
+          <p>{b.intro}</p>
+
+          <div class="block-box">
+            <p class="list-title">{b.listTitle}</p>
+            <ul>
+              {b.bullets.map((x) => <li>{x}</li>)}
+            </ul>
+          </div>
+
+          <p>{b.outro}</p>
+
+          <div class="block-hint">
+            <span class="hint-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="2"><path d="M12 16V4m0 12l-4-4m4 4l4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 18v2h16v-2" stroke-linecap="round"/></svg>
+            </span>
+            <p>{b.hint}</p>
+          </div>
+
+          <a href="#" class="btn block-cta">{b.cta}</a>
+        </div>
+        <div class="block-media">
+          <img src={b.image} alt="" loading="lazy" />
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .blocks-title { font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 400; margin-bottom: 48px; }
+  .blocks-title .accent { color: var(--color-accent); }
+  .block-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; padding-block: 40px; border-bottom: 1px solid var(--color-accent); }
+  .block-grid:last-child { border-bottom: none; }
+  .block-grid.image-left { grid-template-columns: 0.9fr 1.1fr; }
+  .block-grid.image-left .block-media { order: -1; }
+  .block-copy h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 14px; display: flex; gap: 8px; align-items: baseline; }
+  .plus { color: var(--color-accent); font-weight: 400; }
+  .block-copy p { font-size: 0.95rem; color: var(--color-body); }
+  .block-box { background: var(--color-white); border-radius: var(--radius-md); padding: 22px 24px; margin: 18px 0; }
+  .list-title { font-weight: 600; color: var(--color-heading); margin-bottom: 10px; }
+  .block-box ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .block-box ul li { position: relative; padding-left: 22px; font-size: 0.9rem; color: var(--color-heading); }
+  .block-box ul li::before { content: ''; position: absolute; left: 0; top: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); }
+  .block-hint { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0; }
+  .hint-icon { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; }
+  .block-hint p { font-size: 0.88rem; color: var(--color-accent); margin: 0; }
+  .block-cta {
+    display: inline-block; width: 100%; text-align: center;
+    background: var(--color-white);
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    border-radius: var(--radius-pill); padding: 1.1em 2em;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .block-cta:hover { background: var(--color-accent); color: var(--color-white); }
+  .block-media img { width: 100%; border-radius: 160px 12px 12px 12px; aspect-ratio: 4 / 5; object-fit: cover; }
+  @media (max-width: 900px) {
+    .block-grid, .block-grid.image-left { grid-template-columns: 1fr; }
+    .block-media, .block-grid.image-left .block-media { order: -1; }
+  }
+</style>

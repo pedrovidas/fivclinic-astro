@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactHero from '../components/contact/ContactHero.astro';
+import ContactForm from '../components/contact/ContactForm.astro';
+import ContactSidebar from '../components/contact/ContactSidebar.astro';
+import SupportInternational from '../components/contact/SupportInternational.astro';
+import FinalCTA from '../components/shared/FinalCTA.astro';
+---
+
+<Layout
+  title="Contact FIVClínic Barcelona | Fertility Experts"
+  description="Contact the FIVClínic team in Barcelona. Request an expert case review from our fertility specialists — a clear, personalized response within 24–48 hours."
+>
+  <ContactHero />
+
+  <section class="section section-surface form-section">
+    <div class="container">
+      <div class="form-head">
+        <h2>Request your <span class="accent">expert case review</span></h2>
+        <p>
+          Share your details and medical context. A fertility specialist will
+          review your case and respond within 24–48 hours.
+        </p>
+      </div>
+
+      <div class="form-layout">
+        <div class="form-col">
+          <ContactForm />
+        </div>
+        <div class="sidebar-col">
+          <ContactSidebar />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <SupportInternational />
+  <FinalCTA />
+</Layout>
+
+<style>
+  .form-head {
+    margin-bottom: 40px;
+  }
+  .form-head h2 .accent {
+    color: var(--color-accent);
+  }
+  .form-head p {
+    color: var(--color-body);
+    max-width: 60ch;
+  }
+  .form-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .form-col {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 36px;
+  }
+  @media (max-width: 900px) {
+    .form-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

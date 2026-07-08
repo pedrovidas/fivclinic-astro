@@ -1,0 +1,82 @@
+---
+const items = [
+  { strong: 'Start the process with a', accent: 'free online consultation', rest: '' },
+  { strong: 'Understand your', accent: 'treatment options', rest: 'before traveling' },
+  { strong: '', accent: 'Plan your visit', rest: 'to Barcelona' },
+  { strong: '', accent: 'Coordinate documentation', rest: 'and timing' },
+  { strong: '', accent: 'Stay in contact', rest: 'before and after treatment' },
+];
+---
+
+<section class="section support-intl">
+  <div class="container">
+    <div class="section-head text-center">
+      <h2>Support for <span class="accent">international patients</span></h2>
+      <p>If you are contacting us from abroad, we will help you:</p>
+    </div>
+
+    <div class="support-grid">
+      {items.map((item) => (
+        <div class="support-item">
+          <span class="support-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none">
+              <path d="M5 12.5l4 4 10-10" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p>
+            {item.strong && <span>{item.strong} </span>}
+            {item.accent && <strong class="accent">{item.accent}</strong>}
+            {item.rest && <span> {item.rest}</span>}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-head {
+    margin-bottom: 40px;
+  }
+  .section-head h2 .accent {
+    color: var(--color-accent);
+  }
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 28px;
+  }
+  .support-item {
+    text-align: center;
+  }
+  .support-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    margin-bottom: 14px;
+  }
+  .support-item p {
+    font-size: 0.92rem;
+    color: var(--color-heading);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .support-item .accent {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  @media (max-width: 900px) {
+    .support-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 520px) {
+    .support-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

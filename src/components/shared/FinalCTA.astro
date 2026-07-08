@@ -1,0 +1,61 @@
+---
+const bg = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/02/FONDO.png';
+---
+
+<section class="final-cta">
+  <img src={bg} alt="" class="cta-bg" aria-hidden="true" loading="lazy" />
+  <div class="container cta-inner">
+    <h2>
+      Take the next step with
+      <span class="accent">clarity and expert guidance</span>
+    </h2>
+    <a href="/fertility-assessment/" class="btn btn-primary cta-btn">Request an expert case review</a>
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    position: relative;
+    background: var(--color-accent-pale);
+    overflow: hidden;
+    border-top-right-radius: 200px;
+  }
+  .cta-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 55%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    padding-block: clamp(64px, 10vw, 140px);
+    max-width: var(--container-width);
+  }
+  .cta-inner h2 {
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    font-weight: 400;
+    line-height: 1.1;
+    max-width: 16ch;
+    margin-bottom: 32px;
+  }
+  .cta-inner h2 .accent {
+    color: var(--color-accent);
+  }
+  .cta-btn {
+    font-size: 0.95rem;
+    padding: 1.1em 2.4em;
+  }
+  @media (max-width: 800px) {
+    .cta-bg {
+      opacity: 0.25;
+      width: 100%;
+    }
+    .final-cta {
+      border-top-right-radius: 100px;
+    }
+  }
+</style>

@@ -1,0 +1,91 @@
+---
+import StatsBar from '../StatsBar.astro';
+
+const stats = [
+  { value: 30, suffix: '+', label: 'Years of clinical, research and teaching activity' },
+  { value: 100, suffix: '+', label: 'Active beds' },
+  { value: 750, suffix: 'K+', label: 'Outpatient consultations' },
+  { value: 642, suffix: 'K+', label: 'Operations performed' },
+];
+
+const supportImg = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/02/fiv2024-124-2.png';
+const accreditationBase = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/';
+const accreditations = [
+  accreditationBase + 'fivclinic-barnaclinic-1.png',
+  accreditationBase + 'sociedad-espanola-de-fertilidad-1.png',
+  accreditationBase + 'grup-hospital-clinic.png',
+];
+---
+
+<section class="section section-cream support-section">
+  <div class="container support-grid">
+    <div class="support-media">
+      <img src={supportImg} alt="Patient support at FIVclínic" loading="lazy" />
+    </div>
+    <div class="support-copy">
+      <h2>Support for patients coming to Barcelona from elsewhere in Spain or abroad</h2>
+      <p>
+        We understand that fertility treatment sometimes needs to be planned
+        around work, travel, family logistics, or life in another city or
+        country. FIVClinic+ offers a structured process that can begin with
+        specialist guidance and continue with full support throughout your
+        journey.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section institutional-stats">
+  <div class="container">
+    <div class="section-head text-center">
+      <p class="eyebrow">Medical recognition and institutional credibility</p>
+      <h2>Clinical experience — respected by institutional excellence</h2>
+      <p class="section-lead">
+        Over 30 years of reproductive medicine, supported by the
+        infrastructure and clinical standards of one of Europe\u2019s great
+        university hospitals.
+      </p>
+    </div>
+    <StatsBar stats={stats} />
+
+    <div class="accreditation-row">
+      {accreditations.map((src) => (
+        <img src={src} alt="Accreditation" loading="lazy" />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .support-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .support-media img {
+    width: 100%;
+    border-radius: var(--radius-md);
+  }
+  .accreditation-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 56px;
+    flex-wrap: wrap;
+  }
+  .accreditation-row img {
+    max-height: 48px;
+    width: auto;
+    opacity: 0.85;
+  }
+  @media (max-width: 900px) {
+    .support-grid {
+      grid-template-columns: 1fr;
+    }
+    .support-media {
+      order: -1;
+    }
+  }
+</style>

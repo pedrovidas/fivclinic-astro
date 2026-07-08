@@ -1,0 +1,49 @@
+---
+interface Step { icon: string; title: string; text?: string; listIntro?: string; list?: string[]; }
+interface Props { steps: Step[]; titleAccent?: string; titlePlain?: string; }
+const { steps, titleAccent = 'A step-by-step process', titlePlain = 'designed around you' } = Astro.props;
+---
+
+<section class="section t-process">
+  <div class="container">
+    <div class="text-center tp-head">
+      <h2><span class="accent">{titleAccent}</span><br />{titlePlain}</h2>
+    </div>
+    <div class="tp-grid">
+      {steps.map((s, i) => (
+        <div class="tp-card">
+          <img src={s.icon} alt="" class="tp-icon" loading="lazy" />
+          <p class="tp-step">Step {i + 1}</p>
+          <h3>{s.title}</h3>
+          {s.text && <p class="tp-text">{s.text}</p>}
+          {s.listIntro && <p class="tp-text">{s.listIntro}</p>}
+          {s.list && (
+            <ul class="tp-list">
+              {s.list.map((li) => <li>{li}</li>)}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .tp-head { margin-bottom: 44px; }
+  .tp-head h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 500; line-height: 1.25; }
+  .tp-head h2 .accent { color: var(--color-accent); }
+  .tp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .tp-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 26px 22px;
+  }
+  .tp-icon { width: 44px; height: 44px; margin-bottom: 20px; }
+  .tp-step { font-size: 1.05rem; color: var(--color-heading); font-weight: 500; margin: 0 0 6px; font-family: var(--font-display); }
+  .tp-card h3 { font-size: 1.1rem; font-weight: 600; color: var(--color-accent); margin-bottom: 12px; line-height: 1.3; }
+  .tp-text { font-size: 0.9rem; color: var(--color-body); margin: 0 0 6px; }
+  .tp-list { margin: 0; padding-left: 18px; font-size: 0.9rem; color: var(--color-body); display: flex; flex-direction: column; gap: 4px; }
+  @media (max-width: 900px) { .tp-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .tp-grid { grid-template-columns: 1fr; } }
+</style>

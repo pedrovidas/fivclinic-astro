@@ -1,0 +1,76 @@
+---
+interface FAQ { q: string; a?: string; listIntro?: string; list?: string[]; foot?: string; }
+interface Props {
+  intro?: string;
+  faqs: FAQ[];
+  titlePlain?: string;
+  titleAccent?: string;
+  titleTail?: string;
+}
+const {
+  titlePlain = 'Planning your treatment',
+  titleAccent = 'from abroad',
+  titleTail = '',
+  intro = 'Many patients who come to <strong>FIVClínic+</strong> are coordinating from outside Barcelona, sometimes from another country entirely. The practical questions are real: how does treatment fit around work and travel? How much time does it actually require? We have structured our process to give those answers clearly, so that coordinating treatment from a distance is as straightforward as it can be.',
+  faqs,
+} = Astro.props;
+
+const img = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/02/fiv2024-124-2.png';
+---
+
+<section class="section planning">
+  <div class="container planning-grid">
+    <div class="planning-copy">
+      <h2>{titlePlain} <span class="accent">{titleAccent}</span>{titleTail && <> {titleTail}</>}</h2>
+      <p set:html={intro} />
+      <img src={img} alt="FIVclínic patient coordination" loading="lazy" />
+    </div>
+
+    <div class="planning-faqs">
+      {faqs.map((item) => (
+        <details class="faq-item" open>
+          <summary>
+            <span>{item.q}</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-answer">
+            {item.a && <p set:html={item.a} />}
+            {item.listIntro && <p>{item.listIntro}</p>}
+            {item.list && (
+              <ul>
+                {item.list.map((li) => <li>{li}</li>)}
+              </ul>
+            )}
+            {item.foot && <p>{item.foot}</p>}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .planning-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+  .planning-copy h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 500; }
+  .planning-copy h2 .accent { color: var(--color-accent); }
+  .planning-copy p { color: var(--color-body); font-size: 0.95rem; }
+  .planning-copy img { width: 100%; border-radius: var(--radius-md); margin-top: 20px; }
+
+  .planning-faqs { display: flex; flex-direction: column; gap: 8px; }
+  .faq-item summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 14px 0 10px; cursor: pointer; list-style: none;
+    border-bottom: 2px solid var(--color-accent);
+    font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--color-accent);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-icon { position: relative; width: 16px; height: 16px; flex-shrink: 0; }
+  .faq-icon::before, .faq-icon::after { content: ''; position: absolute; background: var(--color-accent); transition: opacity 0.2s ease; }
+  .faq-icon::before { top: 7px; left: 0; width: 16px; height: 2px; }
+  .faq-icon::after { top: 0; left: 7px; width: 2px; height: 16px; }
+  .faq-item[open] .faq-icon::after { opacity: 0; }
+  .faq-answer { padding: 14px 0 18px; color: var(--color-body); font-size: 0.92rem; }
+  .faq-answer p { margin: 0 0 8px; }
+  .faq-answer ul { margin: 4px 0 8px; padding-left: 22px; display: flex; flex-direction: column; gap: 5px; }
+  @media (max-width: 900px) { .planning-grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,112 @@
+---
+interface Testimonial { quote: string; author: string; }
+interface Props {
+  testimonials?: Testimonial[];
+  titlePlain?: string;
+  titleAccent?: string;
+  eyebrow?: string;
+  variant?: 'default' | 'gray';
+}
+const {
+  titlePlain = 'What international patients',
+  titleAccent = 'say about us',
+  eyebrow = 'Patient voices',
+  variant = 'default',
+  testimonials = [
+    {
+      quote:
+        'From abroad, we needed clarity before making decisions. The online consultation helped us understand everything before traveling.',
+      author: 'International patient, UK',
+    },
+    {
+      quote:
+        'We felt supported from the very first contact, even before traveling. The team answered every question with care and in English.',
+      author: 'Patient from Northern Europe',
+    },
+    {
+      quote:
+        'The entire process was clearly explained and well organized. We knew exactly what to expect at each stage — that made all the difference.',
+      author: 'International couple, Germany',
+    },
+  ],
+} = Astro.props;
+---
+
+<section class:list={['section', 'patient-voices', { 'pv-gray': variant === 'gray' }]}>
+  <div class="container">
+    <div class="section-head text-center">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h2>{titlePlain} <span class="accent">{titleAccent}</span></h2>
+    </div>
+
+    <div class="voices-grid">
+      {testimonials.map((t) => (
+        <figure class="voice-card">
+          <div class="stars" aria-label="5 out of 5 stars">
+            {Array.from({ length: 5 }).map(() => (
+              <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+                <path
+                  d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 15l-5.2 2.6 1-5.8L1.5 7.7l5.9-.9L10 1.5z"
+                  class="star-path"
+                />
+              </svg>
+            ))}
+          </div>
+          <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>
+          <figcaption>&mdash; {t.author}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-head {
+    max-width: 620px;
+    margin-inline: auto;
+    margin-bottom: 48px;
+  }
+  .section-head h2 .accent {
+    color: var(--color-accent);
+  }
+  .voices-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .voice-card {
+    margin: 0;
+    padding: 32px;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .star-path { fill: var(--color-accent); }
+  .pv-gray .voice-card { background: #F5F5F5; border: none; }
+  .pv-gray .star-path { fill: #F5B301; }
+  .stars {
+    display: flex;
+    gap: 4px;
+  }
+  .voice-card blockquote {
+    margin: 0;
+    font-family: 'Bryant Pro', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 27px;
+    color: var(--color-ink);
+  }
+  .voice-card figcaption {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    margin-top: auto;
+  }
+  @media (max-width: 900px) {
+    .voices-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

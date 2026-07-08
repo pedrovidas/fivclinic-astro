@@ -1,0 +1,46 @@
+---
+const favicon = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/fivclinic-favicon-1.svg';
+
+const cards = [
+  { strong: '30+ years', text: 'of specialized experience in reproductive medicine at FIVClínic', foot: null },
+  { strong: 'Part of barnaclínic+', text: 'the private medicine programme of Hospital Clínic Barcelona', foot: null },
+  { strong: 'Advanced laboratory', text: 'support for fertility preservation and assisted reproduction', foot: null },
+  { strong: 'Structured support', text: 'for patients coordinating treatment from another city or country', foot: null },
+  { strong: '100+ years', text: 'of clinical, research, and teaching activity', foot: 'Hospital Clínic Barcelona, founded in 1906' },
+];
+---
+
+<section class="section clinical-exp">
+  <div class="container">
+    <div class="text-center exp-head">
+      <h2>
+        <span class="accent">Clinical experience,</span> supported by<br />
+        <span class="accent">institutional excellence</span>
+      </h2>
+    </div>
+    <div class="exp-grid">
+      {cards.map((c) => (
+        <div class="exp-card">
+          <img src={favicon} alt="" width="26" height="26" loading="lazy" />
+          <p class="exp-strong">{c.strong}</p>
+          <p class="exp-text">{c.text}</p>
+          {c.foot && <p class="exp-foot">{c.foot}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .exp-head { max-width: 680px; margin: 0 auto 44px; }
+  .exp-head h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 500; line-height: 1.35; }
+  .exp-head h2 .accent { color: var(--color-accent); }
+  .exp-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; }
+  .exp-card { text-align: left; }
+  .exp-card img { margin-bottom: 14px; display: block; }
+  .exp-strong { color: var(--color-accent); font-weight: 600; font-size: 0.98rem; margin: 0 0 4px; }
+  .exp-text { font-size: 0.88rem; color: var(--color-body); margin: 0; }
+  .exp-foot { font-size: 0.82rem; color: var(--color-body); font-style: italic; margin: 6px 0 0; }
+  @media (max-width: 1000px) { .exp-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .exp-grid { grid-template-columns: 1fr 1fr; } }
+</style>

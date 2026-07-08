@@ -1,0 +1,142 @@
+---
+interface Props {
+  name: string;
+  photo: string;
+  roles: string[];
+  spec: string[];
+  social?: { linkedin?: string; x?: string; doctoralia?: string };
+}
+const { name, photo, roles, spec, social = {} } = Astro.props;
+---
+
+<article class="member">
+  <div class="member-photo">
+    <img src={photo} alt={name} loading="lazy" />
+  </div>
+
+  <div class="member-social">
+    <span class="social-btn" aria-hidden="true" title="Profile">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zM8.5 8a2 2 0 110 4 2 2 0 010-4zm3.5 9H5v-1c0-1.3 2.3-2 3.5-2s3.5.7 3.5 2v1zm7-2h-5v-1.5h5V15zm0-3h-5v-1.5h5V12zm0-3h-5V7.5h5V9z"/></svg>
+    </span>
+    {social.linkedin && (
+      <a href={social.linkedin} class="social-btn" target="_blank" rel="noopener noreferrer" aria-label={`${name} on LinkedIn`}>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.3 18.3v-7H6v7h2.3zM7.1 10a1.3 1.3 0 100-2.6 1.3 1.3 0 000 2.6zm11.2 8.3v-3.8c0-2-1.1-3-2.6-3-1.2 0-1.7.7-2 1.1v-1H11.4c0 .6 0 7 0 7h2.3v-3.9c0-.2 0-.4.1-.6.2-.4.5-.9 1.2-.9.9 0 1.2.7 1.2 1.6v3.8h2.1z"/></svg>
+      </a>
+    )}
+    {social.x && (
+      <a href={social.x} class="social-btn" target="_blank" rel="noopener noreferrer" aria-label={`${name} on X`}>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.2 2.3h3.3l-7.2 8.2 8.5 11.2h-6.7l-5.2-6.8-6 6.8H1.6l7.7-8.8L1.2 2.3H8l4.7 6.2 5.5-6.2zm-1.2 17.6h1.8L7.1 4.1H5.2l11.8 15.8z"/></svg>
+      </a>
+    )}
+  </div>
+
+  <h3 class="member-name">{name}</h3>
+
+  <ul class="member-roles">
+    {roles.map((r) => <li>{r}</li>)}
+  </ul>
+
+  {spec.length > 0 && (
+    <div class="member-spec">
+      <p class="spec-title">SPECIALIZATION</p>
+      <ul>
+        {spec.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+  )}
+</article>
+
+<style>
+  .member {
+    display: flex;
+    flex-direction: column;
+  }
+  .member-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 14px;
+    background: var(--color-surface);
+  }
+  .member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .member-social {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    color: var(--color-white);
+    transition: background 0.2s ease;
+  }
+  a.social-btn:hover {
+    background: var(--color-accent);
+  }
+  .member-name {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-heading);
+    margin-bottom: 10px;
+  }
+  .member-roles {
+    list-style: none;
+    margin: 0 0 14px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .member-roles li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 0.82rem;
+    color: var(--color-body);
+    line-height: 1.4;
+  }
+  .member-roles li::before {
+    content: '·';
+    position: absolute;
+    left: 2px;
+    color: var(--color-body);
+  }
+  .spec-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-heading);
+    margin: 0 0 8px;
+  }
+  .member-spec ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .member-spec li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 0.82rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .member-spec li::before {
+    content: '·';
+    position: absolute;
+    left: 2px;
+  }
+</style>

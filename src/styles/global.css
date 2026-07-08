@@ -1,0 +1,197 @@
+/* ==========================================================================
+   FIVclínic+ — Design tokens
+   Extraídos del CSS real de fivclinic.es/international-patients (Elementor)
+   ========================================================================== */
+
+/* Bryant Pro auto-hospedada — archivos reales proporcionados por el cliente.
+   No falta RegularItalic; se usa Regular + font-style:italic como fallback
+   controlado hasta que se consiga ese archivo. */
+@font-face {
+  font-family: 'Bryant Pro';
+  src: url('/fonts/BryantPro-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bryant Pro';
+  src: url('/fonts/BryantPro-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bryant Pro';
+  src: url('/fonts/BryantPro-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bryant Pro';
+  src: url('/fonts/BryantPro-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Color — extraído por frecuencia real de uso en el CSS del sitio */
+  --color-accent: #e04403;       /* naranja de marca: logo, botones, enlaces activos */
+  --color-accent-light: #f6c7b4; /* fondo suave sobre el naranja */
+  --color-accent-pale: #fcede6;  /* fondo muy suave, tarjetas/badges */
+  --color-burgundy: #92003b;     /* acento secundario, usado en detalles puntuales */
+  --color-ink: #1a1a1a;          /* texto más oscuro / negro editorial */
+  --color-heading: #3b3b3b;      /* titulares */
+  --color-body: #595959;         /* texto de párrafo */
+  --color-muted: #b3b3b3;        /* texto secundario / disabled */
+  --color-border: #d9d9d9;       /* líneas, bordes, separadores */
+  --color-surface: #f5f5f5;      /* fondo de secciones alternas */
+  --color-cream: #e8e2dc;        /* fondo cálido (secciones institucionales) */
+  --color-white: #ffffff;
+
+  /* Tipografía */
+  --font-display: 'Bryant Pro', 'Helvetica Neue', Arial, sans-serif;
+  --font-accent: 'Cormorant Garamond', 'Georgia', serif; /* citas / testimonios */
+  --font-body: 'Bryant Pro', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Layout */
+  --container-width: 1300px;
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+  --shadow-card: 0 10px 30px rgba(26, 26, 26, 0.08);
+
+  /* Espaciado vertical entre secciones */
+  --space-section: clamp(56px, 8vw, 120px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-body);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-heading);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  font-weight: 500;
+}
+
+h1 { font-size: clamp(2.1rem, 4vw, 3.4rem); font-weight: 400; }
+h2 { font-size: clamp(1.6rem, 2.8vw, 2.4rem); }
+h3 { font-size: clamp(1.15rem, 1.6vw, 1.4rem); }
+
+p { margin: 0 0 1em; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.9em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.95em 2em;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+.btn-primary:hover {
+  background: #c23a02;
+  box-shadow: 0 8px 20px rgba(224, 68, 3, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-heading);
+  border-color: var(--color-border);
+}
+.btn-outline:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section-surface {
+  background: var(--color-surface);
+}
+
+.section-cream {
+  background: var(--color-cream);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

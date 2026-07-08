@@ -1,0 +1,79 @@
+---
+interface Counter { value: number; suffix: string; label: string; sub?: string; subItalic?: string; }
+interface Props {
+  titleAccent1?: string;
+  titleMid?: string;
+  titleAccent2?: string;
+  counters: Counter[];
+}
+const {
+  titleAccent1 = 'Clinical experience,',
+  titleMid = 'supported by',
+  titleAccent2 = 'scale and excellence',
+  counters,
+} = Astro.props;
+---
+
+<section class="section exp-counters">
+  <div class="container">
+    <div class="text-center ec-head">
+      <h2>
+        <span class="accent">{titleAccent1}</span> {titleMid}<br />
+        <span class="accent">{titleAccent2}</span>
+      </h2>
+    </div>
+    <div class="ec-grid">
+      {counters.map((c) => (
+        <div class="ec-item">
+          <p class="ec-number"><span class="js-ec" data-to={c.value}>0</span>{c.suffix}</p>
+          <p class="ec-label">{c.label}</p>
+          {c.sub && <p class="ec-sub">{c.sub}</p>}
+          {c.subItalic && <p class="ec-sub-italic">{c.subItalic}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .ec-head { max-width: 640px; margin: 0 auto 44px; }
+  .ec-head h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 500; line-height: 1.35; }
+  .ec-head h2 .accent { color: var(--color-accent); }
+  .ec-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; }
+  .ec-item { text-align: left; }
+  .ec-number {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+    color: var(--color-accent);
+    font-weight: 700;
+    margin: 0 0 4px;
+    line-height: 1;
+  }
+  .ec-label { font-size: 0.95rem; color: var(--color-accent); font-weight: 600; margin: 0 0 4px; }
+  .ec-sub { font-size: 0.82rem; color: var(--color-body); margin: 0; }
+  .ec-sub-italic { font-size: 0.78rem; color: var(--color-body); font-style: italic; margin: 4px 0 0; }
+  @media (max-width: 1000px) { .ec-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .ec-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+
+<script>
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els = document.querySelectorAll<HTMLElement>('.js-ec');
+  const animate = (el: HTMLElement) => {
+    const to = Number(el.dataset.to ?? '0');
+    if (prefersReduced) { el.textContent = String(to); return; }
+    const dur = 1500, start = performance.now();
+    const step = (now: number) => {
+      const p = Math.min((now - start) / dur, 1);
+      el.textContent = String(Math.round(to * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { animate(e.target as HTMLElement); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.4 });
+  els.forEach((el) => obs.observe(el));
+</script>

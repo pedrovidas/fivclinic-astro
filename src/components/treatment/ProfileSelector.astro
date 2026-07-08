@@ -1,0 +1,73 @@
+---
+interface Card { icon: string; title: string; quote: string; cta: string; }
+interface Props { cards?: Card[]; }
+const base = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/';
+const defaultCards: Card[] = [
+  {
+    icon: base + 'Group-1100.svg',
+    title: 'Low Ovarian Reserve',
+    quote: 'I understand that my ovaries may no longer produce eggs with a realistic chance of success. I\u2019m looking for a medically grounded recommendation on whether egg donation is now my most appropriate path forward.',
+    cta: 'View the Low Reserve Path',
+  },
+  {
+    icon: base + 'Group-1102.svg',
+    title: 'Following Failed IVF Cycles',
+    quote: 'I\u2019ve been through cycles that haven\u2019t worked, and I know that repeating the same approach rarely changes the outcome. I need to understand why it failed and if a new strategy is the most realistic way to move forward.',
+    cta: 'View the Post-IVF Strategy',
+  },
+  {
+    icon: base + 'Group-1094.svg',
+    title: 'Planning Forward After 40',
+    quote: 'I know that at this stage, every decision carries more weight. I\u2019m looking for an honest, individualized assessment\u2014not just general statistics\u2014to see if egg donation offers me the most effective route to pregnancy.',
+    cta: 'View the Path for Over 40s',
+  },
+  {
+    icon: base + 'Group-1104.svg',
+    title: 'Genetic or Complex History',
+    quote: 'My situation involves complex genetic factors or a difficult reproductive history. I want a collaborative review by a team of specialists who can integrate all the data into a single, precise plan.',
+    cta: 'View Complex Case Management',
+  },
+];
+const { cards = defaultCards } = Astro.props;
+const cols = cards.length;
+---
+
+<section class="section profile-selector">
+  <div class="container">
+    <h2 class="text-center sel-title">Select your profile <span class="accent">for tailored information</span></h2>
+    <div class="profile-grid" style={`--cols:${cols}`}>
+      {cards.map((c) => (
+        <div class="profile-card">
+          <img src={c.icon} alt="" class="profile-icon" loading="lazy" />
+          <h3>{c.title}</h3>
+          <p class="profile-quote">{c.quote}</p>
+          <a href="#" class="profile-cta">{c.cta} <span aria-hidden="true">&darr;</span></a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sel-title { font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 400; margin-bottom: 44px; }
+  .sel-title .accent { color: var(--color-accent); }
+  .profile-grid { display: grid; grid-template-columns: repeat(var(--cols, 4), 1fr); gap: 24px; max-width: calc(var(--cols, 4) * 330px); margin-inline: auto; }
+  .profile-card {
+    border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    padding: 28px 22px; display: flex; flex-direction: column; align-items: center; text-align: center;
+  }
+  .profile-icon { width: 44px; height: 44px; margin-bottom: 18px; }
+  .profile-card h3 { font-size: 1.05rem; margin-bottom: 12px; }
+  .profile-quote {
+    font-family: 'Bryant Pro', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    color: #3B3B3B;
+    font-style: italic;
+    flex-grow: 1;
+  }
+  .profile-cta { margin-top: 16px; font-size: 0.82rem; font-weight: 600; color: var(--color-accent); }
+  @media (max-width: 900px) { .profile-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .profile-grid { grid-template-columns: 1fr; } }
+</style>

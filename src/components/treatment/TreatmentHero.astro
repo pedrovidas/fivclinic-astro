@@ -1,0 +1,134 @@
+---
+import { countries } from '../../data/countries';
+
+interface Props {
+  eyebrow?: string;
+  titlePlain: string;
+  titleAccent: string;
+  lead?: string;
+  paragraphs: string[];
+  note?: string;
+  formTitle: string;
+  bgImage?: string;
+  accentFirst?: boolean;
+  titleTail?: string;
+  checks?: string[];
+}
+const { eyebrow = 'Advanced fertility and IVF clinic in Barcelona', titlePlain, titleAccent, lead, paragraphs, note, formTitle, bgImage, accentFirst = true, titleTail, checks = [] } = Astro.props;
+
+const instLogos = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/universitat-barcelona.png';
+const ageGroups = ['Under 35', '35–39', '40–42', '43 or over'];
+const reasons = [
+  'Natural or low-stimulation IVF',
+  'Single woman or female couple',
+  'Genetic concerns or inherited conditions',
+  'Recurrent pregnancy loss (RPL)',
+  'Exploring options / not sure',
+];
+---
+
+<section class="t-hero" style={bgImage ? `background-image:url('${bgImage}')` : undefined}>
+  <div class="container t-hero-grid">
+    <div class="t-hero-copy">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 class="t-hero-title">
+        {accentFirst ? (
+          <><span class="accent">{titleAccent}</span> {titlePlain}</>
+        ) : (
+          <>{titlePlain} <span class="accent">{titleAccent}</span></>
+        )}
+        {titleTail && <><br />{titleTail}</>}
+      </h1>
+      {lead && <p class="t-hero-lead" set:html={lead} />}
+      {paragraphs.map((p) => <p set:html={p} />)}
+      {checks.length > 0 && (
+        <ul class="t-hero-checks">
+          {checks.map((ch) => (
+            <li>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" stroke="var(--color-accent)" stroke-width="1.6"/><path d="M7 12.5l3 3 7-7" stroke="var(--color-accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>{ch}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {note && <p class="t-hero-note" set:html={note} />}
+      <img src={instLogos} alt="Hospital Clínic Barcelona · IDIBAPS · Universitat de Barcelona" class="t-hero-logos" />
+    </div>
+
+    <div class="t-hero-form">
+      <h2 class="form-title">{formTitle}</h2>
+      <form>
+        <label class="field"><span>Full name*</span><input type="text" required /></label>
+        <label class="field"><span>Email address*</span><input type="email" required /></label>
+        <label class="field"><span>Phone number*</span><input type="tel" placeholder="+34 612 34 56 78" required /></label>
+        <label class="field"><span>Country of Residence*</span>
+          <select required><option value="">Select a country</option>{countries.map((c) => <option>{c}</option>)}</select>
+        </label>
+        <label class="field"><span>Age of the patient*</span>
+          <select required><option value="">Select age group</option>{ageGroups.map((a) => <option>{a}</option>)}</select>
+        </label>
+        <label class="field"><span>Main reason for consultation*</span>
+          <select required><option value="">Select one</option>{reasons.map((r) => <option>{r}</option>)}</select>
+        </label>
+        <button type="submit" class="btn btn-primary form-btn">Request an expert case review</button>
+        <p class="form-note">Quick response | Confidential | No obligation</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .t-hero {
+    padding-block: clamp(40px, 5vw, 72px);
+    background-color: var(--color-white);
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+  }
+  .t-hero-lead {
+    font-weight: 600;
+    color: var(--color-heading) !important;
+    font-size: 1.05rem !important;
+  }
+  .t-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .t-hero-title {
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    font-weight: 500;
+    line-height: 1.12;
+    margin-bottom: 0.5em;
+  }
+  .t-hero-title .accent { color: var(--color-accent); }
+  .t-hero-copy p { font-size: 0.95rem; color: var(--color-body); }
+  .t-hero-note { font-size: 0.82rem; color: var(--color-accent) !important; line-height: 1.5; }
+  .t-hero-checks { list-style: none; margin: 4px 0 16px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .t-hero-checks li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; color: var(--color-heading); font-weight: 600; }
+  .t-hero-checks svg { flex-shrink: 0; margin-top: 2px; }
+  .t-hero-copy :global(em) { font-style: italic; }
+  .t-hero-logos { max-width: 380px; width: 100%; margin-top: 12px; }
+
+  .t-hero-form {
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    box-shadow: var(--shadow-card);
+  }
+  .form-title { font-size: 1.35rem; font-weight: 600; color: var(--color-accent); margin-bottom: 18px; line-height: 1.3; }
+  .t-hero-form form { display: flex; flex-direction: column; gap: 14px; }
+  .field { display: flex; flex-direction: column; gap: 5px; font-size: 0.8rem; font-weight: 500; color: var(--color-heading); }
+  .field input, .field select {
+    font-family: var(--font-body); font-size: 0.9rem; padding: 10px 12px;
+    border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-white); color: var(--color-ink);
+  }
+  .field input:focus, .field select:focus { outline: 2px solid var(--color-accent); outline-offset: 1px; }
+  .form-btn { width: 100%; margin-top: 4px; }
+  .form-note { text-align: center; font-size: 0.72rem; color: var(--color-muted); margin: 0; }
+
+  @media (max-width: 900px) {
+    .t-hero-grid { grid-template-columns: 1fr; }
+  }
+</style>

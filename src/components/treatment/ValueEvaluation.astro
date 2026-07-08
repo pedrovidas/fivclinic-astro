@@ -1,0 +1,47 @@
+---
+interface Props { title?: string; paragraphs?: string[]; }
+const {
+  title = 'The value of a thorough evaluation at the right moment',
+  paragraphs = [
+    'A thorough evaluation at the right moment helps ensure that whatever path you choose, with or without egg donation, is based on an accurate picture of your current situation. That clarity is what makes a plan feel like a plan, not a gamble.',
+  ],
+} = Astro.props;
+---
+<section class="section value-outer">
+  <div class="container value-wrap text-center">
+    <span class="value-plus" aria-hidden="true">+</span>
+    <h2>{title}</h2>
+    <div class="value-card">
+      {paragraphs.map((p) => <p set:html={p} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .value-outer { background: #F5F5F5; }
+  .value-wrap { position: relative; }
+  .value-plus {
+    position: absolute;
+    left: clamp(0px, 2vw, 24px);
+    top: -10px;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300;
+    color: var(--color-accent-light);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .value-wrap h2 {
+    font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 24px;
+  }
+  .value-card {
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: clamp(24px, 3vw, 40px);
+    max-width: 760px;
+    margin-inline: auto;
+  }
+  .value-card p { color: var(--color-heading); font-size: 0.98rem; margin: 0 0 12px; } .value-card p:last-child { margin-bottom: 0; }
+</style>

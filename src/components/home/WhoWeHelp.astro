@@ -1,0 +1,144 @@
+---
+const iconBase = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/';
+const cards = [
+  {
+    title: 'Complex Fertility Cases',
+    tags: 'Failed IVF · Women over 40 · Genetic factors',
+    cta: 'Explore complex fertility care',
+    href: '/complex-fertility-cases/',
+    icon: iconBase + 'Group-1135.svg',
+  },
+  {
+    title: 'Recurrent Pregnancy Loss',
+    tags: 'Understanding why pregnancies don\u2019t continue',
+    cta: 'Explore RPL program',
+    href: '/rpl/',
+    icon: iconBase + 'Group-1134.svg',
+  },
+  {
+    title: 'IVF with Donor Eggs',
+    tags: 'Personalized donor programs with strict criteria',
+    cta: 'Explore egg donation',
+    href: '/ivf-with-donor-eggs/',
+    icon: iconBase + 'Group-1133.svg',
+  },
+  {
+    title: 'Fertility Preservation',
+    tags: 'Plan your future fertility with expert guidance',
+    cta: 'Explore fertility preservation',
+    href: '/fertility-preservation-in-barcelona/',
+    icon: iconBase + 'Group-1132.svg',
+  },
+  {
+    title: 'Single Women & Female Couples',
+    tags: 'Safe, respectful, and evidence-based fertility care',
+    cta: 'Explore this pathway',
+    href: '/fertility-for-single-women-female-couples/',
+    icon: iconBase + 'Group-1136.svg',
+  },
+];
+---
+
+<section class="section who-we-help">
+  <div class="container">
+    <div class="section-head text-center">
+      <p class="eyebrow">Who we help</p>
+      <h2>Find the right path for your situation</h2>
+      <p class="section-lead">
+        Every fertility journey is different. We help patients from around
+        the world across a wide range of situations:
+      </p>
+    </div>
+
+    <div class="cards-grid">
+      {cards.map((card) => (
+        <a href={card.href} class="care-card">
+          <div class="care-card-icon">
+            <img src={card.icon} alt="" width="48" height="48" loading="lazy" />
+          </div>
+          <div class="care-card-body">
+            <h3>{card.title}</h3>
+            <p class="care-card-tags">{card.tags}</p>
+            <span class="care-card-cta">{card.cta} &rarr;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-head {
+    max-width: 620px;
+    margin-inline: auto;
+    margin-bottom: 48px;
+  }
+  .section-lead {
+    color: var(--color-body);
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+
+  .care-card {
+    display: block;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .care-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+    border-color: transparent;
+  }
+  .care-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 84px;
+    height: 84px;
+    margin: 28px auto 0;
+    border-radius: 50%;
+    background: var(--color-accent-pale);
+  }
+  .care-card-icon img {
+    width: 40px;
+    height: 40px;
+  }
+  .care-card-body {
+    padding: 18px 18px 26px;
+  }
+  .care-card-body h3 {
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+  }
+  .care-card-tags {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    min-height: 3em;
+  }
+  .care-card-cta {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 1000px) {
+    .cards-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .cards-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

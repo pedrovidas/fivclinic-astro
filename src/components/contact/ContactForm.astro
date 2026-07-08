@@ -1,0 +1,179 @@
+---
+import { countries } from '../../data/countries';
+
+const ageGroups = ['Under 35', '35–39', '40–42', '43 or over'];
+const reasons = [
+  'Natural or low-stimulation IVF',
+  'Single woman or female couple',
+  'Genetic concerns or inherited conditions',
+  'Recurrent pregnancy loss (RPL)',
+  'Exploring options / not sure',
+];
+const languages = ['English', 'Spanish', 'French'];
+---
+
+<form class="contact-form">
+  <label class="field">
+    <span>Full name*</span>
+    <input type="text" name="full_name" required />
+  </label>
+
+  <label class="field">
+    <span>Email address*</span>
+    <input type="email" name="email" required />
+  </label>
+
+  <label class="field">
+    <span>Phone number*</span>
+    <input type="tel" name="phone" placeholder="+34 612 34 56 78" required />
+  </label>
+
+  <label class="field">
+    <span>Country of Residence*</span>
+    <select name="country" required>
+      <option value="">Select a country</option>
+      {countries.map((c) => <option value={c}>{c}</option>)}
+    </select>
+  </label>
+
+  <label class="field">
+    <span>Age of the patient*</span>
+    <select name="age_group" required>
+      <option value="">Select age group</option>
+      {ageGroups.map((a) => <option value={a}>{a}</option>)}
+    </select>
+  </label>
+
+  <label class="field">
+    <span>Main reason for consultation*</span>
+    <select name="reason" required>
+      <option value="">Select one</option>
+      {reasons.map((r) => <option value={r}>{r}</option>)}
+    </select>
+  </label>
+
+  <label class="field">
+    <span>Briefly tell us your situation* <em>(previous IVF cycles, age, diagnosis, or concerns)</em></span>
+    <textarea name="situation" rows="4" required></textarea>
+  </label>
+
+  <fieldset class="field field-inline">
+    <legend>Have you had previous IVF treatments?</legend>
+    <label class="check"><input type="checkbox" name="previous_ivf" value="yes" /> Yes</label>
+    <label class="check"><input type="checkbox" name="previous_ivf" value="no" /> No</label>
+  </fieldset>
+
+  <label class="field">
+    <span>Preferred language for communication*</span>
+    <select name="language" required>
+      <option value="">Choose one</option>
+      {languages.map((l) => <option value={l}>{l}</option>)}
+    </select>
+  </label>
+
+  <div class="field">
+    <label class="file-drop">
+      <input type="file" name="reports" />
+      <span class="file-inner">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--color-accent)" stroke-width="1.6" aria-hidden="true">
+          <path d="M12 16V4m0 0L8 8m4-4l4 4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke-linecap="round"/>
+        </svg>
+        <span><strong>Attach medical reports</strong> <em>(optional)</em><br />You can upload reports now or later</span>
+      </span>
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn-primary form-submit">Submit for expert review</button>
+</form>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--color-heading);
+    font-weight: 500;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .field > span em,
+  .field legend em {
+    font-weight: 400;
+    color: var(--color-muted);
+    font-style: normal;
+  }
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="tel"],
+  .field select,
+  .field textarea {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 12px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    color: var(--color-ink);
+    width: 100%;
+  }
+  .field textarea {
+    resize: vertical;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+  .field-inline legend {
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .check {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  .file-drop {
+    display: block;
+    border: 1px dashed var(--color-accent);
+    border-radius: var(--radius-sm);
+    padding: 18px;
+    text-align: center;
+    cursor: pointer;
+    background: var(--color-accent-pale);
+  }
+  .file-drop input {
+    display: none;
+  }
+  .file-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--color-body);
+    font-weight: 400;
+  }
+  .file-inner strong {
+    color: var(--color-accent);
+  }
+  .file-inner em {
+    color: var(--color-muted);
+    font-style: normal;
+  }
+  .form-submit {
+    width: 100%;
+    margin-top: 8px;
+  }
+</style>

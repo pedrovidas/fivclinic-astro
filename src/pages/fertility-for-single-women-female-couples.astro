@@ -1,0 +1,342 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import ProfileSelector from '../components/treatment/ProfileSelector.astro';
+import SplitSection from '../components/treatment/SplitSection.astro';
+import ScientificRigor from '../components/treatment/ScientificRigor.astro';
+import WhyBarcelonaCards from '../components/treatment/WhyBarcelonaCards.astro';
+import TreatmentProcess from '../components/treatment/TreatmentProcess.astro';
+import ClinicalExperienceIVF from '../components/treatment/ClinicalExperienceIVF.astro';
+import PlanningAbroad from '../components/treatment/PlanningAbroad.astro';
+import FAQAccordion from '../components/treatment/FAQAccordion.astro';
+import ValueEvaluation from '../components/treatment/ValueEvaluation.astro';
+import PatientVoices from '../components/home/PatientVoices.astro';
+import MedicalRecognition from '../components/home/MedicalRecognition.astro';
+import LeadForm from '../components/home/LeadForm.astro';
+import { swRigorIcons } from '../data/swRigorIcons';
+
+const u = 'https://fivclinic.es/international-patients/wp-content/uploads/';
+
+const profileCards = [
+  { icon: u + '2026/06/Group-1223.svg', title: 'Single women considering donor insemination', quote: '\u201cI want to become a mother on my own and understand if donor insemination is the right first step for me.\u201d', cta: 'View donor insemination pathway' },
+  { icon: u + '2026/06/Group-1226.svg', title: 'Female couples considering donor sperm treatment', quote: '\u201cWe are a female couple and want to understand our options with donor sperm.\u201d', cta: 'View options for female couples' },
+  { icon: u + '2026/06/Group-1238.svg', title: 'Female couples interested in the ROPA method', quote: '\u201cWe want to share motherhood and understand whether ROPA is right for us.\u201d', cta: 'View the ROPA pathway' },
+  { icon: u + '2026/06/Group-1228.svg', title: 'Women considering whether IVF is the better first step', quote: '\u201cI want to know whether I should start with insemination or go directly to IVF.\u201d', cta: 'View IVF guidance' },
+];
+
+const rigorItems = [
+  { text: 'Treatment is adapted to each patient, not chosen by default', icon: swRigorIcons[0] },
+  { text: 'Donor sperm treatments are available for women without a partner and women with a female partner', icon: swRigorIcons[1] },
+  { text: 'IVF can also be used for single motherhood and shared motherhood in female couples', icon: swRigorIcons[2] },
+  { text: 'Clinical decisions are explained carefully and without assumptions', icon: swRigorIcons[3] },
+  { text: 'Medical expertise is combined with emotional sensitivity and inclusive care', icon: swRigorIcons[4] },
+];
+
+const blocks = [
+  {
+    title: 'For single women considering donor insemination',
+    intro: ['For many single women, donor insemination may be the most natural first step when fertility conditions are favorable.'],
+    boxIntro: 'This option may be particularly suitable when:',
+    items: ['Age is still on your side', 'Ovarian reserve is normal or acceptable', 'At least one fallopian tube is patent', 'A less invasive treatment is medically appropriate'],
+    closing: ['What matters is assessing whether this route is likely to offer a good chance of pregnancy in your case, or whether another strategy would be more effective from the start.'],
+    hint: 'Thinking about becoming a mother on your own? Understand when donor insemination, IVF or another route may be right for you.',
+    image: u + '2026/06/single-woman-fertility-treatment.png',
+    imageSide: 'left',
+  },
+  {
+    title: 'For female couples considering donor sperm treatment',
+    intro: [
+      'For female couples, fertility treatment is not a one-size-fits-all decision.',
+      'Some couples may choose donor insemination as a first option. Others may prefer IVF, whether for medical reasons or because they want to explore a shared motherhood pathway.',
+    ],
+    boxIntro: null,
+    items: [],
+    closing: ['This allows treatment to be planned with both medical safety and respect for the family project.'],
+    hint: 'Explore your options with donor sperm and understand whether insemination, IVF or shared motherhood may fit your family project.',
+    image: u + '2026/06/female-couple-fertility-treatment.png',
+    imageSide: 'right',
+  },
+  {
+    title: 'For female couples interested in shared motherhood (ROPA)',
+    intro: [
+      'IVF allows two women to share motherhood through the ROPA method, where one partner provides the eggs and the other carries the pregnancy.',
+      'For couples considering ROPA, the decision usually involves more than fertility alone.',
+    ],
+    boxIntro: 'It may also include questions such as:',
+    items: ['Which partner is better suited to provide the eggs', 'Which partner will carry the pregnancy', 'Whether ovarian reserve, age, or timing influence the decision', 'What treatment plan is medically and emotionally most appropriate for both of you'],
+    closing: [],
+    hint: 'Considering shared motherhood? Learn how ROPA works and what medical factors may influence the best plan for both of you.',
+    image: u + '2026/06/female-couple-ropa-method.png',
+    imageSide: 'left',
+  },
+  {
+    title: 'For women who want to understand whether IVF is the better first step',
+    intro: ['Not every patient is best served by starting with insemination.'],
+    boxIntro: 'IVF may be more appropriate when:',
+    items: ['Age makes time especially important', 'Ovarian reserve is reduced', 'There are tubal factors', 'There have already been unsuccessful inseminations', 'A couple is considering ROPA from the outset'],
+    closing: ['That is why the right first step is not always the simplest one, but the one that best fits the medical reality.'],
+    hint: 'Not sure whether to start with insemination or go directly to IVF? Download the guide to understand what may make sense in your case.',
+    image: u + '2026/06/single-woman-ivf-treatment.png',
+    imageSide: 'right',
+  },
+];
+
+const processSteps = [
+  { icon: u + '2026/04/Group-1099.svg', title: 'Expert fertility assessment', text: 'We review your age, ovarian reserve, reproductive goals, and any prior fertility history to understand which treatment approach is most appropriate.' },
+  { icon: u + '2026/04/Group-1079.svg', title: 'Individualized treatment recommendation', text: 'We explain whether donor insemination, IVF, or ROPA is likely to be the best fit based on your medical profile and family project.' },
+  { icon: u + '2026/04/Group-769-1.svg', title: 'Treatment planning and donor coordination', text: 'If donor sperm is needed, the process is coordinated according to clinical criteria and Spanish legal standards regarding confidentiality and donor matching.' },
+  { icon: u + '2026/04/Group-657-1.svg', title: 'Treatment and follow-up', text: 'Whether the recommended path is insemination or IVF, you continue with a structured medical process and follow-up tailored to your case.' },
+];
+
+const intlFaqs = [
+  { q: 'Can I start the process before traveling?', a: 'Yes. The first step can begin with expert consultation and fertility assessment planning, so you can understand your options before organizing treatment travel.' },
+  { q: 'Will I know which treatment is best before coming to Barcelona?', a: 'In many cases, yes. Initial evaluation and medical review can help clarify whether insemination, IVF, or shared motherhood should be explored first.' },
+  { q: 'Who will support me during treatment?', a: 'You will be supported by:', list: ['A reproductive medicine team', 'Professionals experienced in donor sperm treatment and IVF', 'A coordinated hospital-based care environment', 'Staff used to caring for patients who may need remote planning before treatment'] },
+];
+
+const realFaqs = [
+  { q: 'Can single women have fertility treatment at FIVClinic?', a: 'Yes. FIVClinic treats women seeking motherhood without a male partner.' },
+  { q: 'How is the sperm donor selected?', a: 'Donor matching is based on physical characteristics and blood group, seeking the greatest physical and immunological similarity possible, within the Spanish legal framework for anonymous donation.' },
+  { q: 'Do you offer treatment for female couples?', a: 'Yes. Donor insemination can be used for women with a female partner, and IVF can also be used for shared motherhood through the ROPA method.' },
+  { q: 'Will I know the identity of the donor?', a: 'No. Sperm donation in Spain is anonymous and confidential under the applicable legal framework.' },
+  { q: 'Is donor insemination an option for both single women and female couples?', a: 'Yes. It can be an appropriate option for women without a partner and for women with a female partner.' },
+  { q: 'How do I know whether I should start with insemination or IVF?', a: 'That depends on factors such as age, ovarian reserve, tubal status, and the treatment goals of the patient or couple. The right approach should always be individualized.' },
+  { q: 'What is the ROPA method?', a: 'ROPA is an IVF treatment in which one woman provides the eggs and the other carries the pregnancy, allowing two women to share motherhood.' },
+  { q: 'Can I start the process if I live outside Barcelona or outside Spain?', a: 'Yes. The process can begin with consultation and planning before travel, if needed.' },
+];
+
+const swTestimonials = [
+  { quote: 'We wanted a team that understood our family project without assumptions. That made all the difference.', author: 'Female couple exploring fertility treatment' },
+  { quote: 'I felt guided from the beginning, with thoughtful medical advice and no pressure.', author: 'Single woman pursuing motherhood' },
+  { quote: 'What I valued most was understanding which treatment actually made sense for us.', author: 'Patient considering donor insemination and IVF' },
+];
+---
+
+<Layout
+  title="Fertility for Single Women & Female Couples | FIVClínic"
+  description="Fertility treatment for women pursuing motherhood without a male partner — donor insemination, IVF and the ROPA method at FIVClínic Barcelona."
+>
+  <TreatmentHero
+    titlePlain="pursuing motherhood without a male partner"
+    titleAccent="Fertility treatment for women"
+    lead="Expert, personalized care for single women and female couples"
+    paragraphs={[
+      'At <strong>FIVClinic+</strong>, we support women building their family without a male partner through a medical approach that is individualized, evidence-based, and respectful of each family project.',
+      'For some patients, the right first step may be donor insemination. For others, IVF may offer a more suitable path. In female couples, shared motherhood through the ROPA method (Reception of Oocytes from the Partner, also known as Reciprocal IVF) may also be part of the conversation.',
+      'Our role is to help you understand which treatment makes sense for your situation, your fertility profile, and the way you want to build your family.',
+    ]}
+    note="FIVClínic is the assisted reproduction department of barnaclínic+, backed by<br /><strong>Hospital Clínic Barcelona</strong> \u2013 an internationally ranked, tier-1 university hospital group."
+    formTitle="Understand which fertility treatment is right for your family project"
+    bgImage={u + '2026/02/HERO-IMG-2-1.png'}
+  />
+
+  <ProfileSelector cards={profileCards} />
+
+  <SplitSection
+    titlePlain="When you want to become a mother without a male partner,"
+    titleAccent="the right guidance matters"
+    paragraphs={[
+      'Starting a family in this context is not about overcoming infertility in the traditional sense. It is about choosing the right medical pathway, understanding your options clearly, and feeling supported by a team that respects your family model from the beginning.',
+    ]}
+    image={u + '2026/02/Rectangle-866.png'}
+    imageSide="left"
+  >
+    <p style="margin-top:20px"><strong class="accent-text">You may be asking yourself:</strong></p>
+    <ul class="slot-bullets">
+      <li>Should I start with donor insemination or IVF?</li>
+      <li>What treatment makes the most sense for my age and ovarian reserve?</li>
+      <li>What are the options for female couples?</li>
+      <li>Can both women be involved in the process?</li>
+      <li>How is donor sperm selected in Spain?</li>
+      <li>What does the process look like if I live outside Barcelona or outside Spain?</li>
+    </ul>
+    <p style="margin-top:18px;color:var(--color-body)">At this stage, what matters most is not being pushed toward one treatment, but being guided toward the one that fits your situation best.</p>
+  </SplitSection>
+
+  <SplitSection
+    titlePlain="Why FIVClínic is the right place"
+    titleAccent="for your journey"
+    paragraphs={[
+      'At FIVClinic, every treatment plan begins with your personal, reproductive, and family context.',
+      '<strong>That means understanding:</strong>',
+    ]}
+    bullets={[
+      'Your age and ovarian reserve',
+      'Whether donor insemination is suitable',
+      'Whether IVF may offer a stronger chance of success',
+      'Whether shared motherhood is something you wish to explore as a female couple',
+      'What timing makes sense for your plans',
+    ]}
+    image={u + '2026/02/Group-763.png'}
+    imageSide="right"
+    surface={true}
+    wideImage={true}
+  >
+    <p style="margin-top:18px;color:var(--color-body)"><strong>You do not need assumptions. You need a fertility plan designed around your family project.</strong></p>
+  </SplitSection>
+
+  <ScientificRigor
+    titlePlain="Scientific rigor,"
+    titleAccent="always accompanied by respectful care"
+    subtitle="Fertility care is not one-size-fits-all.<br />At <strong>fivclínic:</strong>"
+    items={rigorItems}
+    note="Here, expert care also means understanding that there is more than one valid way to create a family."
+  />
+
+  <WhyBarcelonaCards />
+
+  <section class="section section-surface sw-blocks">
+    <div class="container">
+      <h2 class="sw-title">A specialized approach for <span class="accent">women pursuing motherhood without a male partner</span></h2>
+
+      {blocks.map((b) => (
+        <div class:list={['sw-grid', { 'image-left': b.imageSide === 'left' }]}>
+          <div class="sw-copy">
+            <h3><span class="plus">+</span> {b.title}</h3>
+            {b.intro.map((p) => <p set:html={p} />)}
+            {b.boxIntro && (
+              <div class="sw-box">
+                <p class="sw-group-intro" set:html={b.boxIntro} />
+                <ul>
+                  {b.items.map((it) => <li>{it}</li>)}
+                </ul>
+              </div>
+            )}
+            {b.closing.map((cl) => <p class="sw-closing" set:html={cl} />)}
+            <div class="sw-hint">
+              <span class="hint-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="2"><path d="M12 16V4m0 12l-4-4m4 4l4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 18v2h16v-2" stroke-linecap="round"/></svg>
+              </span>
+              <p>{b.hint}</p>
+            </div>
+            <a href="#" class="btn sw-cta">Download the free guide</a>
+          </div>
+          <div class="sw-media">
+            <img src={b.image} alt="" loading="lazy" />
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <SplitSection
+    titlePlain="How donor sperm"
+    titleAccent="treatment is approached"
+    paragraphs={[
+      'At <strong>FIVClinic+</strong>, treatment with donor sperm begins with an individualized review of the patient\u2019s medical and reproductive situation.',
+      '<strong>Before donor insemination, the process includes:</strong>',
+    ]}
+    bullets={[
+      'Review of personal and family medical history',
+      'Gynecological examination',
+      'Ovarian reserve assessment through ultrasound and hormone testing',
+      'Evaluation of tubal patency when needed',
+      'General health assessment',
+    ]}
+    image={u + '2026/04/Group-766-1.png'}
+    imageSide="left"
+  >
+    <p style="margin-top:18px;color:var(--color-body)">For sperm-bank treatments, donor selection is based on physical characteristics and blood group, seeking the greatest physical and immunological similarity possible.</p>
+    <p style="color:var(--color-body)">This allows treatment to be planned with both safety and personalization.</p>
+  </SplitSection>
+
+  <TreatmentProcess
+    steps={processSteps}
+    titleAccent="A step-by-step process"
+    titlePlain="designed around your situation"
+  />
+
+  <SplitSection
+    titlePlain="More than one treatment path."
+    titleAccent="One family project."
+    paragraphs={[
+      'For women pursuing motherhood without a male partner, the most important question is not simply which treatment exists.',
+      '<strong>It is which treatment offers the right balance of:</strong>',
+    ]}
+    bullets={[
+      'Medical appropriateness',
+      'Realistic chances of pregnancy',
+      'Respect for your family model',
+      'Emotional comfort with the process',
+      'A timeline that makes sense for your life',
+    ]}
+    image={u + '2026/04/Rectangle-881.png'}
+    imageSide="right"
+  >
+    <p style="margin-top:18px;color:var(--color-body)">This is why treatment should begin with good medical judgment, not assumptions.</p>
+  </SplitSection>
+
+  <ClinicalExperienceIVF />
+
+  <PlanningAbroad
+    titlePlain="Support for patients coming to"
+    titleAccent="Barcelona from elsewhere in Spain or abroad"
+    intro="We understand that fertility treatment sometimes needs to be planned around work, travel, family logistics, or life in another city or country.<br /><br /><strong>FIVClinic+</strong> offers a structured process that can begin with specialist guidance and coordinated planning."
+    faqs={intlFaqs}
+  />
+
+  <FAQAccordion faqs={realFaqs} columns={2} />
+
+  <SplitSection
+    titlePlain="A family project deserves a treatment plan"
+    titleAccent="that truly fits"
+    paragraphs={['When treatment is explained properly and adapted to your real situation:']}
+    bullets={['Decisions feel more grounded', 'The process becomes easier to navigate', 'Expectations become more realistic', 'The path toward motherhood feels more coherent and supported']}
+    image={u + '2026/02/Rectangle-884.png'}
+    imageSide="right"
+  >
+    <p style="margin-top:18px;color:var(--color-body)">This is not about steering every patient toward the same route.</p>
+    <p style="color:var(--color-body)">It is about helping each woman or couple understand which fertility path makes the most sense for the family they want to build.</p>
+  </SplitSection>
+
+  <ValueEvaluation
+    title="The value of choosing the right first step"
+    paragraphs={[
+      'A careful fertility evaluation can help avoid starting with a treatment that is less suited to your age, ovarian reserve, or goals.',
+      'For some women, donor insemination may be the right place to begin.<br />For others, IVF may offer a more effective path from the outset.<br />For some female couples, shared motherhood may be the most meaningful option.',
+      'That is why choosing well at the beginning can make the entire journey feel more focused, more efficient, and more reassuring.',
+    ]}
+  />
+
+  <PatientVoices testimonials={swTestimonials} titlePlain="" titleAccent="What patients say about us" eyebrow="" variant="gray" />
+
+  <MedicalRecognition />
+
+  <LeadForm titlePlain="Take the next step with" titleAccent="expert guidance and a plan built around your future." />
+</Layout>
+
+<style>
+  .accent-text { color: var(--color-accent); }
+
+  .sw-title { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 500; margin-bottom: 40px; }
+  .sw-title .accent { color: var(--color-accent); }
+  .sw-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; padding-block: 40px; border-bottom: 1px solid var(--color-accent); }
+  .sw-grid:last-child { border-bottom: none; }
+  .sw-grid.image-left { grid-template-columns: 0.9fr 1.1fr; }
+  .sw-grid.image-left .sw-media { order: -1; }
+  .sw-copy h3 { font-size: 1.2rem; font-weight: 600; color: var(--color-accent); display: flex; gap: 8px; align-items: baseline; margin-bottom: 14px; }
+  .sw-copy h3 .plus { font-weight: 400; }
+  .sw-copy > p { font-size: 0.95rem; color: var(--color-body); }
+  .sw-box { background: var(--color-white); border-radius: var(--radius-md); padding: 22px 24px; margin: 18px 0; }
+  .sw-group-intro { font-weight: 600; color: var(--color-heading); margin: 0 0 10px; }
+  .sw-box ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .sw-box li { position: relative; padding-left: 22px; font-size: 0.9rem; color: var(--color-heading); }
+  .sw-box li::before { content: ''; position: absolute; left: 0; top: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); }
+  .sw-closing { font-size: 0.95rem; color: var(--color-body); }
+  .sw-hint { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0; }
+  .hint-icon { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; }
+  .sw-hint p { font-size: 0.88rem; color: var(--color-accent); margin: 0; }
+  .sw-cta {
+    display: inline-block; width: 100%; text-align: center;
+    background: var(--color-white); border: 1px solid var(--color-accent); color: var(--color-accent);
+    border-radius: var(--radius-pill); padding: 1.1em 2em;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .sw-cta:hover { background: var(--color-accent); color: var(--color-white); }
+  .sw-media img { width: 100%; border-radius: 160px 12px 12px 12px; aspect-ratio: 4 / 5; object-fit: cover; }
+
+  @media (max-width: 900px) {
+    .sw-grid, .sw-grid.image-left { grid-template-columns: 1fr; }
+    .sw-media, .sw-grid.image-left .sw-media { order: -1; }
+  }
+</style>

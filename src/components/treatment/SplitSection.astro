@@ -1,0 +1,63 @@
+---
+interface Props {
+  eyebrow?: string;
+  titlePlain?: string;
+  titleAccent?: string;
+  paragraphs?: string[];
+  bullets?: string[];
+  image?: string;
+  imageSide?: 'left' | 'right';
+  surface?: boolean;
+  cream?: boolean;
+  wideImage?: boolean;
+}
+const {
+  eyebrow, titlePlain = '', titleAccent = '', paragraphs = [], bullets = [],
+  image, imageSide = 'right', surface = false, cream = false, wideImage = false,
+} = Astro.props;
+---
+
+<section class:list={['section', 'split', { 'section-surface': surface, 'section-cream': cream }]}>
+  <div class:list={['container', 'split-grid', { 'image-left': imageSide === 'left', 'wide-image': wideImage }]}>
+    <div class="split-copy">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      {(titlePlain || titleAccent) && (
+        <h2>{titlePlain} <span class="accent">{titleAccent}</span></h2>
+      )}
+      {paragraphs.map((p) => <p set:html={p} />)}
+      {bullets.length > 0 && (
+        <ul class="split-bullets">
+          {bullets.map((b) => <li set:html={b} />)}
+        </ul>
+      )}
+      <slot />
+    </div>
+    {image && (
+      <div class="split-media">
+        <img src={image} alt="" loading="lazy" />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .split-grid.wide-image { grid-template-columns: 0.85fr 1.15fr; }
+  .split-grid.image-left .split-copy { order: 2; }
+  .split-grid.image-left .split-media { order: 1; }
+  .split-copy h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 500; }
+  .split-copy h2 .accent { color: var(--color-accent); }
+  .split-copy p { color: var(--color-body); }
+  .split-bullets { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .split-bullets li { position: relative; padding-left: 24px; font-size: 0.92rem; color: var(--color-heading); }
+  .split-bullets li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent); }
+  .split-copy :global(ul.slot-bullets) { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .split-copy :global(ul.slot-bullets li) { position: relative; padding-left: 24px; font-size: 0.92rem; color: var(--color-heading); }
+  .split-copy :global(ul.slot-bullets li)::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent); }
+  .split-media img { width: 100%; border-radius: var(--radius-md); }
+  @media (max-width: 900px) {
+    .split-grid, .split-grid.image-left { grid-template-columns: 1fr; }
+    .split-grid.image-left .split-copy, .split-grid.image-left .split-media { order: 0; }
+    .split-media { order: -1; }
+  }
+</style>

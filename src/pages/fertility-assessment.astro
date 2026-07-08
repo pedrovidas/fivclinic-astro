@@ -1,0 +1,920 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Online Fertility Assessment | FIVClínic Barcelona"
+  description="Answer a few quick questions so our medical team can give you personalised guidance. 1 minute, 100% confidential, no commitment."
+>
+  <section class="assessment-section">
+    <div class="assessment-container">
+<div id="fiv-multistep-wrap">
+<div class="fiv-progress-track" id="fivProgressTrack">
+<div class="fiv-progress-fill" id="fivProgressFill"></div>
+</div>
+<!-- STEP 1: INTRO -->
+<div class="fiv-step fiv-active" id="fiv-step-1">
+<div class="fiv-intro-wrap">
+<div class="fiv-intro-icon">
+<img decoding="async" src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/17281.jpg"/>
+</div>
+<p class="fiv-intro-title">Let's understand your case</p>
+<p class="fiv-intro-subtitle">Answer a few quick questions so our medical team can give you personalised guidance</p>
+<div class="fiv-info-badges">
+<span class="fiv-info-badge">
+<svg fill="none" height="14" viewbox="0 0 14 14" width="14"><circle cx="7" cy="7" r="6" stroke="#9B8D87" stroke-width="1.2"></circle><path d="M7 4v3.5l2 1.5" stroke="#9B8D87" stroke-linecap="round" stroke-width="1.2"></path></svg>
+          1 minute
+        </span>
+<span class="fiv-info-badge">
+<svg fill="none" height="14" viewbox="0 0 14 14" width="14"><path d="M7 1.5L2 4v3.5c0 2.9 2.35 5.25 5 5.25s5-2.35 5-5.25V4L7 1.5z" stroke="#9B8D87" stroke-width="1.2"></path></svg>
+          100% confidential
+        </span>
+<span class="fiv-info-badge">
+<svg fill="none" height="14" viewbox="0 0 14 14" width="14"><path d="M2 7h10M7 2l5 5-5 5" stroke="#9B8D87" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"></path></svg>
+          No commitment
+        </span>
+</div>
+<button class="fiv-btn-start" onclick="fivGoToStep(2)">Start assessment</button>
+</div>
+</div>
+<!-- STEP 2: BASIC INFO -->
+<div class="fiv-step" id="fiv-step-2">
+<p class="fiv-step-counter">Step 1 of 5</p>
+<p class="fiv-step-title">Tell us about yourself</p>
+<p class="fiv-step-subtitle">Basic information so we can better understand your situation.</p>
+<div class="fiv-field-row">
+<div class="fiv-field-group">
+<label class="fiv-field-label" for="fiv-edad">Age</label>
+<input id="fiv-edad" max="60" min="18" placeholder="E.g. 32" type="number"/>
+</div>
+<div class="fiv-field-group">
+<label class="fiv-field-label" for="fiv-pais">Country of residence</label>
+<select id="fiv-pais">
+<option value="">Select...</option>
+<option>Spain</option>
+<option>Mexico</option>
+<option>Argentina</option>
+<option>Colombia</option>
+<option>Chile</option>
+<option>Peru</option>
+<option>France</option>
+<option>Germany</option>
+<option>Italy</option>
+<option>United Kingdom</option>
+<option>United States</option>
+<option>Other</option>
+</select>
+</div>
+</div>
+<div class="fiv-field-group">
+<label class="fiv-field-label" for="fiv-tiempo">How long have you been trying to get pregnant?</label>
+<select id="fiv-tiempo">
+<option value="">Select an option...</option>
+<option>Less than 6 months</option>
+<option>Between 6 and 12 months</option>
+<option>Between 1 and 2 years</option>
+<option>More than 2 years</option>
+<option>I haven't started trying yet</option>
+</select>
+</div>
+<p class="fiv-microcopy">This information helps us provide you with a more accurate recommendation</p>
+<div class="fiv-nav-row">
+<button class="fiv-btn-back" onclick="fivGoToStep(1)">
+<svg fill="none" height="14" viewbox="0 0 14 14" width="14"><path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+        Back
+      </button>
+<button class="fiv-btn-next" onclick="fivGoToStep(3)">Continue</button>
+</div>
+</div>
+<!-- STEP 3: HISTORY -->
+<div class="fiv-step" id="fiv-step-3">
+<p class="fiv-step-counter">Step 2 of 5</p>
+<p class="fiv-step-title">Your fertility history</p>
+<p class="fiv-step-subtitle">Answer what you know — you don't need to have all the information.</p>
+<div class="fiv-field-group">
+<label class="fiv-field-label">Have you had any previous treatments?</label>
+<div class="fiv-option-group" id="fiv-tratamientos">
+<button class="fiv-option-btn" onclick="fivSelect('fiv-tratamientos', this)" type="button">
+<span class="fiv-option-dot"></span>Yes, I have had previous treatments
+        </button>
+<button class="fiv-option-btn" onclick="fivSelect('fiv-tratamientos', this)" type="button">
+<span class="fiv-option-dot"></span>No, this is the first time I'm seeking help
+        </button>
+<button class="fiv-option-btn" onclick="fivSelect('fiv-tratamientos', this)" type="button">
+<span class="fiv-option-dot"></span>I am currently undergoing treatment
+        </button>
+</div>
+</div>
+<div class="fiv-field-group">
+<label class="fiv-field-label">Do you have any diagnosis?</label>
+<div class="fiv-option-group" id="fiv-diagnostico">
+<button class="fiv-option-btn" onclick="fivSelect('fiv-diagnostico', this)" type="button">
+<span class="fiv-option-dot"></span>Yes, I have a diagnosis
+        </button>
+<button class="fiv-option-btn" onclick="fivSelect('fiv-diagnostico', this)" type="button">
+<span class="fiv-option-dot"></span>No, I don't have any diagnosis
+        </button>
+<button class="fiv-option-btn" onclick="fivSelect('fiv-diagnostico', this)" type="button">
+<span class="fiv-option-dot"></span>I don't know / I haven't been tested
+        </button>
+</div>
+</div>
+<div class="fiv-field-group">
+<label class="fiv-field-label">Do you currently have a partner?</label>
+<div class="fiv-option-group" id="fiv-pareja">
+<button class="fiv-option-btn" onclick="fivSelect('fiv-pareja', this)" type="button">
+<span class="fiv-option-dot"></span>Yes, with a male partner
+        </button>
+<button class="fiv-option-btn" onclick="fivSelect('fiv-pareja', this)" type="button">
+<span class="fiv-option-dot"></span>Yes, with a female partner
+        </button>
+<button class="fiv-option-btn" onclick="fivSelect('fiv-pareja', this)" type="button">
+<span class="fiv-option-dot"></span>No, I want to be a single mother
+        </button>
+</div>
+</div>
+<p class="fiv-microcopy">You don't need to have all the information — just answer what you know</p>
+<div class="fiv-nav-row">
+<button class="fiv-btn-back" onclick="fivGoToStep(2)" type="button">
+<svg fill="none" height="14" viewbox="0 0 14 14" width="14"><path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+        Back
+      </button>
+<button class="fiv-btn-next" onclick="fivGoToStep(4)" type="button">Continue</button>
+</div>
+</div>
+<!-- STEP 4: DOCUMENTS -->
+<div class="fiv-step" id="fiv-step-4">
+<p class="fiv-step-counter">Step 3 of 5</p>
+<p class="fiv-step-title">Upload your medical records</p>
+<p class="fiv-step-subtitle">You can upload blood tests, reports or any relevant document. The more information we have, the more accurate your assessment will be.</p>
+<div class="fiv-upload-zone" id="fivUploadZone">
+<input accept=".pdf,.jpg,.jpeg,.png" id="fivFileInput" multiple="" onchange="fivHandleFiles(this.files)" type="file"/>
+<div style="margin-bottom:10px">
+<svg fill="none" height="32" viewbox="0 0 32 32" width="32">
+<path d="M16 22V10M16 10l-5 5M16 10l5 5" stroke="#E04403" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+<path d="M6 24a4 4 0 01-2-7.416A7 7 0 0119.485 10H20a6 6 0 110 12H6z" stroke="#F5C9B8" stroke-width="1.5"></path>
+</svg>
+</div>
+<p class="fiv-upload-text">Drag your files here or click to upload</p>
+<p class="fiv-upload-formats">PDF, JPG, PNG · Optional but highly recommended</p>
+</div>
+<div class="fiv-upload-list" id="fivFileList"></div>
+<div class="fiv-trust">
+<svg fill="none" height="16" style="flex-shrink:0" viewbox="0 0 16 16" width="16">
+<path d="M8 1.5L2 4v4c0 3.314 2.686 6 6 6s6-2.686 6-6V4L8 1.5z" stroke="#E04403" stroke-width="1.2"></path>
+<path d="M5.5 8l2 2 3-3" stroke="#E04403" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"></path>
+</svg>
+      All your information will be handled confidentially by our medical team
+    </div>
+<div class="fiv-nav-row">
+<button class="fiv-btn-back" onclick="fivGoToStep(3)" type="button">
+<svg fill="none" height="14" viewbox="0 0 14 14" width="14"><path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+        Back
+      </button>
+<button class="fiv-btn-next" onclick="fivSubirArchivosYContinuar()" type="button">Continue</button>
+</div>
+</div>
+<!-- STEP 5: EXPECTATIONS -->
+<div class="fiv-step" id="fiv-step-5">
+<p class="fiv-step-counter">Step 4 of 5</p>
+<p class="fiv-step-title">What are you looking for?</p>
+<p class="fiv-step-subtitle">We want to understand your situation well so we can guide you correctly.</p>
+<div class="fiv-field-group">
+<label class="fiv-field-label">What type of help do you need?</label>
+<div class="fiv-option-group" id="fiv-objetivo">
+<button class="fiv-option-btn" onclick="fivSelect('fiv-objetivo', this)" type="button">
+<span class="fiv-option-dot"></span>General information
+        </button>
+<button class="fiv-option-btn" onclick="fivSelect('fiv-objetivo', this)" type="button">
+<span class="fiv-option-dot"></span>Second medical opinion
+        </button>
+<button class="fiv-option-btn" onclick="fivSelect('fiv-objetivo', this)" type="button">
+<span class="fiv-option-dot"></span>Start treatment
+        </button>
+</div>
+</div>
+<div class="fiv-field-group">
+<label class="fiv-field-label">When would you like to start?</label>
+<div class="fiv-option-group" id="fiv-cuando">
+<button class="fiv-option-btn" onclick="fivSelect('fiv-cuando', this)" type="button">
+<span class="fiv-option-dot"></span>As soon as possible
+        </button>
+<button class="fiv-option-btn" onclick="fivSelect('fiv-cuando', this)" type="button">
+<span class="fiv-option-dot"></span>Within the next 3 months
+        </button>
+<button class="fiv-option-btn" onclick="fivSelect('fiv-cuando', this)" type="button">
+<span class="fiv-option-dot"></span>I'm just exploring my options
+        </button>
+</div>
+</div>
+<div class="fiv-nav-row">
+<button class="fiv-btn-back" onclick="fivGoToStep(4)" type="button">
+<svg fill="none" height="14" viewbox="0 0 14 14" width="14"><path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+        Back
+      </button>
+<button class="fiv-btn-next" onclick="fivActivarFormularioContacto()" type="button">Continue</button>
+</div>
+</div>
+</div>
+
+      <!-- FINAL STEP: CONTACT FORM (hidden until wizard completes) -->
+      <div id="fiv-elementor-form-wrap" style="display:none">
+        <button class="fiv-btn-back-final" type="button" onclick="document.getElementById('fiv-elementor-form-wrap').style.display='none';document.getElementById('fiv-multistep-wrap').style.display='block';window.fivGoToStep(5);">
+          <svg fill="none" height="14" viewBox="0 0 14 14" width="14"><path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+          Back
+        </button>
+        <form class="fiv-final-form" onsubmit="event.preventDefault();">
+          <div class="fiv-final-row">
+            <div class="fiv-final-group">
+              <label class="fiv-field-label" for="form-field-nombre">Name</label>
+              <input id="form-field-nombre" name="nombre" placeholder="Name" required type="text" />
+            </div>
+            <div class="fiv-final-group">
+              <label class="fiv-field-label" for="form-field-apellido">Last name</label>
+              <input id="form-field-apellido" name="apellido" placeholder="Last name" required type="text" />
+            </div>
+          </div>
+          <div class="fiv-final-group">
+            <label class="fiv-field-label" for="form-field-email">Email</label>
+            <input id="form-field-email" name="email" placeholder="Email" required type="email" />
+          </div>
+          <div class="fiv-final-group">
+            <label class="fiv-field-label" for="form-field-telefono">Phone number</label>
+            <input id="form-field-telefono" name="telefono" placeholder="+34 612 34 56 78" required type="tel" />
+          </div>
+          <input type="hidden" id="form-field-fiv_edad" name="fiv_edad" />
+          <input type="hidden" id="form-field-fiv_pais" name="fiv_pais" />
+          <input type="hidden" id="form-field-fiv_tiempo" name="fiv_tiempo" />
+          <input type="hidden" id="form-field-fiv_tratamientos" name="fiv_tratamientos" />
+          <input type="hidden" id="form-field-fiv_diagnostico" name="fiv_diagnostico" />
+          <input type="hidden" id="form-field-fiv_pareja" name="fiv_pareja" />
+          <input type="hidden" id="form-field-fiv_objetivo" name="fiv_objetivo" />
+          <input type="hidden" id="form-field-fiv_cuando" name="fiv_cuando" />
+          <input type="hidden" id="form-field-fiv_rutas_archivos" name="fiv_rutas_archivos" />
+          <button class="fiv-btn-submit" type="submit">Submit my case for review</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+
+/* ===== FIV CLINIC MULTISTEP — PASOS 1-5 ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --fiv-accent: #E04403;
+  --fiv-accent-hover: #C33A02;
+  --fiv-accent-light: #FFF4F0;
+  --fiv-accent-border: #F5C9B8;
+  --fiv-border: rgba(0,0,0,0.12);
+  --fiv-border-hover: rgba(224,68,3,0.4);
+  --fiv-text: #1A1210;
+  --fiv-text-secondary: #5C5250;
+  --fiv-text-muted: #9B8D87;
+  --fiv-surface: #FFFFFF;
+  --fiv-bg: #FDFAF8;
+  --fiv-radius: 8px;
+  --fiv-radius-lg: 12px;
+}
+
+#fiv-multistep-wrap {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3rem 1rem 2rem;
+  font-family: 'Bryant Pro', 'DM Sans', sans-serif;
+  color: var(--fiv-text);
+}
+
+/* Progress bar */
+.fiv-progress-track {
+  height: 2px;
+  background: var(--fiv-border);
+  border-radius: 2px;
+  margin-bottom: 2.5rem;
+  display: none;
+}
+.fiv-progress-fill {
+  height: 2px;
+  background: var(--fiv-accent);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+/* Step counter / title / subtitle */
+.fiv-step-counter {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--fiv-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.4rem;
+}
+.fiv-step-title {
+  font-family: 'Bryant Pro', sans-serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: #3B3B3B;
+  line-height: 32px;
+  letter-spacing: 0.4px;
+}
+.fiv-step-subtitle {
+  font-size: 18px;
+  color: #595959;
+  line-height: 27px;
+}
+
+/* Fields */
+.fiv-field-group { margin-bottom: 1.25rem; }
+.fiv-field-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: #595959;
+  margin-bottom: 7px;
+}
+.fiv-field-group input[type="number"],
+.fiv-field-group input[type="text"],
+.fiv-field-group select {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  font-family: 'Bryant Pro', 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--fiv-text);
+  background: var(--fiv-surface);
+  border: 1px solid var(--fiv-border);
+  border-radius: var(--fiv-radius);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+}
+.fiv-field-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.fiv-field-group input:focus,
+.fiv-field-group select:focus {
+  border-color: var(--fiv-accent);
+  box-shadow: 0 0 0 3px rgba(224,68,3,0.1);
+}
+.fiv-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Option buttons */
+.fiv-option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.fiv-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--fiv-border);
+  border-radius: var(--fiv-radius);
+  background: var(--fiv-surface);
+  cursor: pointer;
+  font-family: 'Bryant Pro', 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--fiv-text);
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+}
+.fiv-option-btn:hover {
+  border-color: var(--fiv-accent);
+  background: var(--fiv-accent-light);
+  color: #595959 !important;
+}
+.fiv-option-btn.fiv-selected {
+  border-color: var(--fiv-accent);
+  background: var(--fiv-accent-light);
+  color: #595959 !important;
+}
+.fiv-option-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--fiv-border);
+  flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+.fiv-option-btn.fiv-selected .fiv-option-dot {
+  border-color: var(--fiv-accent);
+  background: var(--fiv-accent);
+}
+.fiv-option-btn.fiv-selected .fiv-option-dot::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+
+/* Upload zone */
+.fiv-upload-zone {
+  border: 1.5px dashed var(--fiv-border);
+  border-radius: var(--fiv-radius-lg);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+  margin-bottom: 1rem;
+}
+.fiv-upload-zone:hover, .fiv-upload-zone.fiv-drag-over {
+  border-color: var(--fiv-accent);
+  background: var(--fiv-accent-light);
+}
+.fiv-upload-zone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.fiv-upload-text {
+  font-size: 14px;
+  color: var(--fiv-text-secondary);
+  margin: 8px 0 4px;
+}
+.fiv-upload-formats {
+  font-size: 12px;
+  color: var(--fiv-text-muted);
+}
+.fiv-upload-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+.fiv-upload-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--fiv-accent-light);
+  border-radius: var(--fiv-radius);
+  font-size: 13px;
+  color: var(--fiv-text);
+}
+.fiv-upload-item span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fiv-upload-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--fiv-text-muted);
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+}
+.fiv-upload-remove:hover { color: var(--fiv-text); }
+
+/* Trust badge */
+.fiv-trust {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--fiv-text-muted);
+  background: var(--fiv-accent-light);
+  border: 1px solid var(--fiv-accent-border);
+  border-radius: var(--fiv-radius);
+  padding: 10px 14px;
+  margin-top: 0.5rem;
+}
+
+/* Microcopy */
+.fiv-microcopy {
+  font-size: 14px;
+  color: #B3B3B3;
+  line-height: 20px;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--fiv-border);
+}
+
+/* Nav */
+.fiv-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.fiv-btn-back {
+  font-family: "Bryant Pro", Sans-serif;
+  font-size: 15px;
+  color: #595959;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+.fiv-btn-back:hover {
+  text-decoration: underline;
+  color: #595959 !important;
+  background: none;
+}
+.fiv-btn-next {
+  font-family: "Bryant Pro", Sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  background: var(--fiv-accent);
+  border: none;
+  border-radius: 40px;
+  padding: 15px 40px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.fiv-btn-next:hover { background: var(--fiv-accent-hover); }
+.fiv-btn-next:active { transform: scale(0.98); }
+
+/* Steps visibility */
+.fiv-step { display: none; }
+.fiv-step.fiv-active { display: block; animation: fivFadeUp 0.3s ease; }
+
+@keyframes fivFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Step 1 intro */
+.fiv-intro-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+.fiv-intro-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--fiv-accent-light);
+  border: 1px solid var(--fiv-accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.fiv-intro-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.fiv-intro-title {
+  font-family: 'Bryant Pro', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--fiv-text);
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+.fiv-intro-subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: #595959;
+  max-width: 400px;
+  line-height: 27px;
+}
+.fiv-btn-start {
+  font-family: "Bryant Pro", Sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  background: var(--fiv-accent);
+  border: none;
+  border-radius: 40px;
+  padding: 14px 40px;
+  text-transform: uppercase; 
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.fiv-btn-start:hover { background: var(--fiv-accent-hover); }
+
+/* Badges de info */
+.fiv-info-badges {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.fiv-info-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #B3B3B3;
+}
+
+@media (max-width: 480px) {
+  .fiv-field-row { grid-template-columns: 1fr; }
+  .fiv-intro-title { font-size: 24px; }
+  .fiv-step-title { font-size: 20px; }
+  #fiv-multistep-wrap { padding: 1.5rem 0.75rem 2rem; }
+}
+
+/* Mensajes de error de validación */
+.fiv-error-msg {
+  display: block;
+  font-size: 12px;
+  color: var(--fiv-accent);
+  margin-top: 5px;
+}
+.fiv-field-group input.fiv-input-error,
+.fiv-field-group select.fiv-input-error {
+  border-color: var(--fiv-accent) !important;
+  box-shadow: 0 0 0 3px rgba(224,68,3,0.15) !important;
+}
+
+
+/* Título del paso 6 */
+#fiv-elementor-form-wrap .fiv-form-header {
+  margin-bottom: 1.75rem;
+}
+#fiv-elementor-form-wrap .fiv-form-step-counter {
+  font-size: 11px;
+  font-weight: 400;
+  color: #9B8D87;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.4rem;
+}
+#fiv-elementor-form-wrap .fiv-form-title {
+  font-family: 'Bryant Pro', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1A1210;
+  line-height: 1.25;
+  margin: 0 0 0.4rem;
+}
+#fiv-elementor-form-wrap .fiv-form-subtitle {
+  font-size: 14px;
+  color: #5C5250;
+  line-height: 1.6;
+  margin: 0;
+}
+/* Trust badge encima del botón */
+#fiv-elementor-form-wrap .fiv-trust-final {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #9B8D87;
+  background: #FFF4F0;
+  border: 1px solid #F5C9B8;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 1.5rem;
+}
+/* Botón volver (el que ponemos nosotros, no Elementor) */
+.fiv-btn-back-final {
+  font-family: 'Bryant Pro', sans-serif;
+  font-size: 15px;
+  color: #595959;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s;
+}
+.fiv-btn-back-final:hover { color: #595959 !important;
+    background: none;
+    text-decoration: underline;
+    
+}
+
+  /* Contenedor de la página assessment */
+  .assessment-section { padding-block: clamp(48px, 6vw, 90px); background: var(--color-white); }
+  .assessment-container { max-width: 640px; margin-inline: auto; padding-inline: 24px; }
+
+  /* Formulario final (réplica Elementor) */
+  .fiv-final-form { display: flex; flex-direction: column; gap: 16px; }
+  .fiv-final-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .fiv-final-group { display: flex; flex-direction: column; gap: 6px; }
+  .fiv-final-group input {
+    font-family: var(--font-body); font-size: 0.92rem; padding: 11px 14px;
+    border: 1px solid #E5DDD8; border-radius: 10px; background: var(--color-white); color: var(--color-ink);
+  }
+  .fiv-final-group input:focus { outline: 2px solid var(--color-accent); outline-offset: 1px; }
+  .fiv-btn-submit {
+    font-family: var(--font-display); background: var(--color-accent); color: var(--color-white);
+    border: none; border-radius: var(--radius-pill); padding: 15px 28px;
+    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    cursor: pointer; margin-top: 6px; transition: background 0.2s ease;
+  }
+  .fiv-btn-submit:hover { background: #c53a02; }
+  @media (max-width: 560px) { .fiv-final-row { grid-template-columns: 1fr; } }
+</style>
+
+<script is:inline>
+
+(function() {
+  var fivCurrentStep = 1;
+  var fivTotalSteps = 5;
+  var fivUploadedFiles = [];
+  var fivSelections = {};
+
+  window.fivGoToStep = function(n) {
+    // Validar antes de avanzar (no al retroceder)
+    if (n > fivCurrentStep) {
+      if (!fivValidarPaso(fivCurrentStep)) return;
+    }
+
+    var current = document.getElementById('fiv-step-' + fivCurrentStep);
+    if (current) current.classList.remove('fiv-active');
+    fivCurrentStep = n;
+
+    var track = document.getElementById('fivProgressTrack');
+    var fill = document.getElementById('fivProgressFill');
+    if (n === 1) {
+      track.style.display = 'none';
+    } else {
+      track.style.display = 'block';
+      var pct = Math.round(((n - 1) / fivTotalSteps) * 100);
+      fill.style.width = pct + '%';
+    }
+    var next = document.getElementById('fiv-step-' + n);
+    if (next) next.classList.add('fiv-active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  function fivValidarPaso(paso) {
+    fivLimpiarErrores();
+
+    if (paso === 2) {
+      var edad   = document.getElementById('fiv-edad').value.trim();
+      var pais   = document.getElementById('fiv-pais').value;
+      var tiempo = document.getElementById('fiv-tiempo').value;
+      if (!edad)   { fivErrorCampo('fiv-edad',   'Please enter your age'); return false; }
+      if (!pais)   { fivErrorCampo('fiv-pais',   'Please select your country'); return false; }
+      if (!tiempo) { fivErrorCampo('fiv-tiempo', 'Please select an option'); return false; }
+    }
+
+    if (paso === 3) {
+      if (!fivSelections['fiv-tratamientos']) { fivErrorGrupo('fiv-tratamientos', 'Please select an option'); return false; }
+      if (!fivSelections['fiv-diagnostico'])  { fivErrorGrupo('fiv-diagnostico',  'Please select an option'); return false; }
+      if (!fivSelections['fiv-pareja'])       { fivErrorGrupo('fiv-pareja',       'Please select an option'); return false; }
+    }
+
+    // Step 4 — documents optional, not blocking
+    // Uncomment to make mandatory:
+    // if (paso === 4) {
+    //   if (fivUploadedFiles.length === 0) { fivErrorGeneral('Please upload at least one document'); return false; }
+    // }
+
+    if (paso === 5) {
+      if (!fivSelections['fiv-objetivo']) { fivErrorGrupo('fiv-objetivo', 'Please select an option'); return false; }
+      if (!fivSelections['fiv-cuando'])   { fivErrorGrupo('fiv-cuando',   'Please select an option'); return false; }
+    }
+
+    return true;
+  }
+
+  function fivErrorCampo(fieldId, msg) {
+    var el = document.getElementById(fieldId);
+    if (!el) return;
+    el.classList.add('fiv-input-error');
+    var err = document.createElement('span');
+    err.className = 'fiv-error-msg';
+    err.textContent = msg;
+    el.parentNode.appendChild(err);
+    el.focus();
+  }
+
+  function fivErrorGrupo(grupoId, msg) {
+    var el = document.getElementById(grupoId);
+    if (!el) return;
+    var err = document.createElement('span');
+    err.className = 'fiv-error-msg';
+    err.textContent = msg;
+    el.parentNode.appendChild(err);
+  }
+
+  function fivLimpiarErrores() {
+    document.querySelectorAll('#fiv-multistep-wrap .fiv-error-msg').forEach(function(e) { e.remove(); });
+    document.querySelectorAll('#fiv-multistep-wrap .fiv-input-error').forEach(function(el) {
+      el.classList.remove('fiv-input-error');
+    });
+  }
+
+  window.fivSelect = function(groupId, btn) {
+    var group = document.getElementById(groupId);
+    group.querySelectorAll('.fiv-option-btn').forEach(function(b) {
+      b.classList.remove('fiv-selected');
+    });
+    btn.classList.add('fiv-selected');
+    // Extraer el texto sin el dot
+    var text = btn.textContent.trim();
+    fivSelections[groupId] = text;
+  };
+
+  // Rutas de archivos ya subidos al servidor vía AJAX
+  var fivUploadedPaths = [];
+
+  window.fivHandleFiles = function(files) {
+    Array.from(files).forEach(function(file) {
+      if (!fivUploadedFiles.find(function(f) { return f.name === file.name; })) {
+        fivUploadedFiles.push(file);
+      }
+    });
+    fivRenderFileList();
+  };
+
+  function fivRenderFileList() {
+    var list = document.getElementById('fivFileList');
+    list.innerHTML = '';
+    fivUploadedFiles.forEach(function(file, i) {
+      var item = document.createElement('div');
+      item.className = 'fiv-upload-item';
+      item.innerHTML = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="1" width="10" height="12" rx="1.5" stroke="#E04403" stroke-width="1.2"/><path d="M5 5h4M5 7.5h4M5 10h2" stroke="#E04403" stroke-width="1" stroke-linecap="round"/></svg><span>' + file.name + '</span><button class="fiv-upload-remove" onclick="fivRemoveFile(' + i + ')" type="button">×</button>';
+      list.appendChild(item);
+    });
+  }
+
+  window.fivRemoveFile = function(i) {
+    fivUploadedFiles.splice(i, 1);
+    fivRenderFileList();
+  };
+
+  // Drag & drop
+  var zone = document.getElementById('fivUploadZone');
+  zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.classList.add('fiv-drag-over'); });
+  zone.addEventListener('dragleave', function() { zone.classList.remove('fiv-drag-over'); });
+  zone.addEventListener('drop', function(e) {
+    e.preventDefault();
+    zone.classList.remove('fiv-drag-over');
+    fivHandleFiles(e.dataTransfer.files);
+  });
+
+  // Upload files to server via AJAX when moving from step 4 to 5
+  // Called from the "Continue" button on step 4
+  window.fivSubirArchivosYContinuar = function() {
+    if (!fivValidarPaso(4)) return;
+    // Static mockup: files are kept client-side only
+    fivGoToStep(5);
+  };
+
+  // On Continue in step 5: populate Elementor Form hidden fields and show it
+  window.fivActivarFormularioContacto = function() {
+    if (!fivValidarPaso(5)) return;
+
+    // Elementor generates IDs with prefix "form-field-"
+    var data = {
+      'form-field-fiv_edad':         document.getElementById('fiv-edad').value || 'Not provided',
+      'form-field-fiv_pais':         document.getElementById('fiv-pais').value || 'Not provided',
+      'form-field-fiv_tiempo':       document.getElementById('fiv-tiempo').value || 'Not provided',
+      'form-field-fiv_tratamientos': fivSelections['fiv-tratamientos'] || 'Not answered',
+      'form-field-fiv_diagnostico':  fivSelections['fiv-diagnostico'] || 'Not answered',
+      'form-field-fiv_pareja':       fivSelections['fiv-pareja'] || 'Not answered',
+      'form-field-fiv_objetivo':     fivSelections['fiv-objetivo'] || 'Not answered',
+      'form-field-fiv_cuando':       fivSelections['fiv-cuando'] || 'Not answered',
+      // Uploaded file paths (hidden field in the form)
+      'form-field-fiv_rutas_archivos': fivUploadedPaths.join('||'),
+    };
+
+    Object.keys(data).forEach(function(key) {
+      var el = document.getElementById(key);
+      if (el) el.value = data[key];
+    });
+
+    // Hide HTML widget, show Elementor Form
+    document.getElementById('fiv-multistep-wrap').style.display = 'none';
+    var efWrap = document.getElementById('fiv-elementor-form-wrap');
+    if (efWrap) {
+      efWrap.style.display = 'block';
+      efWrap.style.animation = 'fivFadeUp 0.3s ease';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+})();
+
+</script>

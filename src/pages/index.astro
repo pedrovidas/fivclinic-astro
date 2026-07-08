@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/home/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import WhoWeHelp from '../components/home/WhoWeHelp.astro';
+import ClinicalEnvironment from '../components/home/ClinicalEnvironment.astro';
+import SocialProof from '../components/home/SocialProof.astro';
+import WhyBarcelona from '../components/home/WhyBarcelona.astro';
+import ProcessSteps from '../components/home/ProcessSteps.astro';
+import RespectedByExcellence from '../components/home/RespectedByExcellence.astro';
+import PatientVoices from '../components/home/PatientVoices.astro';
+import SupportFAQ from '../components/home/SupportFAQ.astro';
+import MedicalRecognition from '../components/home/MedicalRecognition.astro';
+import LeadForm from '../components/home/LeadForm.astro';
+
+const heroStats = [
+  { value: 30, suffix: '+', label: 'years', sublabel: 'of specialized experience in reproductive medicine at FIVClínic' },
+  { value: 65, suffix: '%', label: 'pregnancy rate', sublabel: 'in IVF treatments with own eggs · Clinic-reported outcomes' },
+  { value: 80, suffix: '%', label: 'pregnancy rate', sublabel: 'donor egg cycles · Clinic-reported outcomes' },
+  { value: 300, suffix: '+', label: 'IVF treatments', sublabel: 'per year' },
+];
+---
+
+<Layout
+  title="Fertility Clinic in Barcelona | FIVClínic"
+  description="FIVClínic — Advanced fertility and IVF clinic in Barcelona, part of Hospital Clínic Barcelona. World-class fertility care for international patients."
+>
+  <Hero />
+
+  <section class="stats-section">
+    <div class="container">
+      <StatsBar stats={heroStats} />
+    </div>
+  </section>
+
+  <WhoWeHelp />
+  <ClinicalEnvironment />
+  <SocialProof />
+  <WhyBarcelona />
+  <ProcessSteps />
+  <RespectedByExcellence />
+  <PatientVoices />
+  <SupportFAQ />
+  <MedicalRecognition />
+  <LeadForm />
+</Layout>
+
+<style>
+  .stats-section {
+    padding-block: 48px;
+  }
+</style>
