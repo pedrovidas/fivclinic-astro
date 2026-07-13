@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "eyebrow": "Contact our team",
+    "titlePlain": "Speak with our",
+    "titleAccent": "fertility experts",
+    "lead": "Our specialized team reviews every request carefully and responds promptly — typically within 24 hours. You&rsquo;ll receive clear, personalized guidance without unnecessary delays.",
+    "note": "FIVClínic is part of barnaclínic+, the private medicine programme of Hospital Clínic Barcelona, one of Europe&rsquo;s most respected university hospitals."
+  },
+  "sidebar": {
+    "whatsappNumber": "34660116080",
+    "address": "Carrer de Casanova, 153, Eixample, 08036 Barcelona",
+    "whyChoose": [
+      "30+ years of specialized experience in reproductive medicine",
+      "First informative consultation free of charge",
+      "Personalized care throughout the entire process"
+    ],
+    "mapQuery": "Carrer de Casanova 153, 08036 Barcelona"
+  },
+  "supportItems": [
+    {
+      "strong": "Start the process with a",
+      "accent": "free online consultation",
+      "rest": ""
+    },
+    {
+      "strong": "Understand your",
+      "accent": "treatment options",
+      "rest": "before traveling"
+    },
+    {
+      "strong": "",
+      "accent": "Plan your visit",
+      "rest": "to Barcelona"
+    },
+    {
+      "strong": "",
+      "accent": "Coordinate documentation",
+      "rest": "and timing"
+    },
+    {
+      "strong": "",
+      "accent": "Stay in contact",
+      "rest": "before and after treatment"
+    }
+  ],
+  "form": {
+    "ageGroups": [
+      "Under 35",
+      "35–39",
+      "40–42",
+      "43 or over"
+    ],
+    "reasons": [
+      "Natural or low-stimulation IVF",
+      "Single woman or female couple",
+      "Genetic concerns or inherited conditions",
+      "Recurrent pregnancy loss (RPL)",
+      "Exploring options / not sure"
+    ],
+    "languages": [
+      "English",
+      "Spanish",
+      "French"
+    ],
+    "submitText": "Submit for expert review"
+  }
+}

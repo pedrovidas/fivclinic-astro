@@ -12,63 +12,23 @@ import PatientVoices from '../components/home/PatientVoices.astro';
 import MedicalRecognition from '../components/home/MedicalRecognition.astro';
 import LeadForm from '../components/home/LeadForm.astro';
 import { rplRigorIcons } from '../data/rplRigorIcons';
+import content from '../content/rpl.json';
 
 const u = 'https://fivclinic.es/international-patients/wp-content/uploads/';
 
-const rigorItems = [
-  { text: 'Each case is reviewed thoroughly, not superficially', icon: rplRigorIcons[0] },
-  { text: 'Investigations are chosen carefully, not automatically', icon: rplRigorIcons[1] },
-  { text: 'Findings are explained clearly, not delivered as conclusions', icon: rplRigorIcons[2] },
-  { text: 'Emotional support is integrated into clinical care', icon: rplRigorIcons[3] },
-];
+const rigorItems = content.rigorItems.map((r: any, i: number) => ({ ...r, icon: rplRigorIcons[i] }));
 
-const evaluateGroups = [
-  { title: 'Genetic factors', items: ['Embryonic chromosomal abnormalities', 'Parental genetic considerations', 'Indications for PGT-A when appropriate'] },
-  { title: 'Uterine and anatomical factors', items: ['Congenital or acquired uterine conditions', 'Imaging and assessment of implantation environment'] },
-  { title: 'Hormonal and metabolic factors', items: ['Thyroid function', 'Progesterone support', 'Endocrine imbalances'] },
-  { title: 'Immunological and hematological considerations', items: ['When clinically indicated, and never routinely'] },
-];
+const evaluateGroups = content.evaluateGroups;
 
-const processSteps = [
-  { icon: u + '2026/02/Group-767.svg', title: 'Detailed case review', text: 'We review your pregnancy history, reports, test results, and previous evaluations.' },
-  { icon: u + '2026/02/Group-768.svg', title: 'Multidisciplinary assessment', text: 'Your case is assessed collaboratively by specialists in reproductive medicine, genetics, and other relevant fields.' },
-  { icon: u + '2026/02/Group-769.svg', title: 'Clear explanation and findings', listIntro: 'We explain:', list: ['What may be contributing to pregnancy loss', 'Which factors are most relevant in your case', 'What options are available — and which are not supported by evidence'] },
-  { icon: u + '2026/02/Group-657.svg', title: 'Guided decision-making', text: 'You are supported medically and emotionally in deciding how — or whether — to move forward.' },
-];
+const processSteps = content.processSteps;
 
-const counters = [
-  { value: 30, suffix: '+', label: 'years', sub: 'of specialized experience in reproductive medicine at FIVClínic' },
-  { value: 65, suffix: '%', label: 'pregnancy rate', sub: 'in IVF treatments with own eggs', subItalic: 'Clinic-reported outcomes' },
-  { value: 80, suffix: '%', label: 'pregnancy rate', sub: 'donor egg cycles', subItalic: 'Clinic-reported outcomes' },
-  { value: 642, suffix: 'K+', label: 'outpatient visits', sub: 'per year at Hospital Clínic Barcelona' },
-  { value: 31, suffix: 'K+', label: 'surgical interventions', sub: 'performed at Hospital Clínic Barcelona' },
-  { value: 100, suffix: '+', label: 'years', sub: 'of clinical, research, and teaching activity', subItalic: 'Hospital Clínic Barcelona, founded in 1906' },
-];
+const counters = content.counters;
 
-const intlFaqs = [
-  { q: 'What is the process like for patients from abroad?', a: 'Your journey begins with an expert case review, which can be initiated online. Our team evaluates your medical information and provides clear guidance on next steps before any trip is planned.' },
-  { q: 'Can consultations be done online?', a: 'Yes. Initial consultations and case reviews can be carried out online, allowing you to receive expert guidance without traveling until it is truly necessary.' },
-  { q: 'Is support offered to help prepare for the trip?', a: 'Yes. Our international patient team assists with:', list: ['Scheduling and coordination of appointments', 'Guidance on timing and duration of stay', 'Preparation of medical documentation', 'Communication in English throughout the process'], foot: 'Our goal is to make the process as smooth and predictable as possible.' },
-  { q: 'Is the first consultation free?', a: 'The initial expert case review is offered without obligation. Any subsequent steps are clearly explained in advance so you can make informed decisions.' },
-  { q: 'Who will support me during the process?', a: 'You will be supported by:', list: ['A medical team specialized in your case', 'An international patient coordinator', 'English-speaking staff available throughout your journey'], foot: 'You are never navigating the process alone.' },
-];
+const intlFaqs = content.intlFaqs;
 
-const faqs = [
-  { q: 'What is recurrent pregnancy loss (RPL)?', a: 'Recurrent pregnancy loss (RPL) usually refers to two or more consecutive miscarriages, typically occurring before 20 weeks of pregnancy. It is considered a medical condition that often requires a specific diagnostic approach, different from infertility or IVF failure.' },
-  { q: 'What tests are usually recommended for RPL?', a: 'There is no single test for RPL. Depending on your history, evaluation may include:<ul><li>Genetic assessment (of embryos or parents)</li><li>Uterine imaging</li><li>Hormonal and metabolic testing</li><li>Targeted immunological or hematological studies</li></ul>Only tests that add meaningful information should be recommended.' },
-  { q: 'Why do miscarriages keep happening even if I can get pregnant?', a: 'When explanations have not been clear, when the same protocol is repeated without changes, or when results don\u2019t align with what would be expected for your situation.' },
-  { q: 'Can IVF or PGT-A help prevent further miscarriages?', a: 'In some cases, IVF combined with preimplantation genetic testing (PGT-A) may help reduce the risk of miscarriage caused by chromosomal abnormalities. However, it is not appropriate for every patient. Whether it makes sense depends on age, reproductive history, and findings from your evaluation.' },
-  { q: 'Is recurrent pregnancy loss always caused by genetics?', a: 'No. While chromosomal abnormalities are a common cause of miscarriage, genetics is only one possible factor. Uterine anatomy, hormonal balance, immune-related conditions, and other medical factors can also contribute. A thorough evaluation helps determine whether genetics are playing a role in your case.' },
-  { q: 'Can the evaluation and first consultation be done online?', a: 'Yes. Initial consultations can be carried out online, including review of medical history and reports. This is especially helpful for international patients or those seeking a second opinion before deciding on next steps.' },
-  { q: 'When should I stop trying and ask for a specialist evaluation?', a: 'If you have experienced two or more miscarriages, or if a miscarriage occurred after fertility treatment, it is reasonable to seek a specialist review before trying again. Further attempts without investigation can increase emotional distress without improving outcomes.' },
-  { q: 'Is there always a clear explanation for recurrent pregnancy loss?', a: 'Not always. In some cases, no single cause can be identified. Even then, a structured evaluation helps:<ul><li>Rule out significant conditions</li><li>Clarify realistic options</li><li>Avoid unnecessary or ineffective treatments</li></ul>Understanding what is <strong>known — and what is uncertain —</strong> can still provide clarity and guide safer decision-making.' },
-];
+const faqs = content.faqs;
 
-const rplTestimonials = [
-  { quote: 'For the first time, we understood what had happened in each IVF cycle.', author: 'Patient after failed IVF' },
-  { quote: 'They were honest with me without taking away hope.', author: 'Woman aged 41' },
-  { quote: 'They explained our genetic situation clearly and without fear.', author: 'Couple with genetic concerns' },
-];
+const rplTestimonials = content.rplTestimonials;
 ---
 
 <Layout

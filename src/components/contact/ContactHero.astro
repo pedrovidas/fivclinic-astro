@@ -1,25 +1,22 @@
 ---
-const teamPhoto = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/our-team.png';
-const instLogos = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/universitat-barcelona.png';
+interface Props { t?: any }
+const { t = {} } = Astro.props;
+const teamPhoto = t.teamPhoto ?? 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/our-team.png';
+const instLogos = t.instLogos ?? 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/universitat-barcelona.png';
+const eyebrow = t.eyebrow ?? 'Contact our team';
+const titlePlain = t.titlePlain ?? 'Speak with our';
+const titleAccent = t.titleAccent ?? 'fertility experts';
+const lead = t.lead ?? 'Our specialized team reviews every request carefully and responds promptly — typically within 24 hours. You&rsquo;ll receive clear, personalized guidance without unnecessary delays.';
+const note = t.note ?? 'FIVClínic is part of barnaclínic+, the private medicine programme of Hospital Clínic Barcelona, one of Europe&rsquo;s most respected university hospitals.';
 ---
 
 <section class="contact-hero">
   <div class="hero-inner">
     <div class="hero-copy">
-      <p class="eyebrow">Contact our team</p>
-      <h1 class="hero-title">
-        Speak with our <span class="accent">fertility experts</span>
-      </h1>
-      <p class="hero-lead">
-        Our specialized team reviews every request carefully and responds
-        promptly — typically within 24 hours. You&rsquo;ll receive clear,
-        personalized guidance without unnecessary delays.
-      </p>
-      <p class="hero-note">
-        FIVClínic is part of barnaclínic+, the private medicine programme of
-        Hospital Clínic Barcelona, one of Europe&rsquo;s most respected
-        university hospitals.
-      </p>
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 class="hero-title">{titlePlain} <span class="accent">{titleAccent}</span></h1>
+      <p class="hero-lead" set:html={lead} />
+      <p class="hero-note" set:html={note} />
       <img src={instLogos} alt="Clínic Barcelona · IDIBAPS · Universitat de Barcelona" class="hero-inst-logos" />
     </div>
   </div>

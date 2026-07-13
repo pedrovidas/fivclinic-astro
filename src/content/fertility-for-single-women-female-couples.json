@@ -1,0 +1,209 @@
+{
+  "profileCards": [
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1223.svg",
+      "title": "Single women considering donor insemination",
+      "quote": "“I want to become a mother on my own and understand if donor insemination is the right first step for me.”",
+      "cta": "View donor insemination pathway"
+    },
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1226.svg",
+      "title": "Female couples considering donor sperm treatment",
+      "quote": "“We are a female couple and want to understand our options with donor sperm.”",
+      "cta": "View options for female couples"
+    },
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1238.svg",
+      "title": "Female couples interested in the ROPA method",
+      "quote": "“We want to share motherhood and understand whether ROPA is right for us.”",
+      "cta": "View the ROPA pathway"
+    },
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1228.svg",
+      "title": "Women considering whether IVF is the better first step",
+      "quote": "“I want to know whether I should start with insemination or go directly to IVF.”",
+      "cta": "View IVF guidance"
+    }
+  ],
+  "rigorItems": [
+    {
+      "text": "Treatment is adapted to each patient, not chosen by default"
+    },
+    {
+      "text": "Donor sperm treatments are available for women without a partner and women with a female partner"
+    },
+    {
+      "text": "IVF can also be used for single motherhood and shared motherhood in female couples"
+    },
+    {
+      "text": "Clinical decisions are explained carefully and without assumptions"
+    },
+    {
+      "text": "Medical expertise is combined with emotional sensitivity and inclusive care"
+    }
+  ],
+  "blocks": [
+    {
+      "title": "For single women considering donor insemination",
+      "intro": [
+        "For many single women, donor insemination may be the most natural first step when fertility conditions are favorable."
+      ],
+      "boxIntro": "This option may be particularly suitable when:",
+      "items": [
+        "Age is still on your side",
+        "Ovarian reserve is normal or acceptable",
+        "At least one fallopian tube is patent",
+        "A less invasive treatment is medically appropriate"
+      ],
+      "closing": [
+        "What matters is assessing whether this route is likely to offer a good chance of pregnancy in your case, or whether another strategy would be more effective from the start."
+      ],
+      "hint": "Thinking about becoming a mother on your own? Understand when donor insemination, IVF or another route may be right for you.",
+      "image": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/single-woman-fertility-treatment.png",
+      "imageSide": "left"
+    },
+    {
+      "title": "For female couples considering donor sperm treatment",
+      "intro": [
+        "For female couples, fertility treatment is not a one-size-fits-all decision.",
+        "Some couples may choose donor insemination as a first option. Others may prefer IVF, whether for medical reasons or because they want to explore a shared motherhood pathway."
+      ],
+      "boxIntro": null,
+      "items": [],
+      "closing": [
+        "This allows treatment to be planned with both medical safety and respect for the family project."
+      ],
+      "hint": "Explore your options with donor sperm and understand whether insemination, IVF or shared motherhood may fit your family project.",
+      "image": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/female-couple-fertility-treatment.png",
+      "imageSide": "right"
+    },
+    {
+      "title": "For female couples interested in shared motherhood (ROPA)",
+      "intro": [
+        "IVF allows two women to share motherhood through the ROPA method, where one partner provides the eggs and the other carries the pregnancy.",
+        "For couples considering ROPA, the decision usually involves more than fertility alone."
+      ],
+      "boxIntro": "It may also include questions such as:",
+      "items": [
+        "Which partner is better suited to provide the eggs",
+        "Which partner will carry the pregnancy",
+        "Whether ovarian reserve, age, or timing influence the decision",
+        "What treatment plan is medically and emotionally most appropriate for both of you"
+      ],
+      "closing": [],
+      "hint": "Considering shared motherhood? Learn how ROPA works and what medical factors may influence the best plan for both of you.",
+      "image": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/female-couple-ropa-method.png",
+      "imageSide": "left"
+    },
+    {
+      "title": "For women who want to understand whether IVF is the better first step",
+      "intro": [
+        "Not every patient is best served by starting with insemination."
+      ],
+      "boxIntro": "IVF may be more appropriate when:",
+      "items": [
+        "Age makes time especially important",
+        "Ovarian reserve is reduced",
+        "There are tubal factors",
+        "There have already been unsuccessful inseminations",
+        "A couple is considering ROPA from the outset"
+      ],
+      "closing": [
+        "That is why the right first step is not always the simplest one, but the one that best fits the medical reality."
+      ],
+      "hint": "Not sure whether to start with insemination or go directly to IVF? Download the guide to understand what may make sense in your case.",
+      "image": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/single-woman-ivf-treatment.png",
+      "imageSide": "right"
+    }
+  ],
+  "processSteps": [
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Group-1099.svg",
+      "title": "Expert fertility assessment",
+      "text": "We review your age, ovarian reserve, reproductive goals, and any prior fertility history to understand which treatment approach is most appropriate."
+    },
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Group-1079.svg",
+      "title": "Individualized treatment recommendation",
+      "text": "We explain whether donor insemination, IVF, or ROPA is likely to be the best fit based on your medical profile and family project."
+    },
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Group-769-1.svg",
+      "title": "Treatment planning and donor coordination",
+      "text": "If donor sperm is needed, the process is coordinated according to clinical criteria and Spanish legal standards regarding confidentiality and donor matching."
+    },
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Group-657-1.svg",
+      "title": "Treatment and follow-up",
+      "text": "Whether the recommended path is insemination or IVF, you continue with a structured medical process and follow-up tailored to your case."
+    }
+  ],
+  "intlFaqs": [
+    {
+      "q": "Can I start the process before traveling?",
+      "a": "Yes. The first step can begin with expert consultation and fertility assessment planning, so you can understand your options before organizing treatment travel."
+    },
+    {
+      "q": "Will I know which treatment is best before coming to Barcelona?",
+      "a": "In many cases, yes. Initial evaluation and medical review can help clarify whether insemination, IVF, or shared motherhood should be explored first."
+    },
+    {
+      "q": "Who will support me during treatment?",
+      "a": "You will be supported by:",
+      "list": [
+        "A reproductive medicine team",
+        "Professionals experienced in donor sperm treatment and IVF",
+        "A coordinated hospital-based care environment",
+        "Staff used to caring for patients who may need remote planning before treatment"
+      ]
+    }
+  ],
+  "realFaqs": [
+    {
+      "q": "Can single women have fertility treatment at FIVClinic?",
+      "a": "Yes. FIVClinic treats women seeking motherhood without a male partner."
+    },
+    {
+      "q": "How is the sperm donor selected?",
+      "a": "Donor matching is based on physical characteristics and blood group, seeking the greatest physical and immunological similarity possible, within the Spanish legal framework for anonymous donation."
+    },
+    {
+      "q": "Do you offer treatment for female couples?",
+      "a": "Yes. Donor insemination can be used for women with a female partner, and IVF can also be used for shared motherhood through the ROPA method."
+    },
+    {
+      "q": "Will I know the identity of the donor?",
+      "a": "No. Sperm donation in Spain is anonymous and confidential under the applicable legal framework."
+    },
+    {
+      "q": "Is donor insemination an option for both single women and female couples?",
+      "a": "Yes. It can be an appropriate option for women without a partner and for women with a female partner."
+    },
+    {
+      "q": "How do I know whether I should start with insemination or IVF?",
+      "a": "That depends on factors such as age, ovarian reserve, tubal status, and the treatment goals of the patient or couple. The right approach should always be individualized."
+    },
+    {
+      "q": "What is the ROPA method?",
+      "a": "ROPA is an IVF treatment in which one woman provides the eggs and the other carries the pregnancy, allowing two women to share motherhood."
+    },
+    {
+      "q": "Can I start the process if I live outside Barcelona or outside Spain?",
+      "a": "Yes. The process can begin with consultation and planning before travel, if needed."
+    }
+  ],
+  "swTestimonials": [
+    {
+      "quote": "We wanted a team that understood our family project without assumptions. That made all the difference.",
+      "author": "Female couple exploring fertility treatment"
+    },
+    {
+      "quote": "I felt guided from the beginning, with thoughtful medical advice and no pressure.",
+      "author": "Single woman pursuing motherhood"
+    },
+    {
+      "quote": "What I valued most was understanding which treatment actually made sense for us.",
+      "author": "Patient considering donor insemination and IVF"
+    }
+  ]
+}

@@ -14,93 +14,23 @@ import PatientVoices from '../components/home/PatientVoices.astro';
 import MedicalRecognition from '../components/home/MedicalRecognition.astro';
 import LeadForm from '../components/home/LeadForm.astro';
 import { fpRigorIcons } from '../data/fpRigorIcons';
+import content from '../content/fertility-preservation-in-barcelona.json';
 
 const u = 'https://fivclinic.es/international-patients/wp-content/uploads/';
 
-const profileCards = [
-  { icon: u + '2026/04/Group-1088.svg', title: 'Postponing Motherhood', quote: '"I\u2019m not ready to be a mother right now, but I want to understand if preserving my fertility today will give me more realistic flexibility for the future."', cta: 'View the Age-Related Path' },
-  { icon: u + '2026/04/Group-1091.svg', title: 'Medical Treatment', quote: '"I\u2019ve received a medical diagnosis, such as cancer, and I need to know my options for protecting my fertility before my treatment begins."', cta: 'View Medical Necessity Options' },
-  { icon: u + '2026/04/Group-1094.svg', title: 'Specific Health Conditions', quote: '"I have a condition like endometriosis or a family history of early menopause, and I want to see if my fertility window is narrower than I think."', cta: 'View Health-Specific Guidance' },
-  { icon: u + '2026/04/Group-1097.svg', title: 'Expert Assessment First', quote: '"I\u2019m not sure if egg freezing is right for me yet. I want a professional, data-driven assessment of my reserve before I make any decisions."', cta: 'View Assessment Details' },
-];
+const profileCards = content.profileCards;
 
-const rigorItems = [
-  { text: 'Fertility preservation begins with a personalised evaluation of ovarian reserve', icon: fpRigorIcons[0] },
-  { text: 'Recommendations are based on age, ovarian markers, and reproductive context', icon: fpRigorIcons[1] },
-  { text: 'Treatment is proposed only when it is viable and medically meaningful', icon: fpRigorIcons[2] },
-  { text: 'The process is explained with realism, not promises', icon: fpRigorIcons[3] },
-  { text: 'Clinical expertise is combined with respectful, individualised care throughout', icon: fpRigorIcons[4] },
-];
+const rigorItems = content.rigorItems.map((r: any, i: number) => ({ ...r, icon: fpRigorIcons[i] }));
 
-const blocks = [
-  {
-    title: 'For women who want to postpone motherhood',
-    intro: ['Egg freezing is most effective when considered before fertility begins to decline significantly. Ideally before 35, as egg quality and quantity tend to diminish more rapidly after 37.'],
-    boxIntro: 'What we assess before any recommendation:',
-    items: ['Current ovarian reserve through AMH and antral follicle count', 'Age and fertility trend', 'Overall medical context', 'Reproductive goals and timing'],
-    closing: ['What matters is not acting out of fear, but understanding whether preserving fertility now may give you more flexibility later, and whether your current ovarian reserve makes that a meaningful option.'],
-    image: u + '2026/04/fertility-preservation-fivclinic.png',
-    imageSide: 'left',
-  },
-  {
-    title: 'For patients facing medical treatment that may affect fertility',
-    intro: ['For some women, fertility preservation is not elective. It becomes an important step before a treatment such as <strong>chemotherapy or radiotherapy</strong> that may compromise ovarian function.'],
-    boxIntro: 'Depending on your situation, preservation options may include:',
-    items: ['Oocyte cryopreservation', 'Embryo cryopreservation', 'Ovarian tissue preservation (when indicated)'],
-    closing: ['In these cases, timing matters. A well-coordinated fertility assessment helps determine whether preservation should be completed before treatment begins.'],
-    image: u + '2026/04/fertility-barcelona.png',
-    imageSide: 'right',
-  },
-  {
-    title: 'For women with conditions that may compromise fertility',
-    intro: ['Certain gynaecological or medical conditions may reduce the fertility window more quickly than expected. Early assessment can make a significant difference in the options still available.'],
-    boxIntro: 'We recommend evaluation if you have or are at risk of:',
-    items: ['Endometriosis', 'Autoimmune diseases', 'Low ovarian reserve', 'Benign ovarian cysts', 'Risk of early menopause'],
-    closing: ['This is not about assuming the worst. It is about understanding whether your current fertility window may be narrower than it appears, so acting while meaningful options still exist.'],
-    image: u + '2026/04/Gemini_Generated_Image_ifbax9ifbax9ifba-1.png',
-    imageSide: 'left',
-  },
-  {
-    title: 'For women who want an expert ovarian reserve assessment before deciding',
-    intro: ['Not every patient who asks about fertility preservation will be a good candidate for it. The right first step is often a careful, individualised assessment before any treatment decision is made.'],
-    boxIntro: 'Ovarian reserve is assessed through:',
-    items: ['Anti-M\u00fcllerian Hormone (AMH) blood testing', 'Antral follicle count on ultrasound', 'Full medical review to identify contraindications or clinically relevant factors'],
-    closing: ['If reserve is already significantly compromised, the procedure may not be recommended. That is why the assessment always comes before the recommendation.'],
-    image: u + '2026/04/fertility-experts-fivclinic.png',
-    imageSide: 'right',
-  },
-];
+const blocks = content.blocks;
 
-const processSteps = [
-  { icon: u + '2026/04/Group-1099.svg', title: 'Ovarian reserve assessment', text: 'We review your age, medical history, reproductive goals, and ovarian reserve markers to determine whether fertility preservation is a suitable option for you.' },
-  { icon: u + '2026/04/Group-1079.svg', title: 'Individualised treatment planning', text: 'If the procedure is appropriate, we explain the recommended approach, expected timing, and what the process is likely to involve in your specific case.' },
-  { icon: u + '2026/04/Group-769-1.svg', title: 'Ovarian stimulation and egg retrieval', text: 'The process involves hormonal stimulation to encourage the development of multiple follicles, generally over approximately two weeks, followed by egg retrieval once the follicles have reached the appropriate stage.' },
-  { icon: u + '2026/04/Group-657-1.svg', title: 'Vitrification and future use', text: 'Once retrieved, the oocytes are vitrified and stored. If you later decide to pursue pregnancy, the eggs can be thawed and the process continues through IVF: fertilisation, embryo development, and embryo transfer.' },
-];
+const processSteps = content.processSteps;
 
-const intlFaqs = [
-  { q: 'Can the process begin before travelling to Barcelona?', a: 'Yes. The first step can begin with an expert consultation and fertility assessment, so you understand whether preservation is worth considering before organising travel.' },
-  { q: 'How long does the process require in Barcelona?', a: 'Not a prolonged stay. The stimulation phase lasts approximately two weeks before retrieval, which means the treatment can generally be organised around a defined and plannable timeframe.' },
-  { q: 'Can initial consultations be done online?', a: 'Yes. Initial consultations and ovarian reserve assessment planning can be carried out remotely, so you can receive specialist guidance before travelling.' },
-  { q: 'Who will support me during treatment?', a: 'You will be supported by:', list: ['A reproductive medicine team specialised in fertility preservation', 'A patient coordinator experienced in international care pathways', 'English-speaking staff throughout your journey'], foot: 'You are never expected to navigate the process alone.' },
-];
+const intlFaqs = content.intlFaqs;
 
-const realFaqs = [
-  { q: 'When should fertility preservation be considered?', a: 'It may be considered when motherhood is likely to be postponed, before treatments that may damage fertility, or in the presence of conditions such as endometriosis, autoimmune disease, low ovarian reserve, ovarian cysts, or risk of early menopause.' },
-  { q: 'What does the process involve?', a: 'It usually involves ovarian stimulation over approximately two weeks, followed by egg retrieval and vitrification. The specific protocol is adapted to your age, ovarian reserve, and medical context.' },
-  { q: 'What is the best age to freeze eggs?', a: 'Egg freezing is ideally considered before age 35. Fertility decline becomes especially significant after 37, which is why early assessment, even before a firm decision is made, is often the most valuable first step.' },
-  { q: 'Can fertility preservation be considered for medical reasons?', a: 'Yes. Preservation before treatments such as chemotherapy or radiotherapy, or in conditions that may impair fertility, is a clinically well-established indication, and one that requires careful coordination with the treating team.' },
-  { q: 'Does egg freezing guarantee pregnancy in the future?', a: 'No. Vitrifying oocytes does not guarantee a future pregnancy. Not all eggs survive thawing or lead to viable embryos, which is why individualised assessment and realistic counselling are central to our approach.' },
-  { q: 'What if my ovarian reserve is already low?', a: 'When ovarian reserve is already significantly compromised, the procedure may not be recommended. This is precisely why an individualised assessment is the right first step before any decision is made.' },
-  { q: 'How do you assess whether I am a good candidate?', a: 'Ovarian reserve is evaluated primarily through AMH blood testing and antral follicle count on ultrasound, together with a full medical review. If reserve is already significantly compromised, the procedure may not be recommended.' },
-  { q: 'Can I start the process if I live outside Barcelona or abroad?', a: 'Yes. The process can begin with a remote consultation and assessment planning before any trip is organised. Initial appointments can be held online.' },
-];
+const realFaqs = content.realFaqs;
 
-const fpTestimonials = [
-  { quote: 'I wanted to make a decision based on real information, not guesswork. That made all the difference.', author: 'Patient considering fertility preservation' },
-  { quote: 'They explained the process with realism and sensitivity. I felt guided, not pressured.', author: 'Woman seeking early fertility assessment' },
-  { quote: 'What I valued most was understanding my ovarian reserve and what it actually meant for my timing.', author: 'Patient exploring future fertility options' },
-];
+const fpTestimonials = content.fpTestimonials;
 ---
 
 <Layout

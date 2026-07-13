@@ -1,5 +1,7 @@
 ---
-const items = [
+interface Props { t?: any }
+const { t = {} } = Astro.props;
+const items = t.items ?? [
   { strong: 'Start the process with a', accent: 'free online consultation', rest: '' },
   { strong: 'Understand your', accent: 'treatment options', rest: 'before traveling' },
   { strong: '', accent: 'Plan your visit', rest: 'to Barcelona' },

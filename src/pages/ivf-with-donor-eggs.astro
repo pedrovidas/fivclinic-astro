@@ -14,48 +14,20 @@ import ValueEvaluation from '../components/treatment/ValueEvaluation.astro';
 import PatientVoices from '../components/home/PatientVoices.astro';
 import MedicalRecognition from '../components/home/MedicalRecognition.astro';
 import LeadForm from '../components/home/LeadForm.astro';
+import content from '../content/ivf-with-donor-eggs.json';
 
 const u = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/';
 
-const emotionQuestions = [
-  'Is egg donation really the most suitable next step for me?',
-  'Could I still try with my own eggs, or would that only delay the process?',
-  'How does donor selection work in Spain?',
-  'What would treatment actually involve?',
-  'Can I move forward feeling informed, respected, and emotionally supported?',
-];
+const emotionQuestions = content.emotionQuestions;
 
 const iconU = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/';
-const processSteps = [
-  { icon: iconU + 'Group-1099.svg', title: 'Expert case review', text: 'We carefully review your medical history, fertility tests, previous treatments, and reproductive goals.' },
-  { icon: iconU + 'Group-1079.svg', title: 'Individualised treatment planning', text: 'We assess whether egg donation is appropriate and explain the treatment approach, expected steps, and timing in a way that is tailored to your situation.' },
-  { icon: iconU + 'Group-769-1.svg', title: 'Recipient preparation', text: 'The endometrium is prepared for embryo transfer through a personalised protocol, with medical monitoring to ensure the best possible conditions.' },
-  { icon: iconU + 'Group-657-1.svg', title: 'Fertilization, embryo transfer, and follow-up', text: 'The donor eggs are fertilised in the laboratory, embryo development is monitored, and the transfer is carried out when your body is ready. You continue to receive guidance and follow-up throughout the process.' },
-];
+const processSteps = content.processSteps;
 
-const donorTestimonials = [
-  { quote: 'They explained everything with honesty and sensitivity. I never felt pushed.', author: 'Woman considering egg donation' },
-  { quote: 'They explained the process with realism and sensitivity. I felt guided, not pressured.', author: 'Woman seeking early fertility assessment' },
-  { quote: 'What I valued most was understanding my ovarian reserve and what it actually meant for my timing.', author: 'Patient exploring future fertility options' },
-];
+const donorTestimonials = content.donorTestimonials;
 
-const faqs = [
-  { q: 'When is egg donation usually recommended?', a: 'Egg donation may be recommended when pregnancy with one\u2019s own eggs is no longer considered a realistic or effective option, such as in cases of ovarian failure, very low ovarian reserve, early menopause, repeated failed IVF cycles, recurrent miscarriage, or certain genetic situations.' },
-  { q: 'Is egg donation my only option after 40?', a: 'Not always. The right path depends on your ovarian reserve, previous treatment history, and overall fertility profile. For some women, pregnancy with their own eggs may still be explored. For others, egg donation may offer a much stronger chance of success.' },
-  { q: 'How are donors selected?', a: 'Donors are selected through a strict screening process that includes medical, gynaecological, psychological, and genetic evaluation.' },
-  { q: 'How is the donor matched to me?', a: 'The clinical team assigns the donor based on medical and phenotypic compatibility, taking into account factors such as blood group and physical characteristics.' },
-  { q: 'Will I know the identity of the donor?', a: 'Egg donation in Spain is performed under a confidential framework. Patients receive the relevant medical and matching information needed for treatment, while donor identity remains protected.' },
-  { q: 'What treatment does the recipient need?', a: 'The recipient usually undergoes preparation of the endometrium before embryo transfer, along with medical monitoring and a treatment plan tailored to her cycle and situation.' },
-  { q: 'Can the process begin if I live abroad?', a: 'Yes. The process can begin remotely, with online case review and treatment planning before travel is arranged.' },
-  { q: 'Is this treatment emotionally difficult?', a: 'For many patients, yes. Egg donation often involves complex emotions as well as medical decisions. That is why respectful communication, time to understand the process, and sensitive clinical support matter so much.' },
-];
+const faqs = content.faqs;
 
-const planningFaqs = [
-  { q: 'Can the process begin before travelling to Barcelona?', a: 'Yes. Your journey can begin with an expert review of your case before any trip is planned. This allows our team to assess your situation and guide you on next steps in a way that is medically sound and logistically realistic.' },
-  { q: 'Can consultations be done online?', a: 'Yes. Initial consultations and case reviews can be carried out remotely, so you can receive specialist guidance before travelling.' },
-  { q: 'What practical support is available?', listIntro: 'Our team helps with:', list: ['Coordination of appointments', 'Guidance on treatment timing', 'Preparation of documentation', 'Communication in English throughout the process'] },
-  { q: 'Who will support me during treatment?', listIntro: 'You will be supported by:', list: ['A medical team specialized in your case', 'An international patient coordinator', 'English-speaking staff throughout your journey'], foot: 'You are never expected to navigate the process alone.' },
-];
+const planningFaqs = content.planningFaqs;
 ---
 
 <Layout

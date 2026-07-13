@@ -1,9 +1,12 @@
 ---
-const whatsappNumber = '34660116080';
-const address = 'Carrer de Casanova, 153, Eixample, 08036 Barcelona';
-const mapEmbed = `https://maps.google.com/maps?q=${encodeURIComponent('Carrer de Casanova 153, 08036 Barcelona')}&z=15&output=embed`;
+interface Props { t?: any }
+const { t = {} } = Astro.props;
+const whatsappNumber = t.whatsappNumber ?? '34660116080';
+const address = t.address ?? 'Carrer de Casanova, 153, Eixample, 08036 Barcelona';
+const mapQuery = t.mapQuery ?? 'Carrer de Casanova 153, 08036 Barcelona';
+const mapEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=15&output=embed`;
 
-const whyChoose = [
+const whyChoose = t.whyChoose ?? [
   '30+ years of specialized experience in reproductive medicine',
   'First informative consultation free of charge',
   'Personalized care throughout the entire process',

@@ -1,15 +1,18 @@
 ---
 import { countries } from '../../data/countries';
 
-const ageGroups = ['Under 35', '35–39', '40–42', '43 or over'];
-const reasons = [
+interface Props { t?: any }
+const { t = {} } = Astro.props;
+const ageGroups = t.ageGroups ?? ['Under 35', '35–39', '40–42', '43 or over'];
+const reasons = t.reasons ?? [
   'Natural or low-stimulation IVF',
   'Single woman or female couple',
   'Genetic concerns or inherited conditions',
   'Recurrent pregnancy loss (RPL)',
   'Exploring options / not sure',
 ];
-const languages = ['English', 'Spanish', 'French'];
+const languages = t.languages ?? ['English', 'Spanish', 'French'];
+const submitText = t.submitText ?? 'Submit for expert review';
 ---
 
 <form class="contact-form">
@@ -84,7 +87,7 @@ const languages = ['English', 'Spanish', 'French'];
     </label>
   </div>
 
-  <button type="submit" class="btn btn-primary form-submit">Submit for expert review</button>
+  <button type="submit" class="btn btn-primary form-submit">{submitText}</button>
 </form>
 
 <style>

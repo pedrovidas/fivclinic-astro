@@ -1,0 +1,277 @@
+{
+  "profileCards": [
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1102-1.svg",
+      "title": "Seeking second opinion after failed IVF cycles",
+      "quote": "“I’ve had one or more IVF cycles that didn’t work, and I want to understand why before trying again.”",
+      "cta": "View second-opinion pathway"
+    },
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1100-1.svg",
+      "title": "Women 40+ or with Low Ovarian Reserve",
+      "quote": "“I’m over 40, or I’ve been told my ovarian reserve is low, and I want realistic guidance.”",
+      "cta": "View 40+ or low reserve pathway"
+    },
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1104-1.svg",
+      "title": "Genetic Complexity",
+      "quote": "“Genetics may be part of our fertility journey, and we need clear answers before deciding.”",
+      "cta": "View genetic guidance"
+    }
+  ],
+  "rigorItems": [
+    {
+      "text": "Each case is reviewed in detail, not summarized"
+    },
+    {
+      "text": "Decisions are based on evidence, not routines"
+    },
+    {
+      "text": "Recommendations are clearly explained, not imposed"
+    },
+    {
+      "text": "Clinical care is combined with emotional support"
+    }
+  ],
+  "blocks": [
+    {
+      "title": "For patients seeking a second opinion after failed IVF cycles",
+      "intro": "When IVF treatments haven’t worked, repeating the same protocol rarely changes the outcome.",
+      "groups": [
+        {
+          "intro": "We take time to analyze:",
+          "items": [
+            "Ovarian response and stimulation protocols",
+            "Embryo development and laboratory patterns",
+            "Fertilization, fragmentation, and development rhythm",
+            "Endometrial factors and timing",
+            "Semen parameters that may influence results",
+            "Possible genetic contributors"
+          ],
+          "boxed": true
+        }
+      ],
+      "closing": [],
+      "hint": "Had one or more IVF cycles that didn’t work? Understand what should be reviewed before trying again.",
+      "image": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/Captura-de-pantalla-2026-01-15-a-las-11.14.48-1.png",
+      "imageSide": "left"
+    },
+    {
+      "title": "For women aged 40+ or with low ovarian reserve",
+      "intro": "At this stage, every decision has greater impact.",
+      "groups": [
+        {
+          "intro": "We evaluate your fertility beyond a single number, including:",
+          "items": [
+            "AMH and AFC",
+            "Functional ovarian age",
+            "Previous response to stimulation",
+            "Egg quality indicators",
+            "Hormonal factors influencing outcomes"
+          ],
+          "boxed": true
+        },
+        {
+          "intro": "Based on this, we design <strong>personalized strategies</strong>, which may include:",
+          "items": [
+            "Adapted stimulation protocols",
+            "Mild stimulation or natural IVF cycles",
+            "Oocyte accumulation",
+            "PGT-A when it adds real value",
+            "Honest discussion of alternatives when appropriate"
+          ],
+          "boxed": false
+        }
+      ],
+      "closing": [
+        "Always with transparency and respect."
+      ],
+      "hint": "Over 40 or dealing with low ovarian reserve and unsure what your next fertility step should be? Understand your realistic options before deciding.",
+      "image": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/Group-765.png",
+      "imageSide": "right"
+    },
+    {
+      "title": "For patients with genetic complexity",
+      "intro": "When genetics are part of the journey, answers require integration — not isolated tests.",
+      "groups": [
+        {
+          "intro": "Your case is reviewed collaboratively by specialists in:",
+          "items": [
+            "Reproductive medicine",
+            "Embryology",
+            "Clinical genetics",
+            "Fetal medicine"
+          ],
+          "boxed": true
+        },
+        {
+          "intro": "We recommend only the <strong>genetic studies that truly add clarity</strong>, such as:",
+          "items": [
+            "PGT-A",
+            "Carrier screening panels",
+            "Advanced genetic analysis when indicated"
+          ],
+          "boxed": false
+        }
+      ],
+      "closing": [
+        "Every recommendation is explained so you can decide <strong>calmly and confidently.</strong>"
+      ],
+      "hint": "Facing recurrent miscarriage or genetic questions? Learn when a more specialized fertility review may help.",
+      "image": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/Group-766.png",
+      "imageSide": "left"
+    }
+  ],
+  "processSteps": [
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/Group-767.svg",
+      "title": "Expert case review",
+      "text": "We carefully review your medical history, reports, and previous treatments."
+    },
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/Group-768.svg",
+      "title": "Multidisciplinary evaluation",
+      "text": "Your case is assessed jointly by the specialists relevant to your situation. This joint perspective allows us to identify issues that may previously have gone unnoticed."
+    },
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/Group-769.svg",
+      "title": "Clear explanation and recommendations",
+      "listIntro": "We explain:",
+      "list": [
+        "What has happened",
+        "Which factors are influencing outcomes",
+        "What options are realistic",
+        "What makes sense to try — and what doesn’t"
+      ]
+    },
+    {
+      "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/Group-657.svg",
+      "title": "Accompanied decision-making",
+      "text": "You are guided clinically and emotionally at every stage."
+    }
+  ],
+  "counters": [
+    {
+      "value": 30,
+      "suffix": "+",
+      "label": "years",
+      "sub": "of specialized experience in reproductive medicine at FIVClínic"
+    },
+    {
+      "value": 65,
+      "suffix": "%",
+      "label": "pregnancy rate",
+      "sub": "in IVF treatments with own eggs",
+      "subItalic": "Clinic-reported outcomes"
+    },
+    {
+      "value": 80,
+      "suffix": "%",
+      "label": "pregnancy rate",
+      "sub": "donor egg cycles",
+      "subItalic": "Clinic-reported outcomes"
+    },
+    {
+      "value": 642,
+      "suffix": "K+",
+      "label": "outpatient visits",
+      "sub": "per year at Hospital Clínic Barcelona"
+    },
+    {
+      "value": 31,
+      "suffix": "K+",
+      "label": "surgical interventions",
+      "sub": "performed at Hospital Clínic Barcelona"
+    },
+    {
+      "value": 100,
+      "suffix": "+",
+      "label": "years",
+      "sub": "of clinical, research, and teaching activity",
+      "subItalic": "Hospital Clínic Barcelona, founded in 1906"
+    }
+  ],
+  "intlFaqs": [
+    {
+      "q": "What is the process like for patients from abroad?",
+      "a": "Your journey begins with an expert case review, which can be initiated online. Our team evaluates your medical information and provides clear guidance on next steps before any trip is planned."
+    },
+    {
+      "q": "Can consultations be done online?",
+      "a": "Yes. Initial consultations and case reviews can be carried out online, allowing you to receive expert guidance without traveling until it is truly necessary."
+    },
+    {
+      "q": "Is support offered to help prepare for the trip?",
+      "a": "Yes. Our international patient team assists with:",
+      "list": [
+        "Scheduling and coordination of appointments",
+        "Guidance on timing and duration of stay",
+        "Preparation of medical documentation",
+        "Communication in English throughout the process"
+      ],
+      "foot": "Our goal is to make the process as smooth and predictable as possible."
+    },
+    {
+      "q": "Is the first consultation free?",
+      "a": "The initial expert case review is offered without obligation. Any subsequent steps are clearly explained in advance so you can make informed decisions."
+    },
+    {
+      "q": "Who will support me during the process?",
+      "a": "You will be supported by:",
+      "list": [
+        "A medical team specialized in your case",
+        "An international patient coordinator",
+        "English-speaking staff available throughout your journey"
+      ],
+      "foot": "You are never navigating the process alone."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What should I do after a failed IVF cycle?",
+      "a": "The most important step is a thorough review of what happened. Repeating the same protocol without understanding why it failed rarely changes the outcome. A second opinion can help identify factors that were previously overlooked."
+    },
+    {
+      "q": "When is PGT-A recommended?",
+      "a": "PGT-A is recommended only when it can provide meaningful information about embryo viability or help guide treatment decisions. It is not necessary in all cases."
+    },
+    {
+      "q": "When should I seek a second opinion?",
+      "a": "When explanations have not been clear, when the same protocol is repeated without changes, or when results don’t align with what would be expected for your situation."
+    },
+    {
+      "q": "Is egg donation always the only option for women over 40?",
+      "a": "No. Egg donation is considered only when the chances of success with one’s own eggs are very low. It is discussed transparently and respectfully, based on individual circumstances."
+    },
+    {
+      "q": "Can IVF failure be related to genetic causes?",
+      "a": "Yes. In some cases, genetic factors can affect embryo development or implantation. When appropriate, genetic studies such as PGT-A may help clarify the situation and guide decisions."
+    },
+    {
+      "q": "Are genetic tests mandatory?",
+      "a": "No. Genetic tests are recommended only when they can add clarity or change the treatment strategy. The decision is always explained and made together with the patient."
+    },
+    {
+      "q": "Is it possible to get pregnant with my own eggs after 40?",
+      "a": "Yes. In some cases, genetic factors can affect embryo development or implantation. When appropriate, genetic studies such as PGT-A may help clarify the situation and guide decisions."
+    },
+    {
+      "q": "Does a second opinion really improve the chances of success?",
+      "a": "It can, when it helps correct strategy, identify hidden factors, or avoid repeating ineffective approaches."
+    }
+  ],
+  "cfcTestimonials": [
+    {
+      "quote": "For the first time, we understood what had happened in each IVF cycle.",
+      "author": "Patient after failed IVF"
+    },
+    {
+      "quote": "They were honest with me without taking away hope.",
+      "author": "Woman aged 41"
+    },
+    {
+      "quote": "They explained our genetic situation clearly and without fear.",
+      "author": "Couple with genetic concerns"
+    }
+  ]
+}
