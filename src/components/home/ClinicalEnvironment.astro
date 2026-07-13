@@ -121,13 +121,14 @@ const badges = [
   }
   .badge-item {
     display: flex;
-    gap: 16px;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
   }
   .badge-item .badge-icon {
-    width: 64px;
-    height: 64px;
-    flex-shrink: 0;
+    height: 96px;
+    width: auto;
     object-fit: contain;
   }
   .badge-item p {

@@ -10,7 +10,6 @@ const {
   titleAccent = 'clarity and expert guidance',
 } = Astro.props;
 
-const bgImage = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/02/FORM-final-cta.png';
 
 const ageGroups = ['Under 35', '35–39', '40–42', '43 or over'];
 const reasons = [
@@ -23,7 +22,6 @@ const reasons = [
 ---
 
 <section class="lead-form-section" id="request-review">
-  <img src={bgImage} alt="" class="form-bg" aria-hidden="true" loading="lazy" />
   <div class="container form-wrap">
     <div class="section-head">
       <h2>{titlePlain} <span class="accent">{titleAccent}</span></h2>
@@ -82,17 +80,11 @@ const reasons = [
   .lead-form-section {
     position: relative;
     padding-block: var(--space-section);
-    background: var(--color-surface);
+    background-image: url('https://fivclinic.es/international-patients/wp-content/uploads/2026/02/FONDO.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     overflow: hidden;
-  }
-  .form-bg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 50%;
-    object-fit: cover;
-    z-index: 0;
   }
   .form-wrap {
     position: relative;
@@ -153,9 +145,6 @@ const reasons = [
     margin-top: 14px;
   }
   @media (max-width: 900px) {
-    .form-bg {
-      display: none;
-    }
     .lead-form {
       max-width: 100%;
     }

@@ -1,5 +1,5 @@
 ---
-interface Step { title: string; text: string; }
+interface Step { title: string; text: string; icon?: string; }
 interface Props {
   steps?: Step[];
   titlePlain?: string;
@@ -12,18 +12,22 @@ const {
   surface = true,
   steps = [
     {
+      icon: 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Background-14.svg',
       title: 'Online consultation',
       text: 'Discuss your case with a fertility specialist from anywhere in the world, by video call.',
     },
     {
+      icon: 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Background-15.svg',
       title: 'Personalized plan',
       text: 'Receive clear medical recommendations tailored to your specific situation and history.',
     },
     {
+      icon: 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Background-16.svg',
       title: 'Plan your visit',
       text: 'We help you organize timing, travel logistics, and all documentation needed.',
     },
     {
+      icon: 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Background-17.svg',
       title: 'Treatment & follow-up',
       text: 'Care in Barcelona, then ongoing support and coordination after you return home.',
     },
@@ -35,13 +39,17 @@ const {
   <div class="container">
     <div class="section-head text-center">
       <p class="eyebrow">The process</p>
-      <h2>{titlePlain} <span class="accent">{titleAccent}</span></h2>
+      <h2>{titlePlain}<br /><span class="accent">{titleAccent}</span></h2>
     </div>
 
     <ol class="process-list">
       {steps.map((step, i) => (
         <li class="process-step">
-          <span class="process-index">{String(i + 1).padStart(2, '0')}</span>
+          {step.icon ? (
+            <img src={step.icon} alt="" class="process-icon" width="52" height="52" loading="lazy" />
+          ) : (
+            <span class="process-index">{String(i + 1).padStart(2, '0')}</span>
+          )}
           <h3>{step.title}</h3>
           <p>{step.text}</p>
         </li>
@@ -62,6 +70,12 @@ const {
   .process-step {
     text-align: center;
     padding: 0 12px;
+  }
+  .process-icon {
+    display: block;
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 20px;
   }
   .process-index {
     display: flex;

@@ -1,52 +1,87 @@
 ---
-const uploads = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/06/';
-const faviconIg = uploads + 'fivclinic-favicon-1-1.svg';
-const heroPost = uploads + 'mama-con-bebe-en-cama-fivclinic.png';
-
-// Los 2 posts pequeños de la columna central, con su caption que se revela en hover
-const posts = [
-  {
-    img: uploads + 'mother-and-baby-sleep.png',
-    caption: 'A wish that has come true. "Thanks to you and after a lot of work, this photo exists"',
-  },
-  {
-    img: uploads + 'motherhood-fivclinic.png',
-    caption:
-      'Eva has shared with the FIVclinic team two moments of her life: the fertility treatments that have resulted in her first son, Jac, now 5 years old, and recently with her second daughter Nora.',
-  },
-];
 ---
 
 <section class="section social-path">
   <div class="container path-grid">
+    <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1245.svg" alt="" class="path-deco" aria-hidden="true" />
     <div class="path-copy">
-      <h2 class="path-title">
-        Get on a path to the family
-        <span class="accent">you&rsquo;ve always dreamed of.</span>
-      </h2>
+      <h2 class="path-title">Get on a path to the family <span class="accent">you&rsquo;ve always dreamed of.</span></h2>
       <p class="path-lead accent">Your journey starts here.</p>
       <a href="/fertility-assessment/" class="btn btn-primary path-cta">Request a free expert case review</a>
       <p class="path-note">Quick response | Confidential | No obligation</p>
     </div>
 
-    <div class="path-posts">
-      {posts.map((post) => (
-        <figure class="ig-post">
-          <img src={post.img} alt="" class="ig-photo" loading="lazy" />
-          <figcaption class="ig-caption">
-            <span class="ig-head">
-              <img src={faviconIg} alt="" class="ig-favicon" />
-              <strong>fivclinic</strong>
-            </span>
-            <span class="ig-text">{post.caption}</span>
-            <span class="ig-heart">&#10084;</span>
-          </figcaption>
-        </figure>
-      ))}
-    </div>
+    <div class="fiv-gallery-wrap">
+      <!-- Grid desktop -->
+      <div class="fiv-gallery-grid">
+        <div class="fiv-card">
+        <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/mother-and-baby-sleep.png" alt="Bebé durmiendo" class="fiv-photo" loading="lazy" />
+        <div class="fiv-card-caption">
+          <p>
+            <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1245.svg" alt="fivclinic" class="fiv-brand-icon" />
+            <span class="fiv-caption-text"><b>fivclinic</b> A wish that has come true. "Thanks to you and after a lot of work, this photo exists" <span class="fiv-heart">&#10084;</span></span>
+          </p>
+        </div>
+      </div>
+        <div class="fiv-card">
+        <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/motherhood-fivclinic.png" alt="Madre con hijo en exterior" class="fiv-photo" loading="lazy" />
+        <div class="fiv-card-caption">
+          <p>
+            <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1245.svg" alt="fivclinic" class="fiv-brand-icon" />
+            <span class="fiv-caption-text"><b>fivclinic</b> Eva has shared with the FIVclinic team two moments of her life: the fertility treatments that have resulted in her first son, Jac, now 5 years old, and recently with her second daughter Nora. <span class="fiv-heart">&#10084;</span></span>
+          </p>
+        </div>
+      </div>
+        <div class="fiv-card fiv-main">
+        <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/mama-con-bebe-en-cama-fivclinic.png" alt="Mamá celebrando con bebé en hospital" class="fiv-photo" loading="lazy" />
+        <div class="fiv-card-caption">
+          <p>
+            <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1245.svg" alt="fivclinic" class="fiv-brand-icon" />
+            <span class="fiv-caption-text"><b>fivclinic</b> Motherhood begins long before you have a baby in your arms. Right, @loliruizjaren? Your image conveys that whirlwind of emotions that thousands of women feel when they finally fulfill their dream after going through the tough road of infertility. <span class="fiv-heart">&#10084;</span></span>
+          </p>
+        </div>
+      </div>
+      </div>
 
-    <div class="path-hero">
-      <img src={heroPost} alt="Mamá celebrando con bebé en hospital" loading="lazy" />
+      <!-- Carrusel móvil -->
+      <div class="fiv-gallery-carousel" id="fivCarousel">
+        <div class="fiv-carousel-track-wrap" id="fivWrap">
+          <div class="fiv-carousel-track" id="fivTrack">
+            <div class="fiv-card">
+        <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Component-142.png" alt="Mamá celebrando con bebé en hospital" class="fiv-photo" loading="lazy" />
+        <div class="fiv-card-caption">
+          <p>
+            <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1245.svg" alt="fivclinic" class="fiv-brand-icon" />
+            <span class="fiv-caption-text"><b>fivclinic</b> Motherhood begins long before you have a baby in your arms. Right, @loliruizjaren? Your image conveys that whirlwind of emotions that thousands of women feel when they finally fulfill their dream after going through the tough road of infertility. <span class="fiv-heart">&#10084;</span></span>
+          </p>
+        </div>
+      </div>
+            <div class="fiv-card">
+        <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Component-143.png" alt="Bebé durmiendo" class="fiv-photo" loading="lazy" />
+        <div class="fiv-card-caption">
+          <p>
+            <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1245.svg" alt="fivclinic" class="fiv-brand-icon" />
+            <span class="fiv-caption-text"><b>fivclinic</b> A wish that has come true. "Thanks to you and after a lot of work, this photo exists" <span class="fiv-heart">&#10084;</span></span>
+          </p>
+        </div>
+      </div>
+            <div class="fiv-card">
+        <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Component-144.png" alt="Madre con hijo en exterior" class="fiv-photo" loading="lazy" />
+        <div class="fiv-card-caption">
+          <p>
+            <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1245.svg" alt="fivclinic" class="fiv-brand-icon" />
+            <span class="fiv-caption-text"><b>fivclinic</b> Eva has shared with the FIVclinic team two moments of her life: the fertility treatments that have resulted in her first son, Jac, now 5 years old, and recently with her second daughter Nora. <span class="fiv-heart">&#10084;</span></span>
+          </p>
+        </div>
+      </div>
+          </div>
+        </div>
+        <div class="fiv-carousel-dots" id="fivDots">
+          <button class="fiv-dot active" data-index="0" aria-label="Slide 1"></button>
+          <button class="fiv-dot" data-index="1" aria-label="Slide 2"></button>
+          <button class="fiv-dot" data-index="2" aria-label="Slide 3"></button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -54,119 +89,241 @@ const posts = [
 <style>
   .social-path {
     background: var(--color-accent-pale);
-    border-top-right-radius: 220px;
+    border-radius: 40px 0 0 220px;
     overflow: hidden;
+    position: relative;
+  }
+  .path-deco {
+    position: absolute;
+    top: 28px;
+    left: 40px;
+    width: 54px;
+    height: 54px;
+    opacity: 0.9;
   }
   .path-grid {
     display: grid;
-    grid-template-columns: 1.15fr 0.75fr 1.1fr;
-    gap: 32px;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
+    gap: clamp(32px, 4vw, 64px);
   }
-  .path-title {
-    font-size: clamp(2rem, 3.4vw, 3rem);
-    font-weight: 400;
-    line-height: 1.1;
-    color: var(--color-heading);
-  }
-  .path-title .accent,
-  .path-lead.accent {
-    color: var(--color-accent);
-  }
-  .path-lead {
-    font-size: 1.25rem;
-    margin: 12px 0 28px;
-  }
-  .path-cta {
-    font-size: 0.95rem;
-    padding: 1.1em 2.4em;
-  }
-  .path-note {
-    margin-top: 16px;
-    font-size: 0.82rem;
-    color: var(--color-body);
+  .path-copy { max-width: 560px; }
+  .path-title { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 500; margin-bottom: 8px; line-height: 1.2; }
+  .path-title .accent { color: var(--color-accent); display: block; }
+  .path-lead { font-size: clamp(1.05rem, 1.6vw, 1.35rem); font-weight: 400; margin-bottom: 26px; }
+  .path-lead.accent { color: var(--color-accent); }
+  .path-cta { display: block; width: 100%; max-width: 560px; text-align: center; padding-block: 1.15em; }
+  .path-note { font-size: 0.85rem; color: var(--color-heading); margin-top: 14px; text-align: center; max-width: 560px; }
+
+
+  .fiv-gallery-wrap {
+    width: 100%;
+    font-family: 'Bryan Pro', sans-serif;
+    --transition: 0.35s ease;
   }
 
-  .path-posts {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  .fiv-gallery-grid {
+    display: grid;
+    grid-template-columns: 216px 393px;
+    grid-template-rows: 204px 204px;
+    gap: 7px;
+    width: fit-content;
   }
-  .ig-post {
+
+  .fiv-card {
     position: relative;
-    margin: 0;
-    border-radius: var(--radius-md);
     overflow: hidden;
-    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
   }
-  .ig-photo {
+
+  .fiv-card.fiv-main {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    height: 415px;
+  }
+
+  .fiv-card img.fiv-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    display: block;
+    filter: saturate(1) brightness(1);
+    transition: filter var(--transition), transform var(--transition);
   }
-  .ig-caption {
+
+  .fiv-card-caption {
     position: absolute;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.96);
-    padding: 14px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    transform: translateY(calc(100% - 0px));
-    transition: transform 0.35s ease;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transform: translateY(100%);
+    transition: transform var(--transition);
+    border-radius: 0 0 14px 14px;
   }
-  .ig-post:hover .ig-caption {
+
+  .fiv-card-caption p {
+    font-family: 'Bryan Pro', sans-serif;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .fiv-brand-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .fiv-caption-text { flex: 1; }
+  .fiv-heart { color: #e05c5c; }
+
+  .fiv-card:hover img.fiv-photo {
+    filter: saturate(1.4) brightness(1.05) contrast(1.05);
+    transform: scale(1.03);
+  }
+
+  .fiv-card:hover .fiv-card-caption {
     transform: translateY(0);
   }
-  .ig-post:hover .ig-photo {
-    transform: scale(1.04);
-  }
-  .ig-head {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
-    color: var(--color-heading);
-  }
-  .ig-favicon {
-    width: 18px;
-    height: 18px;
-  }
-  .ig-text {
-    font-size: 0.8rem;
-    color: var(--color-body);
-    line-height: 1.4;
-  }
-  .ig-heart {
-    color: var(--color-accent);
-    font-size: 0.9rem;
-  }
 
-  .path-hero img {
+  /* ── CARRUSEL ── */
+  .fiv-gallery-carousel {
+    display: none;
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: var(--radius-md);
-    aspect-ratio: 3 / 4;
   }
 
-  @media (max-width: 960px) {
-    .path-grid {
-      grid-template-columns: 1fr 1fr;
+  .fiv-carousel-track-wrap {
+    overflow: hidden;
+    border-radius: 14px;
+    width: 100%;
+  }
+
+  .fiv-carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+    will-change: transform;
+  }
+
+  /* Cada slide ocupa exactamente el ancho del wrapper */
+  .fiv-carousel-track .fiv-card {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 346px;
+  }
+
+  .fiv-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 14px;
+  }
+
+  .fiv-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e8c5c5;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s;
+  }
+
+  .fiv-dot.active {
+    background: #e05c5c;
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 1024px) {
+    .fiv-gallery-grid { display: none; }
+    .fiv-gallery-carousel { display: block; }
+
+    .fiv-card.touched img.fiv-photo {
+      filter: saturate(1.4) brightness(1.05) contrast(1.05);
     }
-    .path-copy {
-      grid-column: 1 / -1;
-    }
-    .social-path {
-      border-top-right-radius: 120px;
+    .fiv-card.touched .fiv-card-caption {
+      transform: translateY(0);
     }
   }
-  @media (max-width: 600px) {
-    .path-grid {
-      grid-template-columns: 1fr;
-    }
+
+
+  /* En el original el wrap vive en su propia columna; aquí debe medir su contenido */
+  .fiv-gallery-wrap { width: auto; }
+
+  @media (max-width: 1024px) {
+    .path-grid { grid-template-columns: 1fr; }
+    .fiv-gallery-wrap { width: 100%; }
+    /* El icono decorativo no debe pisar el título en pantallas pequeñas */
+    .path-deco { display: none; }
+    /* Radio suave para que el contenido no parezca cortado */
+    .social-path { border-radius: 28px 0 0 28px; }
   }
 </style>
+
+<script is:inline>
+
+(function() {
+  var wrap   = document.getElementById('fivWrap');
+  var track  = document.getElementById('fivTrack');
+  var dotsEl = document.getElementById('fivDots');
+  if (!track || !wrap) return;
+
+  var current = 0;
+  var slides  = track.querySelectorAll('.fiv-card');
+  var dots    = dotsEl ? dotsEl.querySelectorAll('.fiv-dot') : [];
+  var total   = slides.length;
+  var startX  = 0;
+
+  function getSlideWidth() {
+    // Siempre el ancho real del wrapper en ese momento
+    return wrap.offsetWidth;
+  }
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+    var offset = current * getSlideWidth();
+    track.style.transform = 'translateX(-' + offset + 'px)';
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+  }
+
+  dots.forEach(function(btn) {
+    btn.addEventListener('click', function() { goTo(+btn.dataset.index); });
+  });
+
+  track.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', function(e) {
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+
+  // Recalcular posición si cambia el tamaño de ventana
+  window.addEventListener('resize', function() { goTo(current); });
+
+  // Touch hover
+  slides.forEach(function(card) {
+    card.addEventListener('touchstart', function() {
+      slides.forEach(function(c) { if (c !== card) c.classList.remove('touched'); });
+      card.classList.toggle('touched');
+    }, { passive: true });
+  });
+})();
+
+</script>

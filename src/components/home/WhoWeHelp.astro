@@ -41,9 +41,9 @@ const cards = [
 
 <section class="section who-we-help">
   <div class="container">
-    <div class="section-head text-center">
+    <div class="section-head">
       <p class="eyebrow">Who we help</p>
-      <h2>Find the right path for your situation</h2>
+      <h2>Find the right path <span class="accent">for your situation</span></h2>
       <p class="section-lead">
         Every fertility journey is different. We help patients from around
         the world across a wide range of situations:
@@ -59,7 +59,7 @@ const cards = [
           <div class="care-card-body">
             <h3>{card.title}</h3>
             <p class="care-card-tags">{card.tags}</p>
-            <span class="care-card-cta">{card.cta} &rarr;</span>
+            <span class="care-card-cta">{card.cta}</span>
           </div>
         </a>
       ))}
@@ -68,13 +68,23 @@ const cards = [
 </section>
 
 <style>
+  /* Cabecera pegada al borde izquierdo del contenedor, compacta (como el original) */
   .section-head {
-    max-width: 620px;
-    margin-inline: auto;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
   }
+  .section-head .eyebrow {
+    margin-bottom: 6px;
+  }
+  .section-head h2 {
+    font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .who-we-help h2 .accent { color: var(--color-accent); }
   .section-lead {
-    color: var(--color-body);
+    color: var(--color-heading);
+    font-size: 0.95rem;
+    margin: 0;
   }
 
   .cards-grid {
@@ -87,58 +97,57 @@ const cards = [
     display: block;
     background: var(--color-white);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    overflow: hidden;
+    border-radius: var(--radius-sm);
     text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    padding: 26px 16px 24px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .care-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-card);
-    border-color: transparent;
   }
+
   .care-card-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 84px;
-    height: 84px;
-    margin: 28px auto 0;
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 22px;
     border-radius: 50%;
-    background: var(--color-accent-pale);
+    background: var(--color-surface);
   }
   .care-card-icon img {
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
   }
-  .care-card-body {
-    padding: 18px 18px 26px;
-  }
+
   .care-card-body h3 {
-    font-size: 1.05rem;
-    margin-bottom: 10px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--color-accent);
+    margin-bottom: 12px;
   }
   .care-card-tags {
-    font-size: 0.82rem;
-    color: var(--color-muted);
-    min-height: 3em;
+    font-size: 0.9rem;
+    color: var(--color-heading);
+    line-height: 1.45;
+    margin: 0 0 16px;
   }
   .care-card-cta {
     display: inline-block;
-    margin-top: 14px;
     font-size: 0.82rem;
     font-weight: 600;
     color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   @media (max-width: 1000px) {
-    .cards-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    .cards-grid { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 640px) {
-    .cards-grid {
-      grid-template-columns: 1fr 1fr;
-    }
+    .cards-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>

@@ -4,6 +4,7 @@ interface Stat {
   suffix: string;
   label: string;
   sublabel?: string;
+  subItalic?: string;
 }
 interface Props {
   stats: Stat[];
@@ -12,16 +13,25 @@ interface Props {
 const { stats, variant = 'light' } = Astro.props;
 ---
 
-<div class={`stats-bar stats-bar--${variant}`}>
-  {stats.map((s) => (
-    <div class="stat">
-      <p class="stat-number">
-        <span class="js-counter" data-to={s.value}>0</span>{s.suffix}
-      </p>
-      <p class="stat-label">{s.label}</p>
-      {s.sublabel && <p class="stat-sublabel">{s.sublabel}</p>}
-    </div>
-  ))}
+<div class={`stats-wrap stats-bar--${variant}`} data-stats-carousel>
+  <div class="stats-bar" data-stats-track>
+    {stats.map((s) => (
+      <div class="stat">
+        <p class="stat-number">
+          <span class="js-counter" data-to={s.value}>0</span><sup class="stat-suffix">{s.suffix}</sup>
+        </p>
+        <p class="stat-label">{s.label}</p>
+        {s.sublabel && <p class="stat-sublabel">{s.sublabel}</p>}
+        {s.subItalic && <p class="stat-subitalic">{s.subItalic}</p>}
+      </div>
+    ))}
+  </div>
+
+  <div class="stats-dots" data-stats-dots aria-label="Pagination">
+    {stats.map((_, i) => (
+      <button class:list={['stats-dot', { active: i === 0 }]} data-index={i} aria-label={`Slide ${i + 1}`}></button>
+    ))}
+  </div>
 </div>
 
 <style>
@@ -29,39 +39,94 @@ const { stats, variant = 'light' } = Astro.props;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 32px;
-    text-align: center;
+    text-align: left;
   }
   .stat-number {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 3.4vw, 2.8rem);
+    font-size: clamp(2.2rem, 3.6vw, 3rem);
     color: var(--color-accent);
     font-weight: 600;
     margin: 0;
+    line-height: 1;
+  }
+  .stat-suffix {
+    font-size: 0.5em;
+    vertical-align: super;
+    margin-left: 2px;
   }
   .stat-label {
-    margin: 6px 0 0;
-    font-size: 0.95rem;
-    color: var(--color-heading);
-    font-weight: 500;
+    margin: 4px 0 12px;
+    font-size: 1rem;
+    color: var(--color-accent);
+    font-weight: 600;
   }
   .stat-sublabel {
-    margin: 2px 0 0;
-    font-size: 0.78rem;
-    color: var(--color-muted);
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--color-body);
+    max-width: 26ch;
   }
-  .stats-bar--dark .stat-number {
-    color: var(--color-white);
+  .stat-subitalic {
+    margin: 6px 0 0;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--color-body);
   }
-  .stats-bar--dark .stat-label {
-    color: #e8e2dc;
-  }
-  .stats-bar--dark .stat-sublabel {
-    color: #b3b3b3;
+  .stats-bar--dark .stat-number { color: var(--color-white); }
+  .stats-bar--dark .stat-label { color: #e8e2dc; }
+  .stats-bar--dark .stat-sublabel { color: #b3b3b3; }
+
+  /* Dots: solo visibles en modo carrusel */
+  .stats-dots { display: none; }
+
+  /* ===== Carrusel en móvil y tablet ===== */
+  @media (max-width: 1024px) {
+    .stats-bar {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .stats-bar::-webkit-scrollbar { display: none; }
+    .stat {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-inline: 24px;
+    }
+    .stat .stat-sublabel { max-width: 34ch; }
+
+    .stats-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .stats-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      background: var(--color-accent-light);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .stats-dot.active {
+      background: var(--color-accent);
+      transform: scale(1.25);
+    }
   }
 </style>
 
 <script>
-  // Animación simple de conteo, respeta prefers-reduced-motion
+  // Animación de conteo (respeta prefers-reduced-motion)
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const counters = document.querySelectorAll<HTMLElement>('.js-counter');
 
@@ -93,6 +158,34 @@ const { stats, variant = 'light' } = Astro.props;
     },
     { threshold: 0.4 }
   );
-
   counters.forEach((c) => observer.observe(c));
+
+  // Carrusel con dots (móvil/tablet): scroll-snap nativo + sincronización
+  document.querySelectorAll<HTMLElement>('[data-stats-carousel]').forEach((wrap) => {
+    const track = wrap.querySelector<HTMLElement>('[data-stats-track]');
+    const dots = wrap.querySelectorAll<HTMLButtonElement>('.stats-dot');
+    if (!track || !dots.length) return;
+
+    const setActive = (idx: number) => {
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    };
+
+    let raf = 0;
+    track.addEventListener('scroll', () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const slideW = track.clientWidth;
+        if (!slideW) return;
+        const idx = Math.round(track.scrollLeft / slideW);
+        setActive(Math.max(0, Math.min(idx, dots.length - 1)));
+      });
+    }, { passive: true });
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const idx = Number(dot.dataset.index ?? '0');
+        track.scrollTo({ left: idx * track.clientWidth, behavior: 'smooth' });
+      });
+    });
+  });
 </script>

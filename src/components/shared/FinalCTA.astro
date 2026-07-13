@@ -3,11 +3,9 @@ const bg = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/
 ---
 
 <section class="final-cta">
-  <img src={bg} alt="" class="cta-bg" aria-hidden="true" loading="lazy" />
   <div class="container cta-inner">
     <h2>
-      Take the next step with
-      <span class="accent">clarity and expert guidance</span>
+      Take the next step with <span class="accent">clarity and expert guidance</span>
     </h2>
     <a href="/fertility-assessment/" class="btn btn-primary cta-btn">Request an expert case review</a>
   </div>
@@ -16,18 +14,12 @@ const bg = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/
 <style>
   .final-cta {
     position: relative;
-    background: var(--color-accent-pale);
+    background-image: url('https://fivclinic.es/international-patients/wp-content/uploads/2026/02/FONDO.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     overflow: hidden;
     border-top-right-radius: 200px;
-  }
-  .cta-bg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 55%;
-    object-fit: cover;
-    z-index: 0;
   }
   .cta-inner {
     position: relative;
