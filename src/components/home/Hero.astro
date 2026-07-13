@@ -1,35 +1,27 @@
 ---
-const heroImg = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/06/motherhood-at-FIVCLINIC.png';
-const instLogos = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/universitat-barcelona.png';
+interface Props { t?: any }
+const { t = {} } = Astro.props;
+const eyebrow = t.eyebrow ?? 'Advanced fertility and IVF clinic in Barcelona';
+const titleAccent = t.titleAccent ?? 'World-class fertility care';
+const titleTail = t.titleTail ?? ' in a leading medical destination in Europe';
+const lead = t.lead ?? 'Barcelona is not only a premier travel destination, it is a place patients from around the world choose for high-quality, specialized medical care.';
+const paragraphs = t.paragraphs ?? [
+  'At <strong>FIVClínic</strong>, we provide personalized fertility treatment and expert guidance for complex cases, supported by the clinical environment of <strong>Hospital Clínic Barcelona</strong>.',
+  'Whether you are exploring treatment options, seeking a second opinion, or planning your fertility journey from abroad, our team is here to guide you with clarity, care, and expertise.',
+];
+const note = t.note ?? 'FIVClínic is the assisted reproduction department of barnaclínic+, backed by <strong>Hospital Clínic Barcelona</strong> — an internationally ranked, tier-1 university hospital group.';
+const heroImg = t.image ?? 'https://fivclinic.es/international-patients/wp-content/uploads/2026/06/motherhood-at-FIVCLINIC.png';
+const instLogos = t.instLogos ?? 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/universitat-barcelona.png';
 ---
 
 <section class="hero">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">Advanced fertility and IVF clinic in Barcelona</p>
-      <h1 class="hero-title">
-        <span class="accent">World-class fertility care</span> in a leading medical destination in Europe
-      </h1>
-      <p class="hero-lead">
-        Barcelona is not only a premier travel destination, it is a place
-        patients from around the world choose for high-quality, specialized
-        medical care.
-      </p>
-      <p>
-        At <strong>FIVClínic</strong>, we provide personalized fertility
-        treatment and expert guidance for complex cases, supported by the
-        clinical environment of <strong>Hospital Clínic Barcelona</strong>.
-      </p>
-      <p>
-        Whether you are exploring treatment options, seeking a second
-        opinion, or planning your fertility journey from abroad, our team is
-        here to guide you with clarity, care, and expertise.
-      </p>
-      <p class="hero-note">
-        FIVClínic is the assisted reproduction department of barnaclínic+,
-        backed by <strong>Hospital Clínic Barcelona</strong> — an
-        internationally ranked, tier-1 university hospital group.
-      </p>
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 class="hero-title"><span class="accent">{titleAccent}</span>{titleTail}</h1>
+      <p class="hero-lead">{lead}</p>
+      {paragraphs.map((par: string) => <p set:html={par} />)}
+      <p class="hero-note" set:html={note} />
       <img src={instLogos} alt="Hospital Clínic Barcelona · IDIBAPS · Universitat de Barcelona" class="hero-inst-logos" loading="eager" />
     </div>
     <div class="hero-media">

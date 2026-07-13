@@ -1,23 +1,18 @@
 ---
+interface Props { t?: any }
+const { t = {} } = Astro.props;
 const uploads = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/';
-const collageImg = uploads + 'clinic-barcelona.png';
-
-const points = [
-  {
-    title: 'Advanced reproductive medicine',
-    text: 'Cutting-edge IVF technology, genetic screening, and real-time embryo monitoring.',
-  },
-  {
-    title: 'Research & innovation',
-    text: 'Pioneer in biomedical research, publishing in leading scientific journals.',
-  },
-  {
-    title: 'International clinical standards',
-    text: 'Regulated under EU clinical frameworks with full transparency and patient rights.',
-  },
+const collageImg = t.collageImg ?? uploads + 'clinic-barcelona.png';
+const eyebrow = t.eyebrow ?? 'Clinical environment';
+const titlePlain = t.titlePlain ?? 'Care supported by a top';
+const titleAccent = t.titleAccent ?? 'European university hospital';
+const intro = t.intro ?? '<strong>FIVClínic</strong> operates within the clinical ecosystem of <strong>Hospital Clínic Barcelona</strong> – a European reference center for advanced reproductive medicine, clinical research, and complex multidisciplinary cases.';
+const points = t.points ?? [
+  { title: 'Advanced reproductive medicine', text: 'Cutting-edge IVF technology, genetic screening, and real-time embryo monitoring.' },
+  { title: 'Research & innovation', text: 'Pioneer in biomedical research, publishing in leading scientific journals.' },
+  { title: 'International clinical standards', text: 'Regulated under EU clinical frameworks with full transparency and patient rights.' },
 ];
-
-const badges = [
+const badges = t.badges ?? [
   { text: 'Recognized as a World Health Organization (WHO) Collaborating Centre in multiple medical fields', icon: uploads + 'WHO.png' },
   { text: 'Consistently ranked among the top hospitals in Spain and internationally by rankings such as Newsweek', icon: uploads + 'world-best-hospitals.png' },
   { text: 'Designated national and European reference center for complex and rare diseases', icon: uploads + 'european-reference-networks.png' },
@@ -27,16 +22,9 @@ const badges = [
 <section class="section clinical-env">
   <div class="container clinical-grid">
     <div class="clinical-copy">
-      <p class="eyebrow">Clinical environment</p>
-      <h2 class="clinical-title">
-        Care supported by a top <span class="accent">European university hospital</span>
-      </h2>
-      <p>
-        <strong>FIVClínic</strong> operates within the clinical ecosystem of
-        <strong>Hospital Clínic Barcelona</strong> – a European reference
-        center for advanced reproductive medicine, clinical research, and
-        complex multidisciplinary cases.
-      </p>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="clinical-title">{titlePlain} <span class="accent">{titleAccent}</span></h2>
+      <p set:html={intro} />
 
       <ul class="clinical-points">
         {points.map((p) => (

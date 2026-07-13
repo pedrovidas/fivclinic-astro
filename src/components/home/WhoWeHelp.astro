@@ -1,53 +1,28 @@
 ---
+interface Card { title: string; tags: string; cta: string; href: string; icon: string }
+interface Props { t?: any }
+const { t = {} } = Astro.props;
 const iconBase = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/';
-const cards = [
-  {
-    title: 'Complex Fertility Cases',
-    tags: 'Failed IVF · Women over 40 · Genetic factors',
-    cta: 'Explore complex fertility care',
-    href: '/complex-fertility-cases/',
-    icon: iconBase + 'Group-1135.svg',
-  },
-  {
-    title: 'Recurrent Pregnancy Loss',
-    tags: 'Understanding why pregnancies don\u2019t continue',
-    cta: 'Explore RPL program',
-    href: '/rpl/',
-    icon: iconBase + 'Group-1134.svg',
-  },
-  {
-    title: 'IVF with Donor Eggs',
-    tags: 'Personalized donor programs with strict criteria',
-    cta: 'Explore egg donation',
-    href: '/ivf-with-donor-eggs/',
-    icon: iconBase + 'Group-1133.svg',
-  },
-  {
-    title: 'Fertility Preservation',
-    tags: 'Plan your future fertility with expert guidance',
-    cta: 'Explore fertility preservation',
-    href: '/fertility-preservation-in-barcelona/',
-    icon: iconBase + 'Group-1132.svg',
-  },
-  {
-    title: 'Single Women & Female Couples',
-    tags: 'Safe, respectful, and evidence-based fertility care',
-    cta: 'Explore this pathway',
-    href: '/fertility-for-single-women-female-couples/',
-    icon: iconBase + 'Group-1136.svg',
-  },
+const defaults: Card[] = [
+  { title: 'Complex Fertility Cases', tags: 'Failed IVF · Women over 40 · Genetic factors', cta: 'Explore complex fertility care', href: '/complex-fertility-cases/', icon: iconBase + 'Group-1135.svg' },
+  { title: 'Recurrent Pregnancy Loss', tags: 'Understanding why pregnancies don\u2019t continue', cta: 'Explore RPL program', href: '/rpl/', icon: iconBase + 'Group-1134.svg' },
+  { title: 'IVF with Donor Eggs', tags: 'Personalized donor programs with strict criteria', cta: 'Explore egg donation', href: '/ivf-with-donor-eggs/', icon: iconBase + 'Group-1133.svg' },
+  { title: 'Fertility Preservation', tags: 'Plan your future fertility with expert guidance', cta: 'Explore fertility preservation', href: '/fertility-preservation-in-barcelona/', icon: iconBase + 'Group-1132.svg' },
+  { title: 'Single Women & Female Couples', tags: 'Safe, respectful, and evidence-based fertility care', cta: 'Explore this pathway', href: '/fertility-for-single-women-female-couples/', icon: iconBase + 'Group-1136.svg' },
 ];
+const cards: Card[] = t.cards ?? defaults;
+const eyebrow = t.eyebrow ?? 'Who we help';
+const titlePlain = t.titlePlain ?? 'Find the right path';
+const titleAccent = t.titleAccent ?? 'for your situation';
+const lead = t.lead ?? 'Every fertility journey is different. We help patients from around the world across a wide range of situations:';
 ---
 
 <section class="section who-we-help">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">Who we help</p>
-      <h2>Find the right path <span class="accent">for your situation</span></h2>
-      <p class="section-lead">
-        Every fertility journey is different. We help patients from around
-        the world across a wide range of situations:
-      </p>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2>{titlePlain} <span class="accent">{titleAccent}</span></h2>
+      <p class="section-lead">{lead}</p>
     </div>
 
     <div class="cards-grid">

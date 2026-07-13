@@ -7,24 +7,28 @@ const teamCollage = uploads + '2026/02/Group-763.png';
 const instStrip = uploads + '2026/04/fivclinic-barnaclinic-1.png';   // Clínic Barcelona · Universitat
 const sefLogo   = uploads + '2026/04/sociedad-espanola-de-fertilidad-1.png';
 
-const stats = [
+const defaults = [
   { value: 100, suffix: '+',  label: 'years of clinical, research, and teaching activity' },
   { value: 750, suffix: '+',  label: 'active beds' },
   { value: 642, suffix: 'K+', label: 'outpatient consultations' },
   { value: 31,  suffix: 'K+', label: 'operations performed' },
 ];
+interface Props { t?: any }
+const { t = {} } = Astro.props;
+const stats = t.stats ?? defaults;
+const eyebrow = t.eyebrow ?? 'Clinical experience';
+const titlePlain = t.titlePlain ?? 'Respected by';
+const titleAccent = t.titleAccent ?? 'institutional excellence';
+const intro = t.intro ?? 'Over 30 years of reproductive medicine, supported by the infrastructure and clinical standards of one of Europe&rsquo;s great university hospitals.';
+const membersLabel = t.membersLabel ?? 'Members:';
 ---
 
 <section class="section respected">
   <div class="container respected-grid">
     <div class="respected-copy">
-      <p class="eyebrow">Clinical experience</p>
-      <h2>Respected by<br /><span class="accent">institutional excellence</span></h2>
-      <p class="section-lead">
-        Over 30 years of reproductive medicine, supported by the
-        infrastructure and clinical standards of one of Europe&rsquo;s great
-        university hospitals.
-      </p>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2>{titlePlain}<br /><span class="accent">{titleAccent}</span></h2>
+      <p class="section-lead" set:html={intro} />
 
       <div class="stats-box">
         {stats.map((s, i) => (
@@ -41,7 +45,7 @@ const stats = [
         <img src={instStrip} alt="Clínic Barcelona · Universitat de Barcelona · barnaclínic+" />
       </div>
 
-      <p class="members-label">Members:</p>
+      <p class="members-label">{membersLabel}</p>
       <div class="members">
         <img src={sefLogo} alt="Sociedad Española de Fertilidad · ESHRE-Certified Senior Clinical Embryologists" class="sef-logo" />
       </div>

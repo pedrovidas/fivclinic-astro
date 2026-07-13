@@ -1,7 +1,12 @@
 ---
-const barcelonaImg = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/barcelona-ciudad-condal.png';
-
-const reasons = [
+interface Props { t?: any }
+const { t = {} } = Astro.props;
+const barcelonaImg = t.image ?? 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/barcelona-ciudad-condal.png';
+const eyebrow = t.eyebrow ?? 'Why Barcelona';
+const titlePlain = t.titlePlain ?? 'Why patients from around the world';
+const titleAccent = t.titleAccent ?? 'choose Barcelona';
+const intro = t.intro ?? 'Barcelona combines medical excellence with quality of life, making it one of Europe&rsquo;s leading destinations for international patients.';
+const reasons = t.reasons ?? [
   { title: 'Renowned university hospitals', text: "Hospital Clínic is one of Europe's top university medical institutions." },
   { title: 'Highly specialized teams', text: 'Multidisciplinary experts in gynaecology, embryology, genetics, and psychology.' },
   { title: 'Easy access from major cities', text: 'Direct flights from across Europe, the Americas, and the Middle East.' },
@@ -16,12 +21,9 @@ const reasons = [
       <img src={barcelonaImg} alt="Barcelona" loading="lazy" />
     </div>
     <div class="why-copy">
-      <p class="eyebrow">Why Barcelona</p>
-      <h2>Why patients from around the world <span class="accent">choose Barcelona</span></h2>
-      <p>
-        Barcelona combines medical excellence with quality of life, making it
-        one of Europe&rsquo;s leading destinations for international patients.
-      </p>
+      <p class="eyebrow">{eyebrow}</p>
+      <h2>{titlePlain} <span class="accent">{titleAccent}</span></h2>
+      <p set:html={intro} />
       <ul class="why-list">
         {reasons.map((r) => (
           <li>

@@ -1,0 +1,322 @@
+{
+  "meta": {
+    "title": "Fertility Clinic in Barcelona | FIVClínic",
+    "description": "FIVClínic — Advanced fertility and IVF clinic in Barcelona, part of Hospital Clínic Barcelona. World-class fertility care for international patients."
+  },
+  "hero": {
+    "eyebrow": "Advanced fertility and IVF clinic in Barcelona",
+    "titleAccent": "World-class fertility care",
+    "titleTail": " in a leading medical destination in Europe",
+    "lead": "Barcelona is not only a premier travel destination, it is a place patients from around the world choose for high-quality, specialized medical care.",
+    "paragraphs": [
+      "At <strong>FIVClínic</strong>, we provide personalized fertility treatment and expert guidance for complex cases, supported by the clinical environment of <strong>Hospital Clínic Barcelona</strong>.",
+      "Whether you are exploring treatment options, seeking a second opinion, or planning your fertility journey from abroad, our team is here to guide you with clarity, care, and expertise."
+    ],
+    "note": "FIVClínic is the assisted reproduction department of barnaclínic+, backed by <strong>Hospital Clínic Barcelona</strong> — an internationally ranked, tier-1 university hospital group.",
+    "image": "https://fivclinic.es/international-patients/wp-content/uploads/2026/06/motherhood-at-FIVCLINIC.png",
+    "instLogos": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/universitat-barcelona.png"
+  },
+  "heroStats": [
+    {
+      "value": 30,
+      "suffix": "+",
+      "label": "years",
+      "sublabel": "of specialized experience in reproductive medicine at FIVClínic"
+    },
+    {
+      "value": 65,
+      "suffix": "%",
+      "label": "pregnancy rate",
+      "sublabel": "in IVF treatments with own eggs",
+      "subItalic": "Clinic-reported outcomes"
+    },
+    {
+      "value": 80,
+      "suffix": "%",
+      "label": "pregnancy rate",
+      "sublabel": "donor egg cycles",
+      "subItalic": "Clinic-reported outcomes"
+    },
+    {
+      "value": 300,
+      "suffix": "+",
+      "label": "IVF treatments",
+      "sublabel": "per year"
+    }
+  ],
+  "whoWeHelp": {
+    "eyebrow": "Who we help",
+    "titlePlain": "Find the right path",
+    "titleAccent": "for your situation",
+    "lead": "Every fertility journey is different. We help patients from around the world across a wide range of situations:",
+    "cards": [
+      {
+        "title": "Complex Fertility Cases",
+        "tags": "Failed IVF · Women over 40 · Genetic factors",
+        "cta": "Explore complex fertility care",
+        "href": "/complex-fertility-cases/",
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Group-1135.svg"
+      },
+      {
+        "title": "Recurrent Pregnancy Loss",
+        "tags": "Understanding why pregnancies don’t continue",
+        "cta": "Explore RPL program",
+        "href": "/rpl/",
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Group-1134.svg"
+      },
+      {
+        "title": "IVF with Donor Eggs",
+        "tags": "Personalized donor programs with strict criteria",
+        "cta": "Explore egg donation",
+        "href": "/ivf-with-donor-eggs/",
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Group-1133.svg"
+      },
+      {
+        "title": "Fertility Preservation",
+        "tags": "Plan your future fertility with expert guidance",
+        "cta": "Explore fertility preservation",
+        "href": "/fertility-preservation-in-barcelona/",
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Group-1132.svg"
+      },
+      {
+        "title": "Single Women & Female Couples",
+        "tags": "Safe, respectful, and evidence-based fertility care",
+        "cta": "Explore this pathway",
+        "href": "/fertility-for-single-women-female-couples/",
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Group-1136.svg"
+      }
+    ]
+  },
+  "clinicalEnvironment": {
+    "eyebrow": "Clinical environment",
+    "titlePlain": "Care supported by a top",
+    "titleAccent": "European university hospital",
+    "intro": "<strong>FIVClínic</strong> operates within the clinical ecosystem of <strong>Hospital Clínic Barcelona</strong> – a European reference center for advanced reproductive medicine, clinical research, and complex multidisciplinary cases.",
+    "collageImg": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/clinic-barcelona.png",
+    "points": [
+      {
+        "title": "Advanced reproductive medicine",
+        "text": "Cutting-edge IVF technology, genetic screening, and real-time embryo monitoring."
+      },
+      {
+        "title": "Research & innovation",
+        "text": "Pioneer in biomedical research, publishing in leading scientific journals."
+      },
+      {
+        "title": "International clinical standards",
+        "text": "Regulated under EU clinical frameworks with full transparency and patient rights."
+      }
+    ],
+    "badges": [
+      {
+        "text": "Recognized as a World Health Organization (WHO) Collaborating Centre in multiple medical fields",
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/WHO.png"
+      },
+      {
+        "text": "Consistently ranked among the top hospitals in Spain and internationally by rankings such as Newsweek",
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/world-best-hospitals.png"
+      },
+      {
+        "text": "Designated national and European reference center for complex and rare diseases",
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/european-reference-networks.png"
+      }
+    ]
+  },
+  "socialProof": {
+    "titlePlain": "Get on a path to the family",
+    "titleAccent": "you&rsquo;ve always dreamed of.",
+    "lead": "Your journey starts here.",
+    "ctaText": "Request a free expert case review",
+    "ctaHref": "/fertility-assessment/",
+    "note": "Quick response | Confidential | No obligation"
+  },
+  "whyBarcelona": {
+    "eyebrow": "Why Barcelona",
+    "titlePlain": "Why patients from around the world",
+    "titleAccent": "choose Barcelona",
+    "intro": "Barcelona combines medical excellence with quality of life, making it one of Europe&rsquo;s leading destinations for international patients.",
+    "image": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/barcelona-ciudad-condal.png",
+    "reasons": [
+      {
+        "title": "Renowned university hospitals",
+        "text": "Hospital Clínic is one of Europe's top university medical institutions."
+      },
+      {
+        "title": "Highly specialized teams",
+        "text": "Multidisciplinary experts in gynaecology, embryology, genetics, and psychology."
+      },
+      {
+        "title": "Easy access from major cities",
+        "text": "Direct flights from across Europe, the Americas, and the Middle East."
+      },
+      {
+        "title": "Full English-language support",
+        "text": "Our international patient team is with you at every stage."
+      },
+      {
+        "title": "A calm, welcoming city",
+        "text": "A safe, beautiful environment where you can feel supported throughout treatment."
+      }
+    ]
+  },
+  "processSteps": {
+    "eyebrow": "The process",
+    "titlePlain": "A step-by-step process",
+    "titleAccent": "designed around you",
+    "steps": [
+      {
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Background-14.svg",
+        "title": "Online consultation",
+        "text": "Discuss your case with a fertility specialist from anywhere in the world, by video call."
+      },
+      {
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Background-15.svg",
+        "title": "Personalized plan",
+        "text": "Receive clear medical recommendations tailored to your specific situation and history."
+      },
+      {
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Background-16.svg",
+        "title": "Plan your visit",
+        "text": "We help you organize timing, travel logistics, and all documentation needed."
+      },
+      {
+        "icon": "https://fivclinic.es/international-patients/wp-content/uploads/2026/04/Background-17.svg",
+        "title": "Treatment & follow-up",
+        "text": "Care in Barcelona, then ongoing support and coordination after you return home."
+      }
+    ]
+  },
+  "respected": {
+    "eyebrow": "Clinical experience",
+    "titlePlain": "Respected by",
+    "titleAccent": "institutional excellence",
+    "intro": "Over 30 years of reproductive medicine, supported by the infrastructure and clinical standards of one of Europe&rsquo;s great university hospitals.",
+    "stats": [
+      {
+        "value": 100,
+        "suffix": "+",
+        "label": "years of clinical, research, and teaching activity"
+      },
+      {
+        "value": 750,
+        "suffix": "+",
+        "label": "active beds"
+      },
+      {
+        "value": 642,
+        "suffix": "K+",
+        "label": "outpatient consultations"
+      },
+      {
+        "value": 31,
+        "suffix": "K+",
+        "label": "operations performed"
+      }
+    ],
+    "membersLabel": "Members:"
+  },
+  "patientVoices": {
+    "eyebrow": "Patient voices",
+    "titlePlain": "What international patients",
+    "titleAccent": "say about us",
+    "testimonials": [
+      {
+        "quote": "From abroad, we needed clarity before making decisions. The online consultation helped us understand everything before traveling.",
+        "author": "International patient, UK"
+      },
+      {
+        "quote": "We felt supported from the very first contact, even before traveling. The team answered every question with care and in English.",
+        "author": "Patient from Northern Europe"
+      },
+      {
+        "quote": "The entire process was clearly explained and well organized. We knew exactly what to expect at each stage — that made all the difference.",
+        "author": "International couple, Germany"
+      }
+    ]
+  },
+  "supportFaq": {
+    "titlePlain": "Support for patients coming to",
+    "titleAccent": "Barcelona from elsewhere in Spain or abroad",
+    "paragraphs": [
+      "We understand that fertility treatment sometimes needs to be planned around work, travel, family logistics, or life in another city or country.",
+      "<strong>FIVClinic+</strong> offers a structured process that can begin with specialist guidance and coordinated planning."
+    ],
+    "image": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/fiv2024-124-2.png",
+    "faqs": [
+      {
+        "q": "Can I start the process before traveling?",
+        "a": "Yes. The first step can begin with expert consultation and fertility assessment planning, so you can understand your options before organizing treatment travel.",
+        "list": null
+      },
+      {
+        "q": "Will I know which treatment is best before coming to Barcelona?",
+        "a": "In many cases, yes. Initial evaluation and medical review can help clarify whether insemination, IVF, or shared motherhood should be explored first.",
+        "list": null
+      },
+      {
+        "q": "Who will support me during treatment?",
+        "a": null,
+        "list": [
+          "A reproductive medicine team",
+          "Professionals experienced in donor sperm treatment and IVF",
+          "A coordinated hospital-based care environment",
+          "Staff used to caring for patients who may need remote planning before treatment"
+        ]
+      }
+    ]
+  },
+  "medicalRecognition": {
+    "title": "Medical recognition and institutional credibility",
+    "intro": "<strong>FIVClínic</strong>&rsquo;s clinical approach is aligned with the medical standards, research environment, and academic excellence of <strong>Hospital Clínic Barcelona</strong>, a leading university hospital internationally recognized for its contribution to medicine, research, and innovation.",
+    "listTitle1": "<strong>Hospital Clínic Barcelona</strong> is:",
+    "list1": [
+      "A reference center in complex medical care",
+      "Closely linked to university-level research and teaching",
+      "Recognized internationally for clinical excellence and scientific output"
+    ],
+    "listTitle2": "This institutional environment reinforces <strong>FIVClínic</strong>&rsquo;s commitment to:",
+    "list2": [
+      "Evidence-based medicine",
+      "Multidisciplinary collaboration",
+      "Transparent, ethical clinical decision-making"
+    ],
+    "closing": "Every recommendation is grounded in rigor, not routine.",
+    "cards": [
+      {
+        "img": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/image-157.png",
+        "text": "Recognized as a World Health Organization (WHO) Collaborating Centre in multiple medical fields"
+      },
+      {
+        "img": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/image-158.png",
+        "text": "Leading university hospital linked to the University of Barcelona, one of Europe’s top public universities."
+      },
+      {
+        "img": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/Clip-path-group.png",
+        "text": "Consistently ranked among the top hospitals in Spain and internationally by rankings such as Newsweek"
+      },
+      {
+        "img": "https://fivclinic.es/international-patients/wp-content/uploads/2026/02/image-159.png",
+        "text": "Designated national and European reference center for complex and rare diseases"
+      }
+    ]
+  },
+  "leadForm": {
+    "titlePlain": "Take the next step with",
+    "titleAccent": "clarity and expert guidance",
+    "ageGroups": [
+      "Under 35",
+      "35–39",
+      "40–42",
+      "43 or over"
+    ],
+    "reasons": [
+      "Natural or low-stimulation IVF",
+      "Single woman or female couple",
+      "Genetic concerns or inherited conditions",
+      "Recurrent pregnancy loss (RPL)",
+      "Exploring options / not sure"
+    ],
+    "submitText": "Request an expert case review",
+    "note": "Quick response | Confidential | No obligation"
+  }
+}

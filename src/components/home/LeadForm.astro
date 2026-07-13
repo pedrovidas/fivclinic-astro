@@ -4,21 +4,24 @@ import { countries } from '../../data/countries';
 interface Props {
   titlePlain?: string;
   titleAccent?: string;
+  t?: any;
 }
+const { t = {} } = Astro.props;
 const {
-  titlePlain = 'Take the next step with',
-  titleAccent = 'clarity and expert guidance',
+  titlePlain = t.titlePlain ?? 'Take the next step with',
+  titleAccent = t.titleAccent ?? 'clarity and expert guidance',
 } = Astro.props;
 
-
-const ageGroups = ['Under 35', '35–39', '40–42', '43 or over'];
-const reasons = [
+const ageGroups = t.ageGroups ?? ['Under 35', '35–39', '40–42', '43 or over'];
+const reasons = t.reasons ?? [
   'Natural or low-stimulation IVF',
   'Single woman or female couple',
   'Genetic concerns or inherited conditions',
   'Recurrent pregnancy loss (RPL)',
   'Exploring options / not sure',
 ];
+const submitText = t.submitText ?? 'Request an expert case review';
+const note = t.note ?? 'Quick response | Confidential | No obligation';
 ---
 
 <section class="lead-form-section" id="request-review">
@@ -70,8 +73,8 @@ const reasons = [
         </label>
       </div>
 
-      <button type="submit" class="btn btn-primary form-submit">Request an expert case review</button>
-      <p class="form-note">Quick response | Confidential | No obligation</p>
+      <button type="submit" class="btn btn-primary form-submit">{submitText}</button>
+      <p class="form-note">{note}</p>
     </form>
   </div>
 </section>

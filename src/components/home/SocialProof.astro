@@ -1,14 +1,22 @@
 ---
+interface Props { t?: any }
+const { t = {} } = Astro.props;
+const titlePlain = t.titlePlain ?? 'Get on a path to the family';
+const titleAccent = t.titleAccent ?? 'you&rsquo;ve always dreamed of.';
+const lead = t.lead ?? 'Your journey starts here.';
+const ctaText = t.ctaText ?? 'Request a free expert case review';
+const ctaHref = t.ctaHref ?? '/fertility-assessment/';
+const note = t.note ?? 'Quick response | Confidential | No obligation';
 ---
 
 <section class="section social-path">
   <div class="container path-grid">
     <img src="https://fivclinic.es/international-patients/wp-content/uploads/2026/06/Group-1245.svg" alt="" class="path-deco" aria-hidden="true" />
     <div class="path-copy">
-      <h2 class="path-title">Get on a path to the family <span class="accent">you&rsquo;ve always dreamed of.</span></h2>
-      <p class="path-lead accent">Your journey starts here.</p>
-      <a href="/fertility-assessment/" class="btn btn-primary path-cta">Request a free expert case review</a>
-      <p class="path-note">Quick response | Confidential | No obligation</p>
+      <h2 class="path-title">{titlePlain} <span class="accent" set:html={titleAccent} /></h2>
+      <p class="path-lead accent">{lead}</p>
+      <a href={ctaHref} class="btn btn-primary path-cta">{ctaText}</a>
+      <p class="path-note">{note}</p>
     </div>
 
     <div class="fiv-gallery-wrap">

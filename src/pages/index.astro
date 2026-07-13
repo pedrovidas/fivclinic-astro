@@ -12,20 +12,13 @@ import PatientVoices from '../components/home/PatientVoices.astro';
 import SupportFAQ from '../components/home/SupportFAQ.astro';
 import MedicalRecognition from '../components/home/MedicalRecognition.astro';
 import LeadForm from '../components/home/LeadForm.astro';
+import home from '../content/home.json';
 
-const heroStats = [
-  { value: 30, suffix: '+', label: 'years', sublabel: 'of specialized experience in reproductive medicine at FIVClínic' },
-  { value: 65, suffix: '%', label: 'pregnancy rate', sublabel: 'in IVF treatments with own eggs', subItalic: 'Clinic-reported outcomes' },
-  { value: 80, suffix: '%', label: 'pregnancy rate', sublabel: 'donor egg cycles', subItalic: 'Clinic-reported outcomes' },
-  { value: 300, suffix: '+', label: 'IVF treatments', sublabel: 'per year' },
-];
+const heroStats = home.heroStats;
 ---
 
-<Layout
-  title="Fertility Clinic in Barcelona | FIVClínic"
-  description="FIVClínic — Advanced fertility and IVF clinic in Barcelona, part of Hospital Clínic Barcelona. World-class fertility care for international patients."
->
-  <Hero />
+<Layout title={home.meta.title} description={home.meta.description}>
+  <Hero t={home.hero} />
 
   <section class="stats-section">
     <div class="container">
@@ -33,16 +26,16 @@ const heroStats = [
     </div>
   </section>
 
-  <WhoWeHelp />
-  <ClinicalEnvironment />
-  <SocialProof />
-  <WhyBarcelona />
-  <ProcessSteps />
-  <RespectedByExcellence />
-  <PatientVoices />
-  <SupportFAQ />
-  <MedicalRecognition />
-  <LeadForm />
+  <WhoWeHelp t={home.whoWeHelp} />
+  <ClinicalEnvironment t={home.clinicalEnvironment} />
+  <SocialProof t={home.socialProof} />
+  <WhyBarcelona t={home.whyBarcelona} />
+  <ProcessSteps steps={home.processSteps.steps} titlePlain={home.processSteps.titlePlain} titleAccent={home.processSteps.titleAccent} />
+  <RespectedByExcellence t={home.respected} />
+  <PatientVoices testimonials={home.patientVoices.testimonials} titlePlain={home.patientVoices.titlePlain} titleAccent={home.patientVoices.titleAccent} eyebrow={home.patientVoices.eyebrow} />
+  <SupportFAQ t={home.supportFaq} />
+  <MedicalRecognition t={home.medicalRecognition} />
+  <LeadForm t={home.leadForm} />
 </Layout>
 
 <style>
