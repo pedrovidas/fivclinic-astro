@@ -1,7 +1,4 @@
 ---
-import {
-  storyblokEditable,
-} from '@storyblok/astro';
 import Layout from '../layouts/Layout.astro';
 import TeamHero from '../components/team/TeamHero.astro';
 import MemberCard from '../components/team/MemberCard.astro';
@@ -28,23 +25,12 @@ const rowLayout = [
 ];
 
 const deptByName = (n: string) => medicalTeam.find((d) => d.name === n);
-
-const storyblokPageAttributes =
-  content.__storyblok
-    ? storyblokEditable(content.__storyblok)
-    : {};
-
 ---
 
 <Layout
   title="Fertility Specialists in Barcelona | FIVClínic Team"
   description="Meet the FIVClínic medical team in Barcelona — gynecologists, geneticists, embryologists and specialists from Hospital Clínic Barcelona."
 >
-  <div
-    class="storyblok-page-editable"
-    style="display: contents"
-    {...storyblokPageAttributes}
-  >
   <TeamHero />
 
   <section class="section medical-team">
@@ -104,8 +90,6 @@ const storyblokPageAttributes =
   </section>
 
   <LeadForm titlePlain="Take the next step with" titleAccent="expert guidance and a plan built around your future." />
-
-  </div>
 </Layout>
 
 <style>

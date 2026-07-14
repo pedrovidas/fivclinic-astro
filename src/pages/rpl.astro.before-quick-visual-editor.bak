@@ -1,7 +1,4 @@
 ---
-import {
-  storyblokEditable,
-} from '@storyblok/astro';
 import Layout from '../layouts/Layout.astro';
 import TreatmentHero from '../components/treatment/TreatmentHero.astro';
 import SplitSection from '../components/treatment/SplitSection.astro';
@@ -37,23 +34,12 @@ const intlFaqs = content.intlFaqs;
 const faqs = content.faqs;
 
 const rplTestimonials = content.rplTestimonials;
-
-const storyblokPageAttributes =
-  content.__storyblok
-    ? storyblokEditable(content.__storyblok)
-    : {};
-
 ---
 
 <Layout
   title="Repeated Pregnancy Loss Care in Barcelona | FIVClínic"
   description="Clear answers for repeated pregnancy loss (RPL) at FIVClínic Barcelona — specialized evaluation and honest guidance backed by Hospital Clínic Barcelona."
 >
-  <div
-    class="storyblok-page-editable"
-    style="display: contents"
-    {...storyblokPageAttributes}
-  >
   <TreatmentHero
     titlePlain="Clear answers for"
     titleAccent="repeated pregnancy loss"
@@ -207,8 +193,6 @@ const storyblokPageAttributes =
   <MedicalRecognition />
 
   <LeadForm titlePlain="Take the next step with" titleAccent="clarity and expert guidance." />
-
-  </div>
 </Layout>
 
 <style>

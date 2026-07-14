@@ -174,5 +174,22 @@ export async function getStoryblokPageContent(
     return loadFallback(slug);
   }
 
-  return toLegacyContent(dataBlock);
+  const legacyContent =
+    toLegacyContent(dataBlock);
+
+  if (
+    legacyContent &&
+    typeof legacyContent === 'object'
+  ) {
+    Object.defineProperty(
+      legacyContent,
+      '__storyblok',
+      {
+        value: dataBlock,
+        enumerable: false,
+      },
+    );
+  }
+
+  return legacyContent;
 }

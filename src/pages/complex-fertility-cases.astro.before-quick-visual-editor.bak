@@ -1,7 +1,4 @@
 ---
-import {
-  storyblokEditable,
-} from '@storyblok/astro';
 import Layout from '../layouts/Layout.astro';
 import TreatmentHero from '../components/treatment/TreatmentHero.astro';
 import ProfileSelector from '../components/treatment/ProfileSelector.astro';
@@ -78,23 +75,12 @@ const templateSource =
 
 const template =
   unwrapSingletonBlocks(templateSource);
-
-const storyblokPageAttributes =
-  content.__storyblok
-    ? storyblokEditable(content.__storyblok)
-    : {};
-
 ---
 
 <Layout
   title={template.seo.title}
   description={template.seo.description}
 >
-  <div
-    class="storyblok-page-editable"
-    style="display: contents"
-    {...storyblokPageAttributes}
-  >
   <TreatmentHero
     titlePlain={template.hero.titlePlain}
     titleAccent={template.hero.titleAccent}
@@ -333,8 +319,6 @@ const storyblokPageAttributes =
     titlePlain={template.leadForm.titlePlain}
     titleAccent={template.leadForm.titleAccent}
   />
-
-  </div>
 </Layout>
 
 <style>

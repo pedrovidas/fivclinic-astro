@@ -1,7 +1,4 @@
 ---
-import {
-  storyblokEditable,
-} from '@storyblok/astro';
 import Layout from '../layouts/Layout.astro';
 import TreatmentHero from '../components/treatment/TreatmentHero.astro';
 import ProfileSelector from '../components/treatment/ProfileSelector.astro';
@@ -39,23 +36,12 @@ const intlFaqs = content.intlFaqs;
 const realFaqs = content.realFaqs;
 
 const fpTestimonials = content.fpTestimonials;
-
-const storyblokPageAttributes =
-  content.__storyblok
-    ? storyblokEditable(content.__storyblok)
-    : {};
-
 ---
 
 <Layout
   title="Egg Freezing & Fertility Preservation in Barcelona | FIVClínic"
   description="Fertility preservation in Barcelona — expert, individualized care to protect your future reproductive options, backed by Hospital Clínic Barcelona."
 >
-  <div
-    class="storyblok-page-editable"
-    style="display: contents"
-    {...storyblokPageAttributes}
-  >
   <TreatmentHero
     titlePlain="in Barcelona"
     titleAccent="Fertility Preservation"
@@ -219,8 +205,6 @@ const storyblokPageAttributes =
   <MedicalRecognition />
 
   <LeadForm titlePlain="Take the next step with" titleAccent="expert guidance and a plan built around your future." />
-
-  </div>
 </Layout>
 
 <style>

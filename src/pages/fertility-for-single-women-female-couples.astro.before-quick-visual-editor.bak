@@ -1,7 +1,4 @@
 ---
-import {
-  storyblokEditable,
-} from '@storyblok/astro';
 import Layout from '../layouts/Layout.astro';
 import TreatmentHero from '../components/treatment/TreatmentHero.astro';
 import ProfileSelector from '../components/treatment/ProfileSelector.astro';
@@ -39,23 +36,12 @@ const intlFaqs = content.intlFaqs;
 const realFaqs = content.realFaqs;
 
 const swTestimonials = content.swTestimonials;
-
-const storyblokPageAttributes =
-  content.__storyblok
-    ? storyblokEditable(content.__storyblok)
-    : {};
-
 ---
 
 <Layout
   title="Fertility for Single Women & Female Couples | FIVClínic"
   description="Fertility treatment for women pursuing motherhood without a male partner — donor insemination, IVF and the ROPA method at FIVClínic Barcelona."
 >
-  <div
-    class="storyblok-page-editable"
-    style="display: contents"
-    {...storyblokPageAttributes}
-  >
   <TreatmentHero
     titlePlain="pursuing motherhood without a male partner"
     titleAccent="Fertility treatment for women"
@@ -243,8 +229,6 @@ const storyblokPageAttributes =
   <MedicalRecognition />
 
   <LeadForm titlePlain="Take the next step with" titleAccent="expert guidance and a plan built around your future." />
-
-  </div>
 </Layout>
 
 <style>
