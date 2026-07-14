@@ -11,6 +11,7 @@ import PatientVoices from '../components/home/PatientVoices.astro';
 import SupportFAQ from '../components/home/SupportFAQ.astro';
 import MedicalRecognition from '../components/home/MedicalRecognition.astro';
 import LeadForm from '../components/home/LeadForm.astro';
+import { storyblokEditable } from '@storyblok/astro';
 
 import {
   normalizeHomeBlock,
@@ -18,7 +19,13 @@ import {
 
 const { blok } = Astro.props;
 const content = normalizeHomeBlock(blok);
+const editableAttributes = storyblokEditable(blok);
 ---
+
+<div
+  class="storyblok-editable-section"
+  {...editableAttributes}
+>
 
 {
   blok.component === 'hero_home' && (
@@ -104,6 +111,8 @@ const content = normalizeHomeBlock(blok);
     <LeadForm t={content} />
   )
 }
+
+</div>
 
 <style>
   .stats-section {
