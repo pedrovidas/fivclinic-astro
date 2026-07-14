@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import {
+  getPayload,
+  useStoryblokApi,
+} from '@storyblok/astro';
+
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+export const prerender = false;
+
+const storyblokApi = useStoryblokApi();
+
+const payload = await getPayload({
+  locals: Astro.locals,
+});
+
+const story =
+  payload?.story ??
+  (
+    await storyblokApi.get(
+      'cdn/stories/home',
+      {
+        version: 'draft',
+      }
+    )
+  ).data.story;
+---
+
+<Layout
+  title={story.content.seo_title || 'FIVClínic'}
+  description={story.content.seo_description || ''}
+>
+  <StoryblokComponent blok={story.content} />
+</Layout>

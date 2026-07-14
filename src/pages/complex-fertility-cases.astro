@@ -1,4 +1,7 @@
 ---
+import {
+  storyblokEditable,
+} from '@storyblok/astro';
 import Layout from '../layouts/Layout.astro';
 import TreatmentHero from '../components/treatment/TreatmentHero.astro';
 import ProfileSelector from '../components/treatment/ProfileSelector.astro';
@@ -13,7 +16,13 @@ import PatientVoices from '../components/home/PatientVoices.astro';
 import MedicalRecognition from '../components/home/MedicalRecognition.astro';
 import LeadForm from '../components/home/LeadForm.astro';
 import { cfcRigorIcons } from '../data/cfcRigorIcons';
-import content from '../content/complex-fertility-cases.json';
+import templateFallback from '../content/hardcoded/complex-fertility-cases.json';
+import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+
+const content = await getStoryblokPageContent(
+  'complex-fertility-cases',
+  Astro.locals,
+);
 
 const u = 'https://fivclinic.es/international-patients/wp-content/uploads/';
 
@@ -32,60 +41,102 @@ const intlFaqs = content.intlFaqs;
 const faqs = content.faqs;
 
 const cfcTestimonials = content.cfcTestimonials;
+
+function unwrapSingletonBlocks(value: any): any {
+  if (Array.isArray(value)) {
+    const normalized = value.map(unwrapSingletonBlocks);
+
+    if (
+      normalized.length === 1 &&
+      normalized[0] !== null &&
+      typeof normalized[0] === 'object' &&
+      !Array.isArray(normalized[0])
+    ) {
+      return normalized[0];
+    }
+
+    return normalized;
+  }
+
+  if (
+    value !== null &&
+    typeof value === 'object'
+  ) {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [
+        key,
+        unwrapSingletonBlocks(item),
+      ]),
+    );
+  }
+
+  return value;
+}
+
+const templateSource =
+  content.template?.[0] ?? templateFallback;
+
+const template =
+  unwrapSingletonBlocks(templateSource);
+
+const storyblokPageAttributes =
+  content.__storyblok
+    ? storyblokEditable(content.__storyblok)
+    : {};
+
 ---
 
 <Layout
-  title="Complex Fertility Cases in Barcelona | FIVClínic"
-  description="Complex fertility and IVF care in Barcelona — expert second opinions, care for women 40+, and reproductive genetics guidance, backed by Hospital Clínic Barcelona."
+  title={template.seo.title}
+  description={template.seo.description}
 >
+  <div
+    class="storyblok-page-editable"
+    style="display: contents"
+    {...storyblokPageAttributes}
+  >
   <TreatmentHero
-    titlePlain="Complex"
-    titleAccent="fertility and IVF care:"
+    titlePlain={template.hero.titlePlain}
+    titleAccent={template.hero.titleAccent}
     accentFirst={false}
-    titleTail="clear answers, expert guidance"
-    paragraphs={[
-      'Advanced fertility care backed by <strong>Hospital Clínic Barcelona</strong>, one of Europe\u2019s leading hospitals, with a multidisciplinary team <strong>experienced in complex and international cases.</strong>',
-    ]}
-    checks={[
-      'Expert second opinions after failed IVF cycles',
-      'Specialized care for women 40+ and with low ovarian reserve',
-      'Advanced reproductive genetics and PGT-A guidance',
-    ]}
-    note="FIVClínic is the assisted reproduction department of barnaclínic+, backed by<br /><strong>Hospital Clínic Barcelona</strong> \u2013 an internationally ranked, tier-1 university hospital group."
-    formTitle="Understand your IVF treatment options with an expert"
+    titleTail={template.hero.titleTail}
+    paragraphs={template.hero.paragraphs}
+    checks={template.hero.checks}
+    note={template.hero.note}
+    formTitle={template.hero.formTitle}
     bgImage={u + '2026/02/HERO-IMG-2-1.png'}
   />
 
   <ProfileSelector cards={profileCards} />
 
   <SplitSection
-    titlePlain="When fertility becomes complex,"
-    titleAccent="uncertainty is often the hardest part."
-    paragraphs={[
-      'After failed IVF cycles, with age-related fertility changes, or when genetic factors are involved, many patients face the same situation: they don\u2019t lack treatments \u2014 <strong>they lack clear explanations and confident decisions.</strong>',
-    ]}
+    titlePlain={template.uncertainty.titlePlain}
+    titleAccent={template.uncertainty.titleAccent}
+    paragraphs={template.uncertainty.paragraphs}
     image={u + '2026/02/Rectangle-866.png'}
     imageSide="left"
   >
-    <p style="margin-top:20px"><strong class="accent-text">You may be asking yourself:</strong></p>
+    <p style="margin-top:20px">
+      <strong class="accent-text">
+        {template.uncertainty.questionHeading}
+      </strong>
+    </p>
+
     <ul class="slot-bullets">
-      <li>Why previous IVF treatments didn\u2019t work</li>
-      <li>Whether age or ovarian reserve limits your real options</li>
-      <li>If genetics could be affecting embryo development</li>
-      <li>What makes sense to try next \u2014 and what doesn\u2019t</li>
+      {template.uncertainty.questions.map((item: string) => (
+        <li>{item}</li>
+      ))}
     </ul>
-    <p style="margin-top:18px;color:var(--color-body)">Without clarity, moving forward becomes emotionally and medically exhausting.</p>
+
+    <p style="margin-top:18px;color:var(--color-body)">
+      {template.uncertainty.closing}
+    </p>
   </SplitSection>
 
   <SplitSection
-    titlePlain="Why FIVClínic is the right place"
-    titleAccent="for your journey"
-    paragraphs={[
-      '<strong>You don\u2019t need more opinions. You need the right one.</strong>',
-      '<strong>FIVClínic</strong> specializes in complex fertility cases that require time, experience, and honest medical guidance.',
-      'Our clinical approach is supported by the standards and medical environment of Hospital Clínic Barcelona, one of Europe\u2019s most respected university hospitals.',
-      'We act as your guide \u2014 listening carefully, reviewing your case in depth, and helping you understand what is truly happening and what options make sense for you.',
-    ]}
+    titlePlain={template.rightPlace.titlePlain}
+    titleAccent={template.rightPlace.titleAccent}
+    paragraphs={template.rightPlace.paragraphs}
     image={u + '2026/02/Group-763.png'}
     imageSide="right"
     surface={true}
@@ -93,109 +144,197 @@ const cfcTestimonials = content.cfcTestimonials;
   />
 
   <ScientificRigor
-    titlePlain="Scientific rigor, explained clearly."
-    titleAccent="Human care, always present."
-    subtitle="Complex fertility decisions cannot be standardized or rushed.<br />At <strong>FIVClínic:</strong>"
+    titlePlain={template.rigor.titlePlain}
+    titleAccent={template.rigor.titleAccent}
+    subtitle={template.rigor.subtitle}
     items={rigorItems}
-    note="Here, clarity is part of the treatment."
+    note={template.rigor.note}
   />
 
   <WhyBarcelonaCards
-    intro="Barcelona is one of Europe\u2019s leading destinations for advanced medical care, combining <strong>clinical excellence, innovation, and an international healthcare ecosystem.</strong>"
-    footer="<strong>FIVClínic+</strong> benefits directly from this ecosystem, with its clinical approach supported by the medical excellence and standards of Hospital Clínic Barcelona, one of the most respected academic hospitals in Spain and Europe."
+    intro={template.barcelona.intro}
+    footer={template.barcelona.footer}
   />
 
   <section class="section section-surface cfc-blocks">
     <div class="container">
-      <h2 class="cfc-title">A specialized approach for <span class="accent">complex fertility journeys</span></h2>
+      <h2 class="cfc-title">
+        {template.approach.titlePlain}
+        {' '}
+        <span class="accent">
+          {template.approach.titleAccent}
+        </span>
+      </h2>
 
-      {blocks.map((b) => (
-        <div class:list={['cfc-grid', { 'image-left': b.imageSide === 'left' }]}>
+      {blocks.map((b: any) => (
+        <div
+          class:list={[
+            'cfc-grid',
+            { 'image-left': b.imageSide === 'left' },
+          ]}
+        >
           <div class="cfc-copy">
-            <h3><span class="plus">+</span> {b.title}</h3>
+            <h3>
+              <span class="plus">+</span>
+              {' '}
+              {b.title}
+            </h3>
+
             <p set:html={b.intro} />
-            {b.groups.map((g) => (
+
+            {b.groups.map((g: any) => (
               g.boxed ? (
                 <div class="cfc-box">
-                  <p class="cfc-group-intro" set:html={g.intro} />
+                  <p
+                    class="cfc-group-intro"
+                    set:html={g.intro}
+                  />
                   <ul>
-                    {g.items.map((it) => <li>{it}</li>)}
+                    {g.items.map((item: string) => (
+                      <li>{item}</li>
+                    ))}
                   </ul>
                 </div>
               ) : (
                 <div class="cfc-plain">
-                  <p class="cfc-group-intro" set:html={g.intro} />
+                  <p
+                    class="cfc-group-intro"
+                    set:html={g.intro}
+                  />
                   <ul>
-                    {g.items.map((it) => <li>{it}</li>)}
+                    {g.items.map((item: string) => (
+                      <li>{item}</li>
+                    ))}
                   </ul>
                 </div>
               )
             ))}
-            {b.closing.map((cl) => <p class="cfc-closing" set:html={cl} />)}
+
+            {b.closing.map((closing: string) => (
+              <p
+                class="cfc-closing"
+                set:html={closing}
+              />
+            ))}
+
             <div class="cfc-hint">
-              <span class="hint-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="2"><path d="M12 16V4m0 12l-4-4m4 4l4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 18v2h16v-2" stroke-linecap="round"/></svg>
+              <span
+                class="hint-icon"
+                aria-hidden="true"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="#fff"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M12 16V4m0 12l-4-4m4 4l4-4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M4 18v2h16v-2"
+                    stroke-linecap="round"
+                  />
+                </svg>
               </span>
               <p>{b.hint}</p>
             </div>
-            <a href="#" class="btn cfc-cta">Download the free complex fertility guide</a>
+
+            <a href="#" class="btn cfc-cta">
+              {template.approach.cta}
+            </a>
           </div>
+
           <div class="cfc-media">
-            <img src={b.image} alt="" loading="lazy" />
+            <img
+              src={b.image}
+              alt=""
+              loading="lazy"
+            />
           </div>
         </div>
       ))}
     </div>
   </section>
 
-  <TreatmentProcess steps={processSteps} titleAccent="A clear, step-by-step process" titlePlain="designed around you" />
+  <TreatmentProcess
+    steps={processSteps}
+    titleAccent={template.process.titleAccent}
+    titlePlain={template.process.titlePlain}
+  />
 
   <ExperienceCounters counters={counters} />
 
   <PlanningAbroad
-    titlePlain="Support for"
-    titleAccent="international patients"
-    titleTail="at every step"
-    intro="We understand that pursuing fertility treatment abroad requires clarity, coordination, and trust. <strong>FIVClínic</strong> offers a structured and supportive process designed specifically for international patients."
+    titlePlain={template.international.titlePlain}
+    titleAccent={template.international.titleAccent}
+    titleTail={template.international.titleTail}
+    intro={template.international.intro}
     faqs={intlFaqs}
   />
 
   <FAQAccordion faqs={faqs} columns={2} />
 
   <SplitSection
-    titlePlain="Clarity"
-    titleAccent="changes everything."
-    paragraphs={['When you truly understand your situation and your real options:']}
-    bullets={['PGT-A', 'Carrier screening panels', 'Advanced genetic analysis when indicated']}
+    titlePlain={template.clarity.titlePlain}
+    titleAccent={template.clarity.titleAccent}
+    paragraphs={template.clarity.paragraphs}
+    bullets={template.clarity.bullets}
     image={u + '2026/02/Rectangle-884.png'}
     imageSide="right"
   >
-    <p style="margin-top:18px;color:var(--color-body)">Whether the next step involves treatment, adjustment, or a different approach, clarity allows you to move forward with confidence.</p>
+    <p style="margin-top:18px;color:var(--color-body)">
+      {template.clarity.closing}
+    </p>
   </SplitSection>
 
   <section class="section avoid-outer">
     <div class="container">
       <div class="avoid-head">
         <span class="avoid-plus" aria-hidden="true">+</span>
-        <h2 class="avoid-title">Avoid moving forward without understanding why.</h2>
+        <h2 class="avoid-title">
+          {template.avoid.title}
+        </h2>
       </div>
+
       <div class="avoid-box">
-        <p class="avoid-sub">Repeated treatments without proper analysis can lead to:</p>
+        <p class="avoid-sub">
+          {template.avoid.intro}
+        </p>
+
         <ul>
-          <li>Emotional exhaustion</li>
-          <li>Loss of trust</li>
-          <li>Missed opportunities to adjust strategy</li>
+          {template.avoid.bullets.map((item: string) => (
+            <li>{item}</li>
+          ))}
         </ul>
-        <p class="avoid-foot">A thorough, honest review helps prevent repeating the same path without answers.</p>
+
+        <p class="avoid-foot">
+          {template.avoid.footer}
+        </p>
       </div>
     </div>
   </section>
 
-  <PatientVoices testimonials={cfcTestimonials} titlePlain="" titleAccent="What patients say about us" eyebrow="" variant="gray" />
+  <PatientVoices
+    testimonials={cfcTestimonials}
+    titlePlain=""
+    titleAccent={template.patientVoices.titleAccent}
+    eyebrow=""
+    variant="gray"
+  />
 
   <MedicalRecognition />
 
-  <LeadForm titlePlain="Take the next step with" titleAccent="clarity and expert guidance." />
+  <LeadForm
+    titlePlain={template.leadForm.titlePlain}
+    titleAccent={template.leadForm.titleAccent}
+  />
+
+  </div>
 </Layout>
 
 <style>

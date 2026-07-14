@@ -1,17 +1,36 @@
 ---
+import {
+  storyblokEditable,
+} from '@storyblok/astro';
 import Layout from '../layouts/Layout.astro';
 import ContactHero from '../components/contact/ContactHero.astro';
 import ContactForm from '../components/contact/ContactForm.astro';
 import ContactSidebar from '../components/contact/ContactSidebar.astro';
 import SupportInternational from '../components/contact/SupportInternational.astro';
 import FinalCTA from '../components/shared/FinalCTA.astro';
-import content from '../content/contact-us.json';
+import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+
+const content = await getStoryblokPageContent(
+  'contact-us',
+  Astro.locals,
+);
+
+const storyblokPageAttributes =
+  content.__storyblok
+    ? storyblokEditable(content.__storyblok)
+    : {};
+
 ---
 
 <Layout
   title="Contact FIVClínic Barcelona | Fertility Experts"
   description="Contact the FIVClínic team in Barcelona. Request an expert case review from our fertility specialists — a clear, personalized response within 24–48 hours."
 >
+  <div
+    class="storyblok-page-editable"
+    style="display: contents"
+    {...storyblokPageAttributes}
+  >
   <ContactHero t={content.hero} />
 
   <section class="section section-surface form-section">
@@ -37,6 +56,8 @@ import content from '../content/contact-us.json';
 
   <SupportInternational t={{ items: content.supportItems }} />
   <FinalCTA />
+
+  </div>
 </Layout>
 
 <style>

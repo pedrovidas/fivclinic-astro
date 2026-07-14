@@ -1,4 +1,7 @@
 ---
+import {
+  storyblokEditable,
+} from '@storyblok/astro';
 import Layout from '../layouts/Layout.astro';
 import TreatmentHero from '../components/treatment/TreatmentHero.astro';
 import ProfileSelector from '../components/treatment/ProfileSelector.astro';
@@ -14,7 +17,12 @@ import ValueEvaluation from '../components/treatment/ValueEvaluation.astro';
 import PatientVoices from '../components/home/PatientVoices.astro';
 import MedicalRecognition from '../components/home/MedicalRecognition.astro';
 import LeadForm from '../components/home/LeadForm.astro';
-import content from '../content/ivf-with-donor-eggs.json';
+import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+
+const content = await getStoryblokPageContent(
+  'ivf-with-donor-eggs',
+  Astro.locals,
+);
 
 const u = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/';
 
@@ -28,12 +36,23 @@ const donorTestimonials = content.donorTestimonials;
 const faqs = content.faqs;
 
 const planningFaqs = content.planningFaqs;
+
+const storyblokPageAttributes =
+  content.__storyblok
+    ? storyblokEditable(content.__storyblok)
+    : {};
+
 ---
 
 <Layout
   title="IVF with Donor Eggs in Barcelona | FIVClínic"
   description="IVF with donor eggs at FIVClínic Barcelona — individualized, honest guidance on egg donation, backed by Hospital Clínic Barcelona."
 >
+  <div
+    class="storyblok-page-editable"
+    style="display: contents"
+    {...storyblokPageAttributes}
+  >
   <TreatmentHero
     titlePlain="in Barcelona"
     titleAccent="IVF with Donor Eggs"
@@ -135,4 +154,6 @@ const planningFaqs = content.planningFaqs;
   <MedicalRecognition />
 
   <LeadForm titlePlain="Take the next step with" titleAccent="expert guidance and a plan built around your future." />
+
+  </div>
 </Layout>

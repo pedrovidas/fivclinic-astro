@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import ProfileSelector from '../components/treatment/ProfileSelector.astro';
+import SplitSection from '../components/treatment/SplitSection.astro';
+import ScientificRigor from '../components/treatment/ScientificRigor.astro';
+import WhyBarcelonaCards from '../components/treatment/WhyBarcelonaCards.astro';
+import ProfileBlocks from '../components/treatment/ProfileBlocks.astro';
+import FAQAccordion from '../components/treatment/FAQAccordion.astro';
+import TreatmentProcess from '../components/treatment/TreatmentProcess.astro';
+import ClinicalExperienceIVF from '../components/treatment/ClinicalExperienceIVF.astro';
+import PlanningAbroad from '../components/treatment/PlanningAbroad.astro';
+import ValueEvaluation from '../components/treatment/ValueEvaluation.astro';
+import PatientVoices from '../components/home/PatientVoices.astro';
+import MedicalRecognition from '../components/home/MedicalRecognition.astro';
+import LeadForm from '../components/home/LeadForm.astro';
+import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+
+const content = await getStoryblokPageContent(
+  'ivf-with-donor-eggs',
+  Astro.locals,
+);
+
+const u = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/';
+
+const emotionQuestions = content.emotionQuestions;
+
+const iconU = 'https://fivclinic.es/international-patients/wp-content/uploads/2026/04/';
+const processSteps = content.processSteps;
+
+const donorTestimonials = content.donorTestimonials;
+
+const faqs = content.faqs;
+
+const planningFaqs = content.planningFaqs;
+---
+
+<Layout
+  title="IVF with Donor Eggs in Barcelona | FIVClínic"
+  description="IVF with donor eggs at FIVClínic Barcelona — individualized, honest guidance on egg donation, backed by Hospital Clínic Barcelona."
+>
+  <TreatmentHero
+    titlePlain="in Barcelona"
+    titleAccent="IVF with Donor Eggs"
+    lead="Thoughtful, individualized care for one of the most significant decisions in your fertility journey."
+    paragraphs={[
+      'For some patients, egg donation becomes the treatment that offers the strongest chance of moving forward. For others, it is a path they are still exploring, trying to understand whether it is right for them, and what it would actually involve.',
+      'Wherever you are in that process, our role at FIVClínic is to help you understand your situation, evaluate your options carefully, and feel supported by a team that combines clinical expertise with genuine human care.',
+      '<em>FIVClínic is part of barnaclínic+, the private medicine programme of Hospital Clínic Barcelona, one of Europe\u2019s most respected university hospitals.</em>',
+    ]}
+    note="FIVClínic is the assisted reproduction department of barnaclínic+, backed by<br /><strong>Hospital Clínic Barcelona</strong> \u2013 an internationally ranked, tier-1 university hospital group."
+    formTitle="Understand whether egg donation is the right option for you"
+    bgImage="https://fivclinic.es/international-patients/wp-content/uploads/2026/02/HERO-IMG-2-1.png"
+  />
+
+  <ProfileSelector />
+
+  <SplitSection
+    titlePlain="When egg donation enters the conversation, the emotional weight can be"
+    titleAccent="as important as the medical decision"
+    paragraphs={[
+      'For many women and couples, considering egg donation is not simply about choosing a treatment.',
+      'It may come after years of trying, previous IVF cycles, disappointing results, or the feeling that time is becoming more significant in every decision.',
+      '<strong>You may be asking yourself:</strong>',
+    ]}
+    bullets={emotionQuestions}
+    image={u + '02/Rectangle-866.png'}
+    imageSide="left"
+  >
+    <p style="margin-top:18px;font-style:italic;color:var(--color-body)">What matters most is not being pushed toward a decision, but helped to make the right one.</p>
+  </SplitSection>
+
+  <SplitSection
+    eyebrow="Why FIVClínic"
+    titlePlain="Why FIVClínic is the right place"
+    titleAccent="for your journey"
+    paragraphs={[
+      'You do not need a generic protocol. You need care designed around your reality.',
+      'At FIVClínic, egg donation is approached with the same philosophy that shapes all our fertility care: each patient deserves careful evaluation, honest recommendations, and a plan adapted to her biology, history, and family project.',
+      'FIVClínic operates as part of barnaclínic+, the private medicine programme of <strong>Hospital Clínic Barcelona</strong>. The clinical standards, protocols, and institutional rigour of Hospital Clínic Barcelona directly shape the care applied to every case we see.',
+    ]}
+    image={u + '02/Group-763.png'}
+    imageSide="right"
+    surface={true}
+    wideImage={true}
+  />
+
+  <ScientificRigor />
+
+  <WhyBarcelonaCards />
+
+  <ProfileBlocks />
+
+  <SplitSection
+    titlePlain="How donor selection"
+    titleAccent="and matching work"
+    paragraphs={[
+      'Egg donation in Spain follows a regulated legal and medical framework designed to protect safety, confidentiality, and ethical practice.',
+      'At <strong>FIVClínic+</strong>, donors are selected through a strict evaluation process that includes medical, gynaecological, psychological, and genetic assessment.',
+    ]}
+    bullets={['Physical characteristics', 'Blood group', 'Medical compatibility']}
+    image={u + '04/Group-766-1.png'}
+    imageSide="left"
+  />
+
+  <TreatmentProcess steps={processSteps} />
+
+  <SplitSection
+    titlePlain="A treatment chosen for"
+    titleAccent="its real potential"
+    paragraphs={[
+      'Egg donation is often considered one of the fertility treatments with the strongest chances of success for patients who are no longer likely to achieve pregnancy with their own eggs.',
+      'That does not make the decision simple. But it can make the path ahead more realistic, more medically coherent, and more aligned with what truly offers the best chance to move forward.',
+    ]}
+    image={u + '04/laboratorio-de-fiv-1.png'}
+    imageSide="right"
+  />
+
+  <ClinicalExperienceIVF />
+
+  <PlanningAbroad faqs={planningFaqs} />
+
+  <FAQAccordion faqs={faqs} columns={2} />
+
+  <SplitSection
+    titlePlain="A respectful path forward starts"
+    titleAccent="with the right guidance"
+    paragraphs={['When egg donation is explained properly and considered within the full context of your fertility journey:']}
+    bullets={['Decisions feel more grounded', 'Expectations become more realistic', 'The process feels less overwhelming', 'The next step becomes easier to take']}
+    image={u + '02/Rectangle-884.png'}
+    imageSide="right"
+  >
+    <p style="margin-top:16px;color:var(--color-body)">This is not about pushing you toward a treatment. It is about helping you understand whether this treatment is truly the right one for you.</p>
+  </SplitSection>
+
+  <ValueEvaluation />
+
+  <PatientVoices testimonials={donorTestimonials} titlePlain="" titleAccent="What patients say about us" eyebrow="" variant="gray" />
+
+  <MedicalRecognition />
+
+  <LeadForm titlePlain="Take the next step with" titleAccent="expert guidance and a plan built around your future." />
+</Layout>

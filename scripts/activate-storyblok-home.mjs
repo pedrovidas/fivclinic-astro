@@ -1,0 +1,216 @@
+import {
+  copyFile,
+  writeFile,
+} from 'node:fs/promises';
+
+import path from 'node:path';
+import {
+  fileURLToPath,
+} from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRoot = path.resolve(__dirname, '..');
+
+const indexPath = path.join(
+  projectRoot,
+  'src',
+  'pages',
+  'index.astro',
+);
+
+const backupPath =
+  `${indexPath}.before-storyblok-production.bak`;
+
+const source = `---
+import Layout from '../layouts/Layout.astro';
+
+import {
+  getPayload,
+  useStoryblokApi,
+} from '@storyblok/astro';
+
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+import Hero from '../components/home/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import WhoWeHelp from '../components/home/WhoWeHelp.astro';
+import ClinicalEnvironment from '../components/home/ClinicalEnvironment.astro';
+import SocialProof from '../components/home/SocialProof.astro';
+import WhyBarcelona from '../components/home/WhyBarcelona.astro';
+import ProcessSteps from '../components/home/ProcessSteps.astro';
+import RespectedByExcellence from '../components/home/RespectedByExcellence.astro';
+import PatientVoices from '../components/home/PatientVoices.astro';
+import SupportFAQ from '../components/home/SupportFAQ.astro';
+import MedicalRecognition from '../components/home/MedicalRecognition.astro';
+import LeadForm from '../components/home/LeadForm.astro';
+
+import homeFallback from '../content/home.json';
+
+function readEnv(name) {
+  return (
+    process.env[name] ??
+    import.meta.env[name]
+  );
+}
+
+const visualPreview =
+  readEnv('STORYBLOK_VISUAL_PREVIEW') === 'true';
+
+const configuredVersion =
+  readEnv('STORYBLOK_CONTENT_VERSION');
+
+const contentVersion =
+  configuredVersion === 'draft' ||
+  configuredVersion === 'published'
+    ? configuredVersion
+    : visualPreview
+      ? 'draft'
+      : 'published';
+
+const storyblokApi = useStoryblokApi();
+
+let story = null;
+
+if (visualPreview) {
+  try {
+    const payload = await getPayload({
+      locals: Astro.locals,
+    });
+
+    if (
+      payload?.story?.slug === 'home' ||
+      payload?.story?.full_slug === 'home'
+    ) {
+      story = payload.story;
+    }
+  } catch (error) {
+    console.warn(
+      '[Storyblok] No se pudo leer el payload visual de Home.',
+      error,
+    );
+  }
+}
+
+if (!story) {
+  try {
+    const params = {
+      version: contentVersion,
+    };
+
+    if (contentVersion === 'draft') {
+      params.cv = Date.now();
+    }
+
+    const response = await storyblokApi.get(
+      'cdn/stories/home',
+      params,
+    );
+
+    story = response.data.story;
+  } catch (error) {
+    console.warn(
+      '[Storyblok] No se pudo cargar Home. ' +
+        'Se utilizará home.json como respaldo.',
+      error,
+    );
+  }
+}
+
+const seoTitle =
+  story?.content?.seo_title ||
+  homeFallback.meta.title;
+
+const seoDescription =
+  story?.content?.seo_description ||
+  homeFallback.meta.description;
+
+const heroStats =
+  homeFallback.heroStats;
+---
+
+<Layout
+  title={seoTitle}
+  description={seoDescription}
+>
+  {
+    story ? (
+      <StoryblokComponent
+        blok={story.content}
+      />
+    ) : (
+      <>
+        <Hero t={homeFallback.hero} />
+
+        <section class="stats-section">
+          <div class="container">
+            <StatsBar stats={heroStats} />
+          </div>
+        </section>
+
+        <WhoWeHelp
+          t={homeFallback.whoWeHelp}
+        />
+
+        <ClinicalEnvironment
+          t={homeFallback.clinicalEnvironment}
+        />
+
+        <SocialProof
+          t={homeFallback.socialProof}
+        />
+
+        <WhyBarcelona
+          t={homeFallback.whyBarcelona}
+        />
+
+        <ProcessSteps
+          steps={homeFallback.processSteps.steps}
+          titlePlain={homeFallback.processSteps.titlePlain}
+          titleAccent={homeFallback.processSteps.titleAccent}
+        />
+
+        <RespectedByExcellence
+          t={homeFallback.respected}
+        />
+
+        <PatientVoices
+          testimonials={homeFallback.patientVoices.testimonials}
+          titlePlain={homeFallback.patientVoices.titlePlain}
+          titleAccent={homeFallback.patientVoices.titleAccent}
+          eyebrow={homeFallback.patientVoices.eyebrow}
+        />
+
+        <SupportFAQ
+          t={homeFallback.supportFaq}
+        />
+
+        <MedicalRecognition
+          t={homeFallback.medicalRecognition}
+        />
+
+        <LeadForm
+          t={homeFallback.leadForm}
+        />
+      </>
+    )
+  }
+</Layout>
+
+<style>
+  .stats-section {
+    padding-block: 48px;
+  }
+</style>
+`;
+
+await copyFile(indexPath, backupPath);
+await writeFile(indexPath, source, 'utf8');
+
+console.log('');
+console.log('Home real conectada a Storyblok.');
+console.log(`Backup: ${backupPath}`);
+console.log('');
+console.log('En Preview usa contenido draft.');
+console.log('En Production usa contenido published.');
+console.log('Si Storyblok falla, utiliza home.json.');

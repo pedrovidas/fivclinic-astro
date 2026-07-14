@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useStoryblokApi } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+const storyblokApi = useStoryblokApi();
+
+const { data } = await storyblokApi.get(
+  'cdn/stories/storyblok-test',
+  {
+    version: 'draft',
+    cv: Date.now(),
+  }
+);
+
+const { story } = data;
+---
+
+<Layout
+  title="Storyblok Test | FIVClínic"
+  description="Prueba de integración entre Storyblok y Astro."
+>
+  <StoryblokComponent blok={story.content} />
+</Layout>

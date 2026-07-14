@@ -1,0 +1,183 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TeamHero from '../components/team/TeamHero.astro';
+import MemberCard from '../components/team/MemberCard.astro';
+import LeadForm from '../components/home/LeadForm.astro';
+import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+
+const content = await getStoryblokPageContent(
+  'our-team',
+  Astro.locals,
+);
+
+const medicalTeam = content.medicalTeam ?? [];
+const nursingTeam = content.nursingTeam ?? [];
+const adminTeam = content.adminTeam ?? [];
+
+// Agrupación por filas tal como el original:
+// - Gynecology, Genetics y Nutrition van cada uno en su propia fila
+// - Hematology + Andrology + Obstetrics van juntos en una fila de 3
+const rowLayout = [
+  ['GYNECOLOGY'],
+  ['GENETICS'],
+  ['HEMATOLOGY', 'ANDROLOGY', 'OBSTETRICS AND MATERNOFETAL MEDICINE'],
+  ['NUTRITION'],
+];
+
+const deptByName = (n: string) => medicalTeam.find((d) => d.name === n);
+---
+
+<Layout
+  title="Fertility Specialists in Barcelona | FIVClínic Team"
+  description="Meet the FIVClínic medical team in Barcelona — gynecologists, geneticists, embryologists and specialists from Hospital Clínic Barcelona."
+>
+  <TeamHero />
+
+  <section class="section medical-team">
+    <div class="container">
+      <h2 class="team-heading">FIVClínic <span class="accent">Medical Team</span></h2>
+
+      {rowLayout.map((row) =>
+        row.length === 1 ? (
+          <div class="dept">
+            <p class="dept-name">{deptByName(row[0])?.name}</p>
+            <div class="members-grid">
+              {deptByName(row[0])?.people.map((p) => (
+                <MemberCard name={p.name} photo={p.photo} roles={p.roles} spec={p.spec} social={p.social} />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div class="dept dept-row-multi">
+            {row.map((dName) => (
+              <div class="dept-col">
+                <p class="dept-name">{deptByName(dName)?.name}</p>
+                {deptByName(dName)?.people.map((p) => (
+                  <MemberCard name={p.name} photo={p.photo} roles={p.roles} spec={p.spec} social={p.social} />
+                ))}
+              </div>
+            ))}
+          </div>
+        )
+      )}
+    </div>
+  </section>
+
+  <section class="section support-team">
+    <div class="container">
+      <h2 class="team-heading">FIVClínic <span class="accent">Nursing Team</span></h2>
+      <div class="simple-grid">
+        {nursingTeam.map((p) => (
+          <div class="simple-member">
+            <div class="simple-photo"><img src={p.photo} alt={p.name} loading="lazy" /></div>
+            <h3>{p.name}</h3>
+            <p>{p.role}</p>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="team-heading admin-heading">FIVClínic <span class="accent">Administration Team</span></h2>
+      <div class="simple-grid">
+        {adminTeam.map((p) => (
+          <div class="simple-member">
+            <div class="simple-photo"><img src={p.photo} alt={p.name} loading="lazy" /></div>
+            <h3>{p.name}</h3>
+            <p>{p.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <LeadForm titlePlain="Take the next step with" titleAccent="expert guidance and a plan built around your future." />
+</Layout>
+
+<style>
+  .team-heading {
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    font-weight: 400;
+    margin-bottom: 40px;
+  }
+  .team-heading .accent {
+    color: var(--color-accent);
+  }
+  .dept {
+    margin-bottom: 56px;
+  }
+  .dept-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    margin-bottom: 28px;
+  }
+  .members-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 32px;
+  }
+
+  /* Fila con varios departamentos lado a lado (Hematology · Andrology · Obstetrics) */
+  .dept-row-multi {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 32px;
+  }
+  .dept-col .dept-name {
+    min-height: 2.6em;
+  }
+
+  .simple-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 24px;
+  }
+  .simple-member {
+    text-align: left;
+  }
+  .simple-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 14px;
+    background: var(--color-white);
+  }
+  .simple-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .simple-member h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .simple-member p {
+    font-size: 0.85rem;
+    color: var(--color-body);
+    margin: 0;
+  }
+  .admin-heading {
+    margin-top: 64px;
+  }
+
+  @media (max-width: 900px) {
+    .members-grid,
+    .simple-grid,
+    .dept-row-multi {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    .members-grid,
+    .simple-grid,
+    .dept-row-multi {
+      grid-template-columns: 1fr;
+    }
+    .dept-col .dept-name {
+      min-height: 0;
+    }
+  }
+</style>

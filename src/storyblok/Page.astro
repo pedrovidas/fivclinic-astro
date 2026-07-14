@@ -1,0 +1,11 @@
+---
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+const { blok } = Astro.props;
+---
+
+{
+  blok.body?.map((nestedBlok) => (
+    <StoryblokComponent blok={nestedBlok} />
+  ))
+}

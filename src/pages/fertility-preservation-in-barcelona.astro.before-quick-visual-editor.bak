@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import ProfileSelector from '../components/treatment/ProfileSelector.astro';
+import SplitSection from '../components/treatment/SplitSection.astro';
+import ScientificRigor from '../components/treatment/ScientificRigor.astro';
+import WhyBarcelonaCards from '../components/treatment/WhyBarcelonaCards.astro';
+import TreatmentProcess from '../components/treatment/TreatmentProcess.astro';
+import ClinicalExperienceIVF from '../components/treatment/ClinicalExperienceIVF.astro';
+import PlanningAbroad from '../components/treatment/PlanningAbroad.astro';
+import FAQAccordion from '../components/treatment/FAQAccordion.astro';
+import ValueEvaluation from '../components/treatment/ValueEvaluation.astro';
+import PatientVoices from '../components/home/PatientVoices.astro';
+import MedicalRecognition from '../components/home/MedicalRecognition.astro';
+import LeadForm from '../components/home/LeadForm.astro';
+import { fpRigorIcons } from '../data/fpRigorIcons';
+import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+
+const content = await getStoryblokPageContent(
+  'fertility-preservation-in-barcelona',
+  Astro.locals,
+);
+
+const u = 'https://fivclinic.es/international-patients/wp-content/uploads/';
+
+const profileCards = content.profileCards;
+
+const rigorItems = content.rigorItems.map((r: any, i: number) => ({ ...r, icon: fpRigorIcons[i] }));
+
+const blocks = content.blocks;
+
+const processSteps = content.processSteps;
+
+const intlFaqs = content.intlFaqs;
+
+const realFaqs = content.realFaqs;
+
+const fpTestimonials = content.fpTestimonials;
+---
+
+<Layout
+  title="Egg Freezing & Fertility Preservation in Barcelona | FIVClínic"
+  description="Fertility preservation in Barcelona — expert, individualized care to protect your future reproductive options, backed by Hospital Clínic Barcelona."
+>
+  <TreatmentHero
+    titlePlain="in Barcelona"
+    titleAccent="Fertility Preservation"
+    lead="Expert, individualized care to help you protect your future reproductive options."
+    paragraphs={[
+      'The decision to preserve fertility rarely comes from the same place. Some women are planning ahead, making space for a future family while other areas of life are still taking shape. Others face a medical situation that makes the question urgent, and the timing less of a choice.',
+      'Wherever you are in that process, our role at <strong>FIVClínic</strong> is to help you understand your options, evaluate whether preservation is genuinely right for you, and feel supported by a team that combines clinical expertise with human care.',
+      '<em>Through our integration with barnaclínic+, the private medicine programme of Hospital Clínic Barcelona, our patients benefit from the clinical environment of one of Europe\u2019s most respected university hospitals.</em>',
+    ]}
+    note="FIVClínic is the assisted reproduction department of barnaclínic+, backed by<br /><strong>Hospital Clínic Barcelona</strong> \u2013 an internationally ranked, tier-1 university hospital group."
+    formTitle="Understand whether fertility preservation is the right step for you"
+    bgImage={u + '2026/02/HERO-IMG-2-1.png'}
+  />
+
+  <ProfileSelector cards={profileCards} />
+
+  <SplitSection
+    titlePlain="When motherhood is not for now, protecting future options can be"
+    titleAccent="a meaningful decision"
+    paragraphs={[
+      'Not every woman wants or needs to become a mother at the same stage of life.',
+      'For some, this decision is shaped by personal, professional, or relationship circumstances. For others, it is influenced by a medical treatment, a gynaecological condition, or the awareness that fertility may not remain stable for as long as expected.',
+    ]}
+    image={u + '2026/02/Rectangle-866.png'}
+    imageSide="left"
+  >
+    <p style="margin-top:20px"><strong class="accent-text">You may be asking yourself:</strong></p>
+    <ul class="slot-bullets">
+      <li>Am I still at a good age to preserve my fertility?</li>
+      <li>Should I consider egg freezing now rather than later?</li>
+      <li>How do I know whether my ovarian reserve is still suitable?</li>
+      <li>What does the process involve, and how demanding is it?</li>
+      <li>Can this help me protect future possibilities without creating false expectations?</li>
+    </ul>
+    <p style="margin-top:18px;color:var(--color-body)">What matters here is not urgency for its own sake. It is understanding whether acting now may help you keep meaningful reproductive options open for the future.</p>
+  </SplitSection>
+
+  <SplitSection
+    titlePlain="Why FIVClínic is the right place"
+    titleAccent="for your journey"
+    paragraphs={[
+      '<strong>Fertility preservation should begin with an honest answer, not a sales pitch.</strong> What matters is whether this step makes clinical sense for your specific situation.',
+      'At <strong>FIVClínic</strong>, the assessment comes before the treatment recommendation. We review your ovarian reserve, your age, your medical context, and your reproductive goals before advising on whether preservation is a viable and meaningful option, not as a default response to age or anxiety.',
+      'Being part of <strong>barnaclínic+</strong>, the private medicine programme of <strong>Hospital Clínic Barcelona</strong>, means operating within one of Europe\u2019s most respected university hospital environments. That is not an incidental detail: it is what shapes the protocols, the laboratory standards, and the multidisciplinary resources behind every case.',
+      '<strong>You don\u2019t need a generic protocol. You need care designed around you.</strong>',
+    ]}
+    image={u + '2026/02/Group-763.png'}
+    imageSide="right"
+    surface={true}
+    wideImage={true}
+  />
+
+  <ScientificRigor
+    titlePlain="Scientific rigor,"
+    titleAccent="always grounded in perspective."
+    subtitle="Fertility care is not one-size-fits-all.<br />At <strong>fivclínic:</strong>"
+    items={rigorItems}
+    note="FIVClínic is also clear that vitrified oocytes do not guarantee a future pregnancy, an important distinction that shapes the entire counselling approach from the start."
+  />
+
+  <WhyBarcelonaCards />
+
+  <section class="section section-surface fp-blocks">
+    <div class="container">
+      <h2 class="fp-title">A specialized approach to <span class="accent">your future fertility</span></h2>
+
+      {blocks.map((b) => (
+        <div class:list={['fp-grid', { 'image-left': b.imageSide === 'left' }]}>
+          <div class="fp-copy">
+            <h3><span class="plus">+</span> {b.title}</h3>
+            {b.intro.map((p) => <p set:html={p} />)}
+            <div class="fp-box">
+              <p class="fp-group-intro" set:html={b.boxIntro} />
+              <ul>
+                {b.items.map((it) => <li>{it}</li>)}
+              </ul>
+            </div>
+            {b.closing.map((cl) => <p class="fp-closing" set:html={cl} />)}
+            <div class="fp-hint">
+              <span class="hint-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="2"><path d="M12 16V4m0 12l-4-4m4 4l4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 18v2h16v-2" stroke-linecap="round"/></svg>
+              </span>
+              <p>Not sure whether fertility preservation is right for you? Download our guide to understand your options before making a decision.</p>
+            </div>
+            <a href="#" class="btn fp-cta">Download free fertility preservation guide</a>
+          </div>
+          <div class="fp-media">
+            <img src={b.image} alt="" loading="lazy" />
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <SplitSection
+    titlePlain="What is needed"
+    titleAccent="to evaluate fertility preservation"
+    paragraphs={[
+      'At <strong>FIVClínic+</strong>, the process begins with a study of ovarian reserve and a general health evaluation. The main tools used are:',
+    ]}
+    bullets={[
+      '<strong>Gynaecological ultrasound</strong>, to assess antral follicle count',
+      '<strong>Blood analysis</strong>, to measure Anti-M\u00fcllerian Hormone (AMH)',
+      '<strong>Medical review</strong>, to identify contraindications or clinically relevant factors',
+    ]}
+    image={u + '2026/04/Group-766-1.png'}
+    imageSide="left"
+  >
+    <p style="margin-top:18px;color:var(--color-body)">This assessment allows the team to advise you on whether fertility preservation is appropriate, how time-sensitive the decision may be, and what realistic expectations look like in your specific case.</p>
+  </SplitSection>
+
+  <TreatmentProcess
+    steps={processSteps}
+    titleAccent="How the process works"
+    titlePlain="from assessment to egg storage"
+  />
+
+  <SplitSection
+    titlePlain="A way to protect future possibilities,"
+    titleAccent="not a promise of certainty"
+    paragraphs={[
+      'Fertility preservation can be a valuable option, but it should be explained honestly.',
+      'Vitrifying oocytes does not guarantee a future pregnancy. Not all eggs survive thawing, and not all lead to viable embryos. At the same time, preserving eggs at a younger age can help maintain a reproductive potential that may be significantly lower later on.',
+      'What fertility preservation can offer is not certainty. It is the possibility of making future decisions with more options than you might otherwise have had.',
+    ]}
+    image={u + '2026/04/Rectangle-881.png'}
+    imageSide="right"
+  />
+
+  <ClinicalExperienceIVF />
+
+  <PlanningAbroad
+    intro="Many patients who come to <strong>FIVClínic+</strong> for fertility preservation are coordinating from outside Barcelona, sometimes from another country entirely. The practical questions are real: how does treatment fit around work and travel? How much time does it actually require?<br /><br />We have structured our process to give those answers clearly, so that coordinating treatment from a distance is as straightforward as it can be."
+    faqs={intlFaqs}
+  />
+
+  <FAQAccordion faqs={realFaqs} columns={2} />
+
+  <SplitSection
+    titlePlain="A more secure future begins with"
+    titleAccent="an informed decision in the present"
+    paragraphs={['When fertility preservation is considered at the right moment and for the right reasons:']}
+    bullets={['Future options may remain more open', 'Decisions feel less reactive and more deliberate', 'Timing becomes part of the strategy, not just a source of stress', 'The process feels grounded in your real fertility situation']}
+    image={u + '2026/02/Rectangle-884.png'}
+    imageSide="right"
+  >
+    <p style="margin-top:18px;color:var(--color-body)">Preserving fertility is not the right step for every woman. What we offer is the assessment and the honest clinical perspective to know whether it is the right step for you.</p>
+    <p style="color:var(--color-body)">That answer, grounded in your actual fertility situation, is what drives every recommendation we make.</p>
+  </SplitSection>
+
+  <ValueEvaluation
+    title="The value of evaluating fertility before urgency takes over"
+    paragraphs={[
+      'A thorough evaluation at the right moment can help ensure that whatever path you choose is based on your current fertility reality, not on assumptions.',
+      'For some women, fertility preservation is worth doing now. For others, the most valuable next step is simply understanding their ovarian reserve and reproductive timeline with greater precision. That is what turns a future-oriented decision into a medically grounded one.',
+    ]}
+  />
+
+  <PatientVoices testimonials={fpTestimonials} titlePlain="" titleAccent="What patients say about us" eyebrow="" variant="gray" />
+
+  <MedicalRecognition />
+
+  <LeadForm titlePlain="Take the next step with" titleAccent="expert guidance and a plan built around your future." />
+</Layout>
+
+<style>
+  .accent-text { color: var(--color-accent); }
+
+  .fp-title { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 500; margin-bottom: 40px; }
+  .fp-title .accent { color: var(--color-accent); }
+  .fp-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; padding-block: 40px; border-bottom: 1px solid var(--color-accent); }
+  .fp-grid:last-child { border-bottom: none; }
+  .fp-grid.image-left { grid-template-columns: 0.9fr 1.1fr; }
+  .fp-grid.image-left .fp-media { order: -1; }
+  .fp-copy h3 { font-size: 1.2rem; font-weight: 600; color: var(--color-accent); display: flex; gap: 8px; align-items: baseline; margin-bottom: 14px; }
+  .fp-copy h3 .plus { font-weight: 400; }
+  .fp-copy > p { font-size: 0.95rem; color: var(--color-body); }
+  .fp-box { background: var(--color-white); border-radius: var(--radius-md); padding: 22px 24px; margin: 18px 0; }
+  .fp-group-intro { font-weight: 600; color: var(--color-heading); margin: 0 0 10px; }
+  .fp-box ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .fp-box li { position: relative; padding-left: 22px; font-size: 0.9rem; color: var(--color-heading); }
+  .fp-box li::before { content: ''; position: absolute; left: 0; top: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); }
+  .fp-closing { font-size: 0.95rem; color: var(--color-body); }
+  .fp-hint { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0; }
+  .hint-icon { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; }
+  .fp-hint p { font-size: 0.88rem; color: var(--color-accent); margin: 0; }
+  .fp-cta {
+    display: inline-block; width: 100%; text-align: center;
+    background: var(--color-white); border: 1px solid var(--color-accent); color: var(--color-accent);
+    border-radius: var(--radius-pill); padding: 1.1em 2em;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .fp-cta:hover { background: var(--color-accent); color: var(--color-white); }
+  .fp-media img { width: 100%; border-radius: 160px 12px 12px 12px; aspect-ratio: 4 / 5; object-fit: cover; }
+
+  @media (max-width: 900px) {
+    .fp-grid, .fp-grid.image-left { grid-template-columns: 1fr; }
+    .fp-media, .fp-grid.image-left .fp-media { order: -1; }
+  }
+</style>

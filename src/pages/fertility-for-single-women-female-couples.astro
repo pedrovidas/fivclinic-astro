@@ -1,4 +1,7 @@
 ---
+import {
+  storyblokEditable,
+} from '@storyblok/astro';
 import Layout from '../layouts/Layout.astro';
 import TreatmentHero from '../components/treatment/TreatmentHero.astro';
 import ProfileSelector from '../components/treatment/ProfileSelector.astro';
@@ -14,7 +17,12 @@ import PatientVoices from '../components/home/PatientVoices.astro';
 import MedicalRecognition from '../components/home/MedicalRecognition.astro';
 import LeadForm from '../components/home/LeadForm.astro';
 import { swRigorIcons } from '../data/swRigorIcons';
-import content from '../content/fertility-for-single-women-female-couples.json';
+import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+
+const content = await getStoryblokPageContent(
+  'fertility-for-single-women-female-couples',
+  Astro.locals,
+);
 
 const u = 'https://fivclinic.es/international-patients/wp-content/uploads/';
 
@@ -31,12 +39,23 @@ const intlFaqs = content.intlFaqs;
 const realFaqs = content.realFaqs;
 
 const swTestimonials = content.swTestimonials;
+
+const storyblokPageAttributes =
+  content.__storyblok
+    ? storyblokEditable(content.__storyblok)
+    : {};
+
 ---
 
 <Layout
   title="Fertility for Single Women & Female Couples | FIVClínic"
   description="Fertility treatment for women pursuing motherhood without a male partner — donor insemination, IVF and the ROPA method at FIVClínic Barcelona."
 >
+  <div
+    class="storyblok-page-editable"
+    style="display: contents"
+    {...storyblokPageAttributes}
+  >
   <TreatmentHero
     titlePlain="pursuing motherhood without a male partner"
     titleAccent="Fertility treatment for women"
@@ -224,6 +243,8 @@ const swTestimonials = content.swTestimonials;
   <MedicalRecognition />
 
   <LeadForm titlePlain="Take the next step with" titleAccent="expert guidance and a plan built around your future." />
+
+  </div>
 </Layout>
 
 <style>

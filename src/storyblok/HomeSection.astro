@@ -1,0 +1,121 @@
+---
+import Hero from '../components/home/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import WhoWeHelp from '../components/home/WhoWeHelp.astro';
+import ClinicalEnvironment from '../components/home/ClinicalEnvironment.astro';
+import SocialProof from '../components/home/SocialProof.astro';
+import WhyBarcelona from '../components/home/WhyBarcelona.astro';
+import ProcessSteps from '../components/home/ProcessSteps.astro';
+import RespectedByExcellence from '../components/home/RespectedByExcellence.astro';
+import PatientVoices from '../components/home/PatientVoices.astro';
+import SupportFAQ from '../components/home/SupportFAQ.astro';
+import MedicalRecognition from '../components/home/MedicalRecognition.astro';
+import LeadForm from '../components/home/LeadForm.astro';
+import { storyblokEditable } from '@storyblok/astro';
+
+import {
+  normalizeHomeBlock,
+} from './toLegacyContent.js';
+
+const { blok } = Astro.props;
+const content = normalizeHomeBlock(blok);
+const editableAttributes = storyblokEditable(blok);
+---
+
+<div
+  class="storyblok-editable-section"
+  {...editableAttributes}
+>
+
+{
+  blok.component === 'hero_home' && (
+    <Hero t={content} />
+  )
+}
+
+{
+  blok.component === 'hero_stats' && (
+    <section class="stats-section">
+      <div class="container">
+        <StatsBar stats={content.items ?? []} />
+      </div>
+    </section>
+  )
+}
+
+{
+  blok.component === 'who_we_help' && (
+    <WhoWeHelp t={content} />
+  )
+}
+
+{
+  blok.component === 'clinical_environment' && (
+    <ClinicalEnvironment t={content} />
+  )
+}
+
+{
+  blok.component === 'social_proof' && (
+    <SocialProof t={content} />
+  )
+}
+
+{
+  blok.component === 'why_barcelona' && (
+    <WhyBarcelona t={content} />
+  )
+}
+
+{
+  blok.component === 'process_steps' && (
+    <ProcessSteps
+      titlePlain={content.titlePlain}
+      titleAccent={content.titleAccent}
+      steps={content.steps ?? []}
+    />
+  )
+}
+
+{
+  blok.component === 'respected_by_excellence' && (
+    <RespectedByExcellence t={content} />
+  )
+}
+
+{
+  blok.component === 'patient_voices' && (
+    <PatientVoices
+      eyebrow={content.eyebrow}
+      titlePlain={content.titlePlain}
+      titleAccent={content.titleAccent}
+      testimonials={content.testimonials ?? []}
+    />
+  )
+}
+
+{
+  blok.component === 'support_faq' && (
+    <SupportFAQ t={content} />
+  )
+}
+
+{
+  blok.component === 'medical_recognition' && (
+    <MedicalRecognition t={content} />
+  )
+}
+
+{
+  blok.component === 'lead_form' && (
+    <LeadForm t={content} />
+  )
+}
+
+</div>
+
+<style>
+  .stats-section {
+    padding-block: 48px;
+  }
+</style>

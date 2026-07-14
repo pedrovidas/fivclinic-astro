@@ -1,0 +1,370 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TreatmentHero from '../components/treatment/TreatmentHero.astro';
+import ProfileSelector from '../components/treatment/ProfileSelector.astro';
+import SplitSection from '../components/treatment/SplitSection.astro';
+import ScientificRigor from '../components/treatment/ScientificRigor.astro';
+import WhyBarcelonaCards from '../components/treatment/WhyBarcelonaCards.astro';
+import TreatmentProcess from '../components/treatment/TreatmentProcess.astro';
+import ExperienceCounters from '../components/treatment/ExperienceCounters.astro';
+import PlanningAbroad from '../components/treatment/PlanningAbroad.astro';
+import FAQAccordion from '../components/treatment/FAQAccordion.astro';
+import PatientVoices from '../components/home/PatientVoices.astro';
+import MedicalRecognition from '../components/home/MedicalRecognition.astro';
+import LeadForm from '../components/home/LeadForm.astro';
+import { cfcRigorIcons } from '../data/cfcRigorIcons';
+import templateFallback from '../content/hardcoded/complex-fertility-cases.json';
+import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+
+const content = await getStoryblokPageContent(
+  'complex-fertility-cases',
+  Astro.locals,
+);
+
+const u = 'https://fivclinic.es/international-patients/wp-content/uploads/';
+
+const profileCards = content.profileCards;
+
+const rigorItems = content.rigorItems.map((r: any, i: number) => ({ ...r, icon: cfcRigorIcons[i] }));
+
+const blocks = content.blocks;
+
+const processSteps = content.processSteps;
+
+const counters = content.counters;
+
+const intlFaqs = content.intlFaqs;
+
+const faqs = content.faqs;
+
+const cfcTestimonials = content.cfcTestimonials;
+
+function unwrapSingletonBlocks(value: any): any {
+  if (Array.isArray(value)) {
+    const normalized = value.map(unwrapSingletonBlocks);
+
+    if (
+      normalized.length === 1 &&
+      normalized[0] !== null &&
+      typeof normalized[0] === 'object' &&
+      !Array.isArray(normalized[0])
+    ) {
+      return normalized[0];
+    }
+
+    return normalized;
+  }
+
+  if (
+    value !== null &&
+    typeof value === 'object'
+  ) {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [
+        key,
+        unwrapSingletonBlocks(item),
+      ]),
+    );
+  }
+
+  return value;
+}
+
+const templateSource =
+  content.template?.[0] ?? templateFallback;
+
+const template =
+  unwrapSingletonBlocks(templateSource);
+---
+
+<Layout
+  title={template.seo.title}
+  description={template.seo.description}
+>
+  <TreatmentHero
+    titlePlain={template.hero.titlePlain}
+    titleAccent={template.hero.titleAccent}
+    accentFirst={false}
+    titleTail={template.hero.titleTail}
+    paragraphs={template.hero.paragraphs}
+    checks={template.hero.checks}
+    note={template.hero.note}
+    formTitle={template.hero.formTitle}
+    bgImage={u + '2026/02/HERO-IMG-2-1.png'}
+  />
+
+  <ProfileSelector cards={profileCards} />
+
+  <SplitSection
+    titlePlain={template.uncertainty.titlePlain}
+    titleAccent={template.uncertainty.titleAccent}
+    paragraphs={template.uncertainty.paragraphs}
+    image={u + '2026/02/Rectangle-866.png'}
+    imageSide="left"
+  >
+    <p style="margin-top:20px">
+      <strong class="accent-text">
+        {template.uncertainty.questionHeading}
+      </strong>
+    </p>
+
+    <ul class="slot-bullets">
+      {template.uncertainty.questions.map((item: string) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+
+    <p style="margin-top:18px;color:var(--color-body)">
+      {template.uncertainty.closing}
+    </p>
+  </SplitSection>
+
+  <SplitSection
+    titlePlain={template.rightPlace.titlePlain}
+    titleAccent={template.rightPlace.titleAccent}
+    paragraphs={template.rightPlace.paragraphs}
+    image={u + '2026/02/Group-763.png'}
+    imageSide="right"
+    surface={true}
+    wideImage={true}
+  />
+
+  <ScientificRigor
+    titlePlain={template.rigor.titlePlain}
+    titleAccent={template.rigor.titleAccent}
+    subtitle={template.rigor.subtitle}
+    items={rigorItems}
+    note={template.rigor.note}
+  />
+
+  <WhyBarcelonaCards
+    intro={template.barcelona.intro}
+    footer={template.barcelona.footer}
+  />
+
+  <section class="section section-surface cfc-blocks">
+    <div class="container">
+      <h2 class="cfc-title">
+        {template.approach.titlePlain}
+        {' '}
+        <span class="accent">
+          {template.approach.titleAccent}
+        </span>
+      </h2>
+
+      {blocks.map((b: any) => (
+        <div
+          class:list={[
+            'cfc-grid',
+            { 'image-left': b.imageSide === 'left' },
+          ]}
+        >
+          <div class="cfc-copy">
+            <h3>
+              <span class="plus">+</span>
+              {' '}
+              {b.title}
+            </h3>
+
+            <p set:html={b.intro} />
+
+            {b.groups.map((g: any) => (
+              g.boxed ? (
+                <div class="cfc-box">
+                  <p
+                    class="cfc-group-intro"
+                    set:html={g.intro}
+                  />
+                  <ul>
+                    {g.items.map((item: string) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <div class="cfc-plain">
+                  <p
+                    class="cfc-group-intro"
+                    set:html={g.intro}
+                  />
+                  <ul>
+                    {g.items.map((item: string) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            ))}
+
+            {b.closing.map((closing: string) => (
+              <p
+                class="cfc-closing"
+                set:html={closing}
+              />
+            ))}
+
+            <div class="cfc-hint">
+              <span
+                class="hint-icon"
+                aria-hidden="true"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="#fff"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M12 16V4m0 12l-4-4m4 4l4-4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M4 18v2h16v-2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+              <p>{b.hint}</p>
+            </div>
+
+            <a href="#" class="btn cfc-cta">
+              {template.approach.cta}
+            </a>
+          </div>
+
+          <div class="cfc-media">
+            <img
+              src={b.image}
+              alt=""
+              loading="lazy"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <TreatmentProcess
+    steps={processSteps}
+    titleAccent={template.process.titleAccent}
+    titlePlain={template.process.titlePlain}
+  />
+
+  <ExperienceCounters counters={counters} />
+
+  <PlanningAbroad
+    titlePlain={template.international.titlePlain}
+    titleAccent={template.international.titleAccent}
+    titleTail={template.international.titleTail}
+    intro={template.international.intro}
+    faqs={intlFaqs}
+  />
+
+  <FAQAccordion faqs={faqs} columns={2} />
+
+  <SplitSection
+    titlePlain={template.clarity.titlePlain}
+    titleAccent={template.clarity.titleAccent}
+    paragraphs={template.clarity.paragraphs}
+    bullets={template.clarity.bullets}
+    image={u + '2026/02/Rectangle-884.png'}
+    imageSide="right"
+  >
+    <p style="margin-top:18px;color:var(--color-body)">
+      {template.clarity.closing}
+    </p>
+  </SplitSection>
+
+  <section class="section avoid-outer">
+    <div class="container">
+      <div class="avoid-head">
+        <span class="avoid-plus" aria-hidden="true">+</span>
+        <h2 class="avoid-title">
+          {template.avoid.title}
+        </h2>
+      </div>
+
+      <div class="avoid-box">
+        <p class="avoid-sub">
+          {template.avoid.intro}
+        </p>
+
+        <ul>
+          {template.avoid.bullets.map((item: string) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+
+        <p class="avoid-foot">
+          {template.avoid.footer}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <PatientVoices
+    testimonials={cfcTestimonials}
+    titlePlain=""
+    titleAccent={template.patientVoices.titleAccent}
+    eyebrow=""
+    variant="gray"
+  />
+
+  <MedicalRecognition />
+
+  <LeadForm
+    titlePlain={template.leadForm.titlePlain}
+    titleAccent={template.leadForm.titleAccent}
+  />
+</Layout>
+
+<style>
+  .accent-text { color: var(--color-accent); }
+
+  .cfc-title { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 500; margin-bottom: 40px; }
+  .cfc-title .accent { color: var(--color-accent); }
+  .cfc-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; padding-block: 40px; border-bottom: 1px solid var(--color-accent); }
+  .cfc-grid:last-child { border-bottom: none; }
+  .cfc-grid.image-left { grid-template-columns: 0.9fr 1.1fr; }
+  .cfc-grid.image-left .cfc-media { order: -1; }
+  .cfc-copy h3 { font-size: 1.2rem; font-weight: 600; color: var(--color-accent); display: flex; gap: 8px; align-items: baseline; margin-bottom: 14px; }
+  .cfc-copy h3 .plus { font-weight: 400; }
+  .cfc-copy > p { font-size: 0.95rem; color: var(--color-body); }
+  .cfc-box { background: var(--color-white); border-radius: var(--radius-md); padding: 22px 24px; margin: 18px 0; }
+  .cfc-plain { margin: 18px 0; }
+  .cfc-group-intro { font-weight: 600; color: var(--color-heading); margin: 0 0 10px; }
+  .cfc-box ul, .cfc-plain ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .cfc-box li, .cfc-plain li { position: relative; padding-left: 22px; font-size: 0.9rem; color: var(--color-heading); }
+  .cfc-box li::before, .cfc-plain li::before { content: ''; position: absolute; left: 0; top: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); }
+  .cfc-closing { font-size: 0.95rem; color: var(--color-body); }
+  .cfc-hint { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0; }
+  .hint-icon { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; }
+  .cfc-hint p { font-size: 0.88rem; color: var(--color-accent); margin: 0; }
+  .cfc-cta {
+    display: inline-block; width: 100%; text-align: center;
+    background: var(--color-white); border: 1px solid var(--color-accent); color: var(--color-accent);
+    border-radius: var(--radius-pill); padding: 1.1em 2em;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .cfc-cta:hover { background: var(--color-accent); color: var(--color-white); }
+  .cfc-media img { width: 100%; border-radius: 160px 12px 12px 12px; aspect-ratio: 4 / 5; object-fit: cover; }
+
+  .avoid-outer { background: #F5F5F5; }
+  .avoid-head { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 24px; }
+  .avoid-plus { font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 300; color: var(--color-accent-light); line-height: 1; }
+  .avoid-title { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 600; color: var(--color-accent); margin: 0; text-align: center; }
+  .avoid-box { background: var(--color-white); border-radius: var(--radius-md); padding: clamp(28px, 4vw, 48px); max-width: 900px; margin-inline: auto; }
+  .avoid-sub { font-weight: 600; color: var(--color-heading); margin: 0 0 20px; }
+  .avoid-box ul { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .avoid-box li { position: relative; padding-left: 22px; font-size: 0.95rem; color: var(--color-body); }
+  .avoid-box li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent); }
+  .avoid-foot { margin: 0; color: var(--color-body); font-size: 0.95rem; }
+
+  @media (max-width: 900px) {
+    .cfc-grid, .cfc-grid.image-left { grid-template-columns: 1fr; }
+    .cfc-media, .cfc-grid.image-left .cfc-media { order: -1; }
+  }
+</style>
