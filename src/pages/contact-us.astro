@@ -5,7 +5,12 @@ import ContactForm from '../components/contact/ContactForm.astro';
 import ContactSidebar from '../components/contact/ContactSidebar.astro';
 import SupportInternational from '../components/contact/SupportInternational.astro';
 import FinalCTA from '../components/shared/FinalCTA.astro';
-import content from '../content/contact-us.json';
+import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+
+const content = await getStoryblokPageContent(
+  'contact-us',
+  Astro.locals,
+);
 ---
 
 <Layout

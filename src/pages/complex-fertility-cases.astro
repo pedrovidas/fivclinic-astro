@@ -13,7 +13,12 @@ import PatientVoices from '../components/home/PatientVoices.astro';
 import MedicalRecognition from '../components/home/MedicalRecognition.astro';
 import LeadForm from '../components/home/LeadForm.astro';
 import { cfcRigorIcons } from '../data/cfcRigorIcons';
-import content from '../content/complex-fertility-cases.json';
+import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+
+const content = await getStoryblokPageContent(
+  'complex-fertility-cases',
+  Astro.locals,
+);
 
 const u = 'https://fivclinic.es/international-patients/wp-content/uploads/';
 

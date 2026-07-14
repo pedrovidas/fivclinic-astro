@@ -3,7 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import TeamHero from '../components/team/TeamHero.astro';
 import MemberCard from '../components/team/MemberCard.astro';
 import LeadForm from '../components/home/LeadForm.astro';
-import { medicalTeam, nursingTeam, adminTeam } from '../data/team';
+import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+
+const content = await getStoryblokPageContent(
+  'our-team',
+  Astro.locals,
+);
+
+const medicalTeam = content.medicalTeam ?? [];
+const nursingTeam = content.nursingTeam ?? [];
+const adminTeam = content.adminTeam ?? [];
 
 // Agrupación por filas tal como el original:
 // - Gynecology, Genetics y Nutrition van cada uno en su propia fila
