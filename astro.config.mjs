@@ -4,11 +4,20 @@ import vercel from '@astrojs/vercel';
 import { storyblok } from '@storyblok/astro';
 import { loadEnv } from 'vite';
 
-const env = loadEnv('', process.cwd(), 'STORYBLOK_');
+const fileEnv = loadEnv('', process.cwd(), '');
 
-// https://astro.build/config
+const storyblokToken =
+  process.env.STORYBLOK_DELIVERY_API_TOKEN ??
+  fileEnv.STORYBLOK_DELIVERY_API_TOKEN;
+
+const visualPreview =
+  (
+    process.env.STORYBLOK_VISUAL_PREVIEW ??
+    fileEnv.STORYBLOK_VISUAL_PREVIEW
+  ) === 'true';
+
 export default defineConfig({
-  output: 'server',
+  output: visualPreview ? 'server' : 'static',
 
   adapter: vercel(),
 
@@ -16,9 +25,8 @@ export default defineConfig({
 
   integrations: [
     storyblok({
-      accessToken: env.STORYBLOK_DELIVERY_API_TOKEN,
-
-      livePreview: true,
+      accessToken: storyblokToken,
+      livePreview: visualPreview,
 
       apiOptions: {
         region: 'eu',
