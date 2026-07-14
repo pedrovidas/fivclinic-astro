@@ -1,4 +1,28 @@
----
+import {
+  copyFile,
+  writeFile,
+} from 'node:fs/promises';
+
+import path from 'node:path';
+import {
+  fileURLToPath,
+} from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRoot = path.resolve(__dirname, '..');
+
+const indexPath = path.join(
+  projectRoot,
+  'src',
+  'pages',
+  'index.astro',
+);
+
+const backupPath =
+  `${indexPath}.before-storyblok-production.bak`;
+
+const source = `---
 import Layout from '../layouts/Layout.astro';
 
 import {
@@ -178,3 +202,15 @@ const heroStats =
     padding-block: 48px;
   }
 </style>
+`;
+
+await copyFile(indexPath, backupPath);
+await writeFile(indexPath, source, 'utf8');
+
+console.log('');
+console.log('Home real conectada a Storyblok.');
+console.log(`Backup: ${backupPath}`);
+console.log('');
+console.log('En Preview usa contenido draft.');
+console.log('En Production usa contenido published.');
+console.log('Si Storyblok falla, utiliza home.json.');
