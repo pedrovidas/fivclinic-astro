@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {
+  useStoryblokApi,
+} from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+const storyblokApi = useStoryblokApi();
+
+const { data } = await storyblokApi.get(
+  'cdn/stories/home',
+  {
+    version: 'draft',
+    cv: Date.now(),
+  },
+);
+
+const { story } = data;
+---
+
+<Layout
+  title={story.content.seo_title || 'FIVClínic'}
+  description={story.content.seo_description || ''}
+>
+  <StoryblokComponent blok={story.content} />
+</Layout>

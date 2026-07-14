@@ -1,0 +1,26 @@
+---
+import Hero from '../components/home/Hero.astro';
+
+const { blok } = Astro.props;
+
+const heroContent = {
+  eyebrow: blok.eyebrow,
+  titleAccent: blok.title_accent,
+  titleTail: blok.title_tail,
+  lead: blok.lead,
+
+  paragraphs: [
+    blok.paragraph_1,
+    blok.paragraph_2,
+  ].filter(Boolean),
+
+  note: blok.note,
+
+  // Mientras los Assets estén vacíos,
+  // Hero.astro utilizará sus imágenes predeterminadas.
+  image: blok.image?.filename || undefined,
+  instLogos: blok.institutional_logos?.filename || undefined,
+};
+---
+
+<Hero t={heroContent} />
