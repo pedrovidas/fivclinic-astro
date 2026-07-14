@@ -1,0 +1,101 @@
+{
+  "seo": {
+    "title": "Complex Fertility Cases in Barcelona | FIVClínic",
+    "description": "Complex fertility and IVF care in Barcelona — expert second opinions, care for women 40+, and reproductive genetics guidance, backed by Hospital Clínic Barcelona."
+  },
+  "hero": {
+    "titlePlain": "Complex",
+    "titleAccent": "fertility and IVF care:",
+    "titleTail": "clear answers, expert guidance",
+    "paragraphs": [
+      "Advanced fertility care backed by <strong>Hospital Clínic Barcelona</strong>, one of Europe’s leading hospitals, with a multidisciplinary team <strong>experienced in complex and international cases.</strong>"
+    ],
+    "checks": [
+      "Expert second opinions after failed IVF cycles",
+      "Specialized care for women 40+ and with low ovarian reserve",
+      "Advanced reproductive genetics and PGT-A guidance"
+    ],
+    "note": "FIVClínic is the assisted reproduction department of barnaclínic+, backed by<br /><strong>Hospital Clínic Barcelona</strong> – an internationally ranked, tier-1 university hospital group.",
+    "formTitle": "Understand your IVF treatment options with an expert"
+  },
+  "uncertainty": {
+    "titlePlain": "When fertility becomes complex,",
+    "titleAccent": "uncertainty is often the hardest part.",
+    "paragraphs": [
+      "After failed IVF cycles, with age-related fertility changes, or when genetic factors are involved, many patients face the same situation: they don’t lack treatments — <strong>they lack clear explanations and confident decisions.</strong>"
+    ],
+    "questionHeading": "You may be asking yourself:",
+    "questions": [
+      "Why previous IVF treatments didn’t work",
+      "Whether age or ovarian reserve limits your real options",
+      "If genetics could be affecting embryo development",
+      "What makes sense to try next — and what doesn’t"
+    ],
+    "closing": "Without clarity, moving forward becomes emotionally and medically exhausting."
+  },
+  "rightPlace": {
+    "titlePlain": "Why FIVClínic is the right place",
+    "titleAccent": "for your journey",
+    "paragraphs": [
+      "<strong>You don’t need more opinions. You need the right one.</strong>",
+      "<strong>FIVClínic</strong> specializes in complex fertility cases that require time, experience, and honest medical guidance.",
+      "Our clinical approach is supported by the standards and medical environment of Hospital Clínic Barcelona, one of Europe’s most respected university hospitals.",
+      "We act as your guide — listening carefully, reviewing your case in depth, and helping you understand what is truly happening and what options make sense for you."
+    ]
+  },
+  "rigor": {
+    "titlePlain": "Scientific rigor, explained clearly.",
+    "titleAccent": "Human care, always present.",
+    "subtitle": "Complex fertility decisions cannot be standardized or rushed.<br />At <strong>FIVClínic:</strong>",
+    "note": "Here, clarity is part of the treatment."
+  },
+  "barcelona": {
+    "intro": "Barcelona is one of Europe’s leading destinations for advanced medical care, combining <strong>clinical excellence, innovation, and an international healthcare ecosystem.</strong>",
+    "footer": "<strong>FIVClínic+</strong> benefits directly from this ecosystem, with its clinical approach supported by the medical excellence and standards of Hospital Clínic Barcelona, one of the most respected academic hospitals in Spain and Europe."
+  },
+  "approach": {
+    "titlePlain": "A specialized approach for",
+    "titleAccent": "complex fertility journeys",
+    "cta": "Download the free complex fertility guide"
+  },
+  "process": {
+    "titleAccent": "A clear, step-by-step process",
+    "titlePlain": "designed around you"
+  },
+  "international": {
+    "titlePlain": "Support for",
+    "titleAccent": "international patients",
+    "titleTail": "at every step",
+    "intro": "We understand that pursuing fertility treatment abroad requires clarity, coordination, and trust. <strong>FIVClínic</strong> offers a structured and supportive process designed specifically for international patients."
+  },
+  "clarity": {
+    "titlePlain": "Clarity",
+    "titleAccent": "changes everything.",
+    "paragraphs": [
+      "When you truly understand your situation and your real options:"
+    ],
+    "bullets": [
+      "PGT-A",
+      "Carrier screening panels",
+      "Advanced genetic analysis when indicated"
+    ],
+    "closing": "Whether the next step involves treatment, adjustment, or a different approach, clarity allows you to move forward with confidence."
+  },
+  "avoid": {
+    "title": "Avoid moving forward without understanding why.",
+    "intro": "Repeated treatments without proper analysis can lead to:",
+    "bullets": [
+      "Emotional exhaustion",
+      "Loss of trust",
+      "Missed opportunities to adjust strategy"
+    ],
+    "footer": "A thorough, honest review helps prevent repeating the same path without answers."
+  },
+  "patientVoices": {
+    "titleAccent": "What patients say about us"
+  },
+  "leadForm": {
+    "titlePlain": "Take the next step with",
+    "titleAccent": "clarity and expert guidance."
+  }
+}

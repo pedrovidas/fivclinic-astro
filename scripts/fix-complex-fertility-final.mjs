@@ -1,83 +1,29 @@
----
-import Layout from '../layouts/Layout.astro';
-import TreatmentHero from '../components/treatment/TreatmentHero.astro';
-import ProfileSelector from '../components/treatment/ProfileSelector.astro';
-import SplitSection from '../components/treatment/SplitSection.astro';
-import ScientificRigor from '../components/treatment/ScientificRigor.astro';
-import WhyBarcelonaCards from '../components/treatment/WhyBarcelonaCards.astro';
-import TreatmentProcess from '../components/treatment/TreatmentProcess.astro';
-import ExperienceCounters from '../components/treatment/ExperienceCounters.astro';
-import PlanningAbroad from '../components/treatment/PlanningAbroad.astro';
-import FAQAccordion from '../components/treatment/FAQAccordion.astro';
-import PatientVoices from '../components/home/PatientVoices.astro';
-import MedicalRecognition from '../components/home/MedicalRecognition.astro';
-import LeadForm from '../components/home/LeadForm.astro';
-import { cfcRigorIcons } from '../data/cfcRigorIcons';
-import templateFallback from '../content/hardcoded/complex-fertility-cases.json';
-import { getStoryblokPageContent } from '../lib/storyblokPageContent.js';
+import {
+  copyFile,
+  readFile,
+  writeFile,
+} from 'node:fs/promises';
 
-const content = await getStoryblokPageContent(
-  'complex-fertility-cases',
-  Astro.locals,
+import path from 'node:path';
+import {
+  fileURLToPath,
+} from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRoot = path.resolve(__dirname, '..');
+
+const pagePath = path.join(
+  projectRoot,
+  'src',
+  'pages',
+  'complex-fertility-cases.astro',
 );
 
-const u = 'https://fivclinic.es/international-patients/wp-content/uploads/';
+const fallbackImport =
+  "import templateFallback from '../content/hardcoded/complex-fertility-cases.json';";
 
-const profileCards = content.profileCards;
-
-const rigorItems = content.rigorItems.map((r: any, i: number) => ({ ...r, icon: cfcRigorIcons[i] }));
-
-const blocks = content.blocks;
-
-const processSteps = content.processSteps;
-
-const counters = content.counters;
-
-const intlFaqs = content.intlFaqs;
-
-const faqs = content.faqs;
-
-const cfcTestimonials = content.cfcTestimonials;
-
-function unwrapSingletonBlocks(value: any): any {
-  if (Array.isArray(value)) {
-    const normalized = value.map(unwrapSingletonBlocks);
-
-    if (
-      normalized.length === 1 &&
-      normalized[0] !== null &&
-      typeof normalized[0] === 'object' &&
-      !Array.isArray(normalized[0])
-    ) {
-      return normalized[0];
-    }
-
-    return normalized;
-  }
-
-  if (
-    value !== null &&
-    typeof value === 'object'
-  ) {
-    return Object.fromEntries(
-      Object.entries(value).map(([key, item]) => [
-        key,
-        unwrapSingletonBlocks(item),
-      ]),
-    );
-  }
-
-  return value;
-}
-
-const templateSource =
-  content.template?.[0] ?? templateFallback;
-
-const template =
-  unwrapSingletonBlocks(templateSource);
----
-
-<Layout
+const layoutMarkup = String.raw`<Layout
   title={template.seo.title}
   description={template.seo.description}
 >
@@ -319,52 +265,152 @@ const template =
     titlePlain={template.leadForm.titlePlain}
     titleAccent={template.leadForm.titleAccent}
   />
-</Layout>
+</Layout>`;
 
-<style>
-  .accent-text { color: var(--color-accent); }
-
-  .cfc-title { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 500; margin-bottom: 40px; }
-  .cfc-title .accent { color: var(--color-accent); }
-  .cfc-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; padding-block: 40px; border-bottom: 1px solid var(--color-accent); }
-  .cfc-grid:last-child { border-bottom: none; }
-  .cfc-grid.image-left { grid-template-columns: 0.9fr 1.1fr; }
-  .cfc-grid.image-left .cfc-media { order: -1; }
-  .cfc-copy h3 { font-size: 1.2rem; font-weight: 600; color: var(--color-accent); display: flex; gap: 8px; align-items: baseline; margin-bottom: 14px; }
-  .cfc-copy h3 .plus { font-weight: 400; }
-  .cfc-copy > p { font-size: 0.95rem; color: var(--color-body); }
-  .cfc-box { background: var(--color-white); border-radius: var(--radius-md); padding: 22px 24px; margin: 18px 0; }
-  .cfc-plain { margin: 18px 0; }
-  .cfc-group-intro { font-weight: 600; color: var(--color-heading); margin: 0 0 10px; }
-  .cfc-box ul, .cfc-plain ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-  .cfc-box li, .cfc-plain li { position: relative; padding-left: 22px; font-size: 0.9rem; color: var(--color-heading); }
-  .cfc-box li::before, .cfc-plain li::before { content: ''; position: absolute; left: 0; top: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); }
-  .cfc-closing { font-size: 0.95rem; color: var(--color-body); }
-  .cfc-hint { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0; }
-  .hint-icon { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; }
-  .cfc-hint p { font-size: 0.88rem; color: var(--color-accent); margin: 0; }
-  .cfc-cta {
-    display: inline-block; width: 100%; text-align: center;
-    background: var(--color-white); border: 1px solid var(--color-accent); color: var(--color-accent);
-    border-radius: var(--radius-pill); padding: 1.1em 2em;
-    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+function addFallbackImport(source) {
+  if (source.includes(fallbackImport)) {
+    return source;
   }
-  .cfc-cta:hover { background: var(--color-accent); color: var(--color-white); }
-  .cfc-media img { width: 100%; border-radius: 160px 12px 12px 12px; aspect-ratio: 4 / 5; object-fit: cover; }
 
-  .avoid-outer { background: #F5F5F5; }
-  .avoid-head { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 24px; }
-  .avoid-plus { font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 300; color: var(--color-accent-light); line-height: 1; }
-  .avoid-title { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 600; color: var(--color-accent); margin: 0; text-align: center; }
-  .avoid-box { background: var(--color-white); border-radius: var(--radius-md); padding: clamp(28px, 4vw, 48px); max-width: 900px; margin-inline: auto; }
-  .avoid-sub { font-weight: 600; color: var(--color-heading); margin: 0 0 20px; }
-  .avoid-box ul { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
-  .avoid-box li { position: relative; padding-left: 22px; font-size: 0.95rem; color: var(--color-body); }
-  .avoid-box li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent); }
-  .avoid-foot { margin: 0; color: var(--color-body); font-size: 0.95rem; }
+  const pattern =
+    /import\s+\{\s*cfcRigorIcons\s*\}\s+from\s+['"]\.\.\/data\/cfcRigorIcons['"]\s*;/;
 
-  @media (max-width: 900px) {
-    .cfc-grid, .cfc-grid.image-left { grid-template-columns: 1fr; }
-    .cfc-media, .cfc-grid.image-left .cfc-media { order: -1; }
+  const match = source.match(pattern);
+
+  if (!match) {
+    throw new Error(
+      'No se encontró el import de cfcRigorIcons.',
+    );
   }
-</style>
+
+  return source.replace(
+    pattern,
+    `${match[0]}\n${fallbackImport}`,
+  );
+}
+
+function addTemplateNormalizer(source) {
+  if (
+    source.includes(
+      'const template = unwrapSingletonBlocks(templateSource);',
+    )
+  ) {
+    return source;
+  }
+
+  const pattern =
+    /const\s+cfcTestimonials\s*=\s*content\.cfcTestimonials\s*;/;
+
+  const match = source.match(pattern);
+
+  if (!match) {
+    throw new Error(
+      'No se encontró la declaración cfcTestimonials.',
+    );
+  }
+
+  const insertion = `${match[0]}
+
+function unwrapSingletonBlocks(value: any): any {
+  if (Array.isArray(value)) {
+    const normalized = value.map(unwrapSingletonBlocks);
+
+    if (
+      normalized.length === 1 &&
+      normalized[0] !== null &&
+      typeof normalized[0] === 'object' &&
+      !Array.isArray(normalized[0])
+    ) {
+      return normalized[0];
+    }
+
+    return normalized;
+  }
+
+  if (
+    value !== null &&
+    typeof value === 'object'
+  ) {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [
+        key,
+        unwrapSingletonBlocks(item),
+      ]),
+    );
+  }
+
+  return value;
+}
+
+const templateSource =
+  content.template?.[0] ?? templateFallback;
+
+const template =
+  unwrapSingletonBlocks(templateSource);`;
+
+  return source.replace(pattern, insertion);
+}
+
+function replaceEntireLayout(source) {
+  const start = source.indexOf('<Layout');
+  const endTag = '</Layout>';
+  const end = source.indexOf(endTag, start);
+
+  if (start === -1 || end === -1) {
+    throw new Error(
+      'No se encontró el bloque <Layout>...</Layout>.',
+    );
+  }
+
+  const before = source.slice(0, start);
+  const after = source.slice(end + endTag.length);
+
+  return `${before}${layoutMarkup}${after}`;
+}
+
+let source = await readFile(pagePath, 'utf8');
+source = source.replace(/\r\n/g, '\n');
+
+if (
+  !source.includes(
+    "getStoryblokPageContent",
+  )
+) {
+  throw new Error(
+    'La página todavía no está conectada a Storyblok.',
+  );
+}
+
+if (
+  !source.includes(
+    "content.template",
+  ) &&
+  !source.includes(
+    "const cfcTestimonials = content.cfcTestimonials",
+  )
+) {
+  throw new Error(
+    'No se encontró la estructura esperada de contenido.',
+  );
+}
+
+const backupPath =
+  `${pagePath}.before-layout-replacement.bak`;
+
+await copyFile(pagePath, backupPath);
+
+source = addFallbackImport(source);
+source = addTemplateNormalizer(source);
+source = replaceEntireLayout(source);
+
+await writeFile(pagePath, source, 'utf8');
+
+console.log('');
+console.log('Página sustituida correctamente.');
+console.log(`Backup: ${backupPath}`);
+console.log('');
+console.log('Ahora ejecuta:');
+console.log('  npm run dev');
+console.log('');
+console.log('Y abre:');
+console.log('  http://localhost:4321/complex-fertility-cases/');
