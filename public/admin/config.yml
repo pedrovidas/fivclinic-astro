@@ -1,0 +1,1279 @@
+backend:
+  name: github
+  repo: TU_USUARIO/fivclinic-astro
+  branch: main
+  base_url: "https://TU-AUTH.workers.dev"
+media_folder: public/media
+public_folder: /media
+site_url: "https://fivclinicinternational.vercel.app"
+display_url: "https://fivclinicinternational.vercel.app"
+collections:
+  - name: paginas
+    label: Páginas del sitio
+    description: Editas el contenido en INGLÉS (idioma base). Los demás idiomas se regeneran con el sistema de traducción tras publicar.
+    files:
+      - name: complex-fertility-cases
+        label: Complex Fertility Cases
+        file: src/content/complex-fertility-cases.json
+        fields:
+          - name: profileCards
+            label: Tarjetas de perfil
+            widget: list
+            required: false
+            fields:
+              - name: icon
+                label: Icono (URL)
+                widget: string
+                required: false
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: quote
+                label: Cita
+                widget: text
+                required: false
+              - name: cta
+                label: Texto del enlace
+                widget: string
+                required: false
+          - name: rigorItems
+            label: Rigor científico
+            widget: list
+            required: false
+            fields:
+              - name: text
+                label: Texto
+                widget: string
+                required: false
+          - name: blocks
+            label: Bloques especializados
+            widget: list
+            required: false
+            fields:
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: intro
+                label: Introducción
+                widget: text
+                required: false
+              - name: groups
+                label: Grupos
+                widget: list
+                required: false
+                fields:
+                  - name: intro
+                    label: Introducción
+                    widget: string
+                    required: false
+                  - name: items
+                    label: Elementos
+                    widget: list
+                    required: false
+                  - name: boxed
+                    label: En caja destacada
+                    widget: boolean
+                    required: false
+              - name: closing
+                label: Cierre
+                widget: list
+                required: false
+              - name: hint
+                label: Texto de la guía descargable
+                widget: text
+                required: false
+              - name: image
+                label: Imagen (URL)
+                widget: text
+                required: false
+              - name: imageSide
+                label: Lado de la imagen (left/right)
+                widget: string
+                required: false
+          - name: processSteps
+            label: Proceso paso a paso
+            widget: list
+            required: false
+            fields:
+              - name: icon
+                label: Icono (URL)
+                widget: string
+                required: false
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: text
+                label: Texto
+                widget: string
+                required: false
+              - name: listIntro
+                label: Intro de la lista
+                widget: string
+                required: false
+              - name: list
+                label: Lista
+                widget: list
+                required: false
+          - name: counters
+            label: Contadores
+            widget: list
+            required: false
+            fields:
+              - name: value
+                label: Número
+                widget: number
+              - name: suffix
+                label: Sufijo (+, %, K+)
+                widget: string
+                required: false
+              - name: label
+                label: Etiqueta
+                widget: string
+                required: false
+              - name: sub
+                label: Texto secundario
+                widget: string
+                required: false
+              - name: subItalic
+                label: Texto en cursiva
+                widget: string
+                required: false
+          - name: intlFaqs
+            label: FAQs internacionales
+            widget: list
+            required: false
+            fields:
+              - name: q
+                label: Pregunta
+                widget: string
+                required: false
+              - name: a
+                label: Respuesta
+                widget: text
+                required: false
+              - name: list
+                label: Lista
+                widget: list
+                required: false
+              - name: foot
+                label: Texto final
+                widget: string
+                required: false
+          - name: faqs
+            label: Preguntas frecuentes
+            widget: list
+            required: false
+            fields:
+              - name: q
+                label: Pregunta
+                widget: string
+                required: false
+              - name: a
+                label: Respuesta
+                widget: text
+                required: false
+          - name: cfcTestimonials
+            label: Testimonios
+            widget: list
+            required: false
+            fields:
+              - name: quote
+                label: Cita
+                widget: string
+                required: false
+              - name: author
+                label: Autor
+                widget: string
+                required: false
+      - name: contact-us
+        label: Contacto
+        file: src/content/contact-us.json
+        fields:
+          - name: hero
+            label: Cabecera (hero)
+            widget: object
+            required: false
+            fields:
+              - name: eyebrow
+                label: Antetítulo
+                widget: string
+                required: false
+              - name: titlePlain
+                label: Título (parte normal)
+                widget: string
+                required: false
+              - name: titleAccent
+                label: Título (parte naranja)
+                widget: string
+                required: false
+              - name: lead
+                label: Entradilla
+                widget: text
+                required: false
+              - name: note
+                label: Nota
+                widget: text
+                required: false
+          - name: sidebar
+            label: Barra lateral
+            widget: object
+            required: false
+            fields:
+              - name: whatsappNumber
+                label: Número de WhatsApp
+                widget: string
+                required: false
+              - name: address
+                label: Dirección
+                widget: string
+                required: false
+              - name: whyChoose
+                label: Por qué elegirnos
+                widget: list
+                required: false
+              - name: mapQuery
+                label: Dirección para el mapa
+                widget: string
+                required: false
+          - name: supportItems
+            label: Apoyo internacional
+            widget: list
+            required: false
+            fields:
+              - name: strong
+                label: Parte en negrita
+                widget: string
+                required: false
+              - name: accent
+                label: Parte naranja
+                widget: string
+                required: false
+              - name: rest
+                label: Resto
+                widget: string
+                required: false
+          - name: form
+            label: Formulario
+            widget: object
+            required: false
+            fields:
+              - name: ageGroups
+                label: Grupos de edad
+                widget: list
+                required: false
+              - name: reasons
+                label: Razones
+                widget: list
+                required: false
+              - name: languages
+                label: Idiomas
+                widget: list
+                required: false
+              - name: submitText
+                label: Texto del botón enviar
+                widget: string
+                required: false
+      - name: fertility-for-single-women-female-couples
+        label: Single Women & Female Couples
+        file: src/content/fertility-for-single-women-female-couples.json
+        fields:
+          - name: profileCards
+            label: Tarjetas de perfil
+            widget: list
+            required: false
+            fields:
+              - name: icon
+                label: Icono (URL)
+                widget: string
+                required: false
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: quote
+                label: Cita
+                widget: text
+                required: false
+              - name: cta
+                label: Texto del enlace
+                widget: string
+                required: false
+          - name: rigorItems
+            label: Rigor científico
+            widget: list
+            required: false
+            fields:
+              - name: text
+                label: Texto
+                widget: string
+                required: false
+          - name: blocks
+            label: Bloques especializados
+            widget: list
+            required: false
+            fields:
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: intro
+                label: Introducción
+                widget: list
+                required: false
+              - name: boxIntro
+                label: Intro de la caja
+                widget: string
+                required: false
+              - name: items
+                label: Elementos
+                widget: list
+                required: false
+              - name: closing
+                label: Cierre
+                widget: list
+                required: false
+              - name: hint
+                label: Texto de la guía descargable
+                widget: text
+                required: false
+              - name: image
+                label: Imagen (URL)
+                widget: text
+                required: false
+              - name: imageSide
+                label: Lado de la imagen (left/right)
+                widget: string
+                required: false
+          - name: processSteps
+            label: Proceso paso a paso
+            widget: list
+            required: false
+            fields:
+              - name: icon
+                label: Icono (URL)
+                widget: string
+                required: false
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: text
+                label: Texto
+                widget: text
+                required: false
+          - name: intlFaqs
+            label: FAQs internacionales
+            widget: list
+            required: false
+            fields:
+              - name: q
+                label: Pregunta
+                widget: string
+                required: false
+              - name: a
+                label: Respuesta
+                widget: text
+                required: false
+              - name: list
+                label: Lista
+                widget: list
+                required: false
+          - name: realFaqs
+            label: Preguntas frecuentes
+            widget: list
+            required: false
+            fields:
+              - name: q
+                label: Pregunta
+                widget: string
+                required: false
+              - name: a
+                label: Respuesta
+                widget: string
+                required: false
+          - name: swTestimonials
+            label: Testimonios
+            widget: list
+            required: false
+            fields:
+              - name: quote
+                label: Cita
+                widget: text
+                required: false
+              - name: author
+                label: Autor
+                widget: string
+                required: false
+      - name: fertility-preservation-in-barcelona
+        label: Fertility Preservation
+        file: src/content/fertility-preservation-in-barcelona.json
+        fields:
+          - name: profileCards
+            label: Tarjetas de perfil
+            widget: list
+            required: false
+            fields:
+              - name: icon
+                label: Icono (URL)
+                widget: string
+                required: false
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: quote
+                label: Cita
+                widget: text
+                required: false
+              - name: cta
+                label: Texto del enlace
+                widget: string
+                required: false
+          - name: rigorItems
+            label: Rigor científico
+            widget: list
+            required: false
+            fields:
+              - name: text
+                label: Texto
+                widget: string
+                required: false
+          - name: blocks
+            label: Bloques especializados
+            widget: list
+            required: false
+            fields:
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: intro
+                label: Introducción
+                widget: list
+                required: false
+              - name: boxIntro
+                label: Intro de la caja
+                widget: string
+                required: false
+              - name: items
+                label: Elementos
+                widget: list
+                required: false
+              - name: closing
+                label: Cierre
+                widget: list
+                required: false
+              - name: image
+                label: Imagen (URL)
+                widget: text
+                required: false
+              - name: imageSide
+                label: Lado de la imagen (left/right)
+                widget: string
+                required: false
+          - name: processSteps
+            label: Proceso paso a paso
+            widget: list
+            required: false
+            fields:
+              - name: icon
+                label: Icono (URL)
+                widget: string
+                required: false
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: text
+                label: Texto
+                widget: text
+                required: false
+          - name: intlFaqs
+            label: FAQs internacionales
+            widget: list
+            required: false
+            fields:
+              - name: q
+                label: Pregunta
+                widget: string
+                required: false
+              - name: a
+                label: Respuesta
+                widget: text
+                required: false
+              - name: list
+                label: Lista
+                widget: list
+                required: false
+              - name: foot
+                label: Texto final
+                widget: string
+                required: false
+          - name: realFaqs
+            label: Preguntas frecuentes
+            widget: list
+            required: false
+            fields:
+              - name: q
+                label: Pregunta
+                widget: string
+                required: false
+              - name: a
+                label: Respuesta
+                widget: text
+                required: false
+          - name: fpTestimonials
+            label: Testimonios
+            widget: list
+            required: false
+            fields:
+              - name: quote
+                label: Cita
+                widget: text
+                required: false
+              - name: author
+                label: Autor
+                widget: string
+                required: false
+      - name: home
+        label: Página de inicio (Home)
+        file: src/content/home.json
+        fields:
+          - name: meta
+            label: SEO (título y descripción)
+            widget: object
+            required: false
+            fields:
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: description
+                label: Descripción
+                widget: text
+                required: false
+          - name: hero
+            label: Cabecera (hero)
+            widget: object
+            required: false
+            fields:
+              - name: eyebrow
+                label: Antetítulo
+                widget: string
+                required: false
+              - name: titleAccent
+                label: Título (parte naranja)
+                widget: string
+                required: false
+              - name: titleTail
+                label: Título (final)
+                widget: string
+                required: false
+              - name: lead
+                label: Entradilla
+                widget: text
+                required: false
+              - name: paragraphs
+                label: Párrafos
+                widget: list
+                required: false
+              - name: note
+                label: Nota
+                widget: text
+                required: false
+              - name: image
+                label: Imagen (URL)
+                widget: text
+                required: false
+              - name: instLogos
+                label: Logos institucionales (URL)
+                widget: text
+                required: false
+          - name: heroStats
+            label: Contadores de la cabecera
+            widget: list
+            required: false
+            fields:
+              - name: value
+                label: Número
+                widget: number
+              - name: suffix
+                label: Sufijo (+, %, K+)
+                widget: string
+                required: false
+              - name: label
+                label: Etiqueta
+                widget: string
+                required: false
+              - name: sublabel
+                label: Texto secundario
+                widget: string
+                required: false
+              - name: subItalic
+                label: Texto en cursiva
+                widget: string
+                required: false
+          - name: whoWeHelp
+            label: A quién ayudamos
+            widget: object
+            required: false
+            fields:
+              - name: eyebrow
+                label: Antetítulo
+                widget: string
+                required: false
+              - name: titlePlain
+                label: Título (parte normal)
+                widget: string
+                required: false
+              - name: titleAccent
+                label: Título (parte naranja)
+                widget: string
+                required: false
+              - name: lead
+                label: Entradilla
+                widget: text
+                required: false
+              - name: cards
+                label: Tarjetas
+                widget: list
+                required: false
+                fields:
+                  - name: title
+                    label: Título
+                    widget: string
+                    required: false
+                  - name: tags
+                    label: Subtexto
+                    widget: string
+                    required: false
+                  - name: cta
+                    label: Texto del enlace
+                    widget: string
+                    required: false
+                  - name: href
+                    label: Enlace (URL)
+                    widget: string
+                    required: false
+                  - name: icon
+                    label: Icono (URL)
+                    widget: string
+                    required: false
+          - name: clinicalEnvironment
+            label: Entorno clínico
+            widget: object
+            required: false
+            fields:
+              - name: eyebrow
+                label: Antetítulo
+                widget: string
+                required: false
+              - name: titlePlain
+                label: Título (parte normal)
+                widget: string
+                required: false
+              - name: titleAccent
+                label: Título (parte naranja)
+                widget: string
+                required: false
+              - name: intro
+                label: Introducción
+                widget: text
+                required: false
+              - name: collageImg
+                label: Imagen collage (URL)
+                widget: text
+                required: false
+              - name: points
+                label: Puntos
+                widget: list
+                required: false
+                fields:
+                  - name: title
+                    label: Título
+                    widget: string
+                    required: false
+                  - name: text
+                    label: Texto
+                    widget: string
+                    required: false
+              - name: badges
+                label: Insignias
+                widget: list
+                required: false
+                fields:
+                  - name: text
+                    label: Texto
+                    widget: text
+                    required: false
+                  - name: icon
+                    label: Icono (URL)
+                    widget: string
+                    required: false
+          - name: socialProof
+            label: "Banda \"Get on a path\""
+            widget: object
+            required: false
+            fields:
+              - name: titlePlain
+                label: Título (parte normal)
+                widget: string
+                required: false
+              - name: titleAccent
+                label: Título (parte naranja)
+                widget: string
+                required: false
+              - name: lead
+                label: Entradilla
+                widget: string
+                required: false
+              - name: ctaText
+                label: Texto del botón
+                widget: string
+                required: false
+              - name: ctaHref
+                label: Enlace del botón
+                widget: string
+                required: false
+              - name: note
+                label: Nota
+                widget: string
+                required: false
+          - name: whyBarcelona
+            label: Por qué Barcelona
+            widget: object
+            required: false
+            fields:
+              - name: eyebrow
+                label: Antetítulo
+                widget: string
+                required: false
+              - name: titlePlain
+                label: Título (parte normal)
+                widget: string
+                required: false
+              - name: titleAccent
+                label: Título (parte naranja)
+                widget: string
+                required: false
+              - name: intro
+                label: Introducción
+                widget: text
+                required: false
+              - name: image
+                label: Imagen (URL)
+                widget: text
+                required: false
+              - name: reasons
+                label: Razones
+                widget: list
+                required: false
+                fields:
+                  - name: title
+                    label: Título
+                    widget: string
+                    required: false
+                  - name: text
+                    label: Texto
+                    widget: string
+                    required: false
+          - name: processSteps
+            label: Proceso paso a paso
+            widget: object
+            required: false
+            fields:
+              - name: eyebrow
+                label: Antetítulo
+                widget: string
+                required: false
+              - name: titlePlain
+                label: Título (parte normal)
+                widget: string
+                required: false
+              - name: titleAccent
+                label: Título (parte naranja)
+                widget: string
+                required: false
+              - name: steps
+                label: Pasos
+                widget: list
+                required: false
+                fields:
+                  - name: icon
+                    label: Icono (URL)
+                    widget: string
+                    required: false
+                  - name: title
+                    label: Título
+                    widget: string
+                    required: false
+                  - name: text
+                    label: Texto
+                    widget: string
+                    required: false
+          - name: respected
+            label: Excelencia institucional
+            widget: object
+            required: false
+            fields:
+              - name: eyebrow
+                label: Antetítulo
+                widget: string
+                required: false
+              - name: titlePlain
+                label: Título (parte normal)
+                widget: string
+                required: false
+              - name: titleAccent
+                label: Título (parte naranja)
+                widget: string
+                required: false
+              - name: intro
+                label: Introducción
+                widget: text
+                required: false
+              - name: stats
+                label: Contadores
+                widget: list
+                required: false
+                fields:
+                  - name: value
+                    label: Número
+                    widget: number
+                  - name: suffix
+                    label: Sufijo (+, %, K+)
+                    widget: string
+                    required: false
+                  - name: label
+                    label: Etiqueta
+                    widget: string
+                    required: false
+              - name: membersLabel
+                label: "Etiqueta \"Members:\""
+                widget: string
+                required: false
+          - name: patientVoices
+            label: Testimonios
+            widget: object
+            required: false
+            fields:
+              - name: eyebrow
+                label: Antetítulo
+                widget: string
+                required: false
+              - name: titlePlain
+                label: Título (parte normal)
+                widget: string
+                required: false
+              - name: titleAccent
+                label: Título (parte naranja)
+                widget: string
+                required: false
+              - name: testimonials
+                label: Testimonios
+                widget: list
+                required: false
+                fields:
+                  - name: quote
+                    label: Cita
+                    widget: text
+                    required: false
+                  - name: author
+                    label: Autor
+                    widget: string
+                    required: false
+          - name: supportFaq
+            label: Soporte y FAQs
+            widget: object
+            required: false
+            fields:
+              - name: titlePlain
+                label: Título (parte normal)
+                widget: string
+                required: false
+              - name: titleAccent
+                label: Título (parte naranja)
+                widget: string
+                required: false
+              - name: paragraphs
+                label: Párrafos
+                widget: list
+                required: false
+              - name: image
+                label: Imagen (URL)
+                widget: string
+                required: false
+              - name: faqs
+                label: Preguntas frecuentes
+                widget: list
+                required: false
+                fields:
+                  - name: q
+                    label: Pregunta
+                    widget: string
+                    required: false
+                  - name: a
+                    label: Respuesta
+                    widget: text
+                    required: false
+                  - name: list
+                    label: Lista
+                    widget: list
+                    required: false
+          - name: medicalRecognition
+            label: Reconocimiento médico
+            widget: object
+            required: false
+            fields:
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: intro
+                label: Introducción
+                widget: text
+                required: false
+              - name: listTitle1
+                label: Título lista 1
+                widget: text
+                required: false
+              - name: list1
+                label: Lista 1
+                widget: list
+                required: false
+              - name: listTitle2
+                label: Título lista 2
+                widget: text
+                required: false
+              - name: list2
+                label: Lista 2
+                widget: list
+                required: false
+              - name: closing
+                label: Cierre
+                widget: string
+                required: false
+              - name: cards
+                label: Tarjetas
+                widget: list
+                required: false
+                fields:
+                  - name: img
+                    label: Imagen (URL)
+                    widget: string
+                    required: false
+                  - name: text
+                    label: Texto
+                    widget: text
+                    required: false
+          - name: leadForm
+            label: Formulario final
+            widget: object
+            required: false
+            fields:
+              - name: titlePlain
+                label: Título (parte normal)
+                widget: string
+                required: false
+              - name: titleAccent
+                label: Título (parte naranja)
+                widget: string
+                required: false
+              - name: ageGroups
+                label: Grupos de edad
+                widget: list
+                required: false
+              - name: reasons
+                label: Razones
+                widget: list
+                required: false
+              - name: submitText
+                label: Texto del botón enviar
+                widget: string
+                required: false
+              - name: note
+                label: Nota
+                widget: string
+                required: false
+      - name: ivf-with-donor-eggs
+        label: IVF with Donor Eggs
+        file: src/content/ivf-with-donor-eggs.json
+        fields:
+          - name: emotionQuestions
+            label: Preguntas emocionales
+            widget: list
+            required: false
+          - name: processSteps
+            label: Proceso paso a paso
+            widget: list
+            required: false
+            fields:
+              - name: icon
+                label: Icono (URL)
+                widget: string
+                required: false
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: text
+                label: Texto
+                widget: text
+                required: false
+          - name: donorTestimonials
+            label: Testimonios
+            widget: list
+            required: false
+            fields:
+              - name: quote
+                label: Cita
+                widget: string
+                required: false
+              - name: author
+                label: Autor
+                widget: string
+                required: false
+          - name: faqs
+            label: Preguntas frecuentes
+            widget: list
+            required: false
+            fields:
+              - name: q
+                label: Pregunta
+                widget: string
+                required: false
+              - name: a
+                label: Respuesta
+                widget: text
+                required: false
+          - name: planningFaqs
+            label: FAQs de planificación
+            widget: list
+            required: false
+            fields:
+              - name: q
+                label: Pregunta
+                widget: string
+                required: false
+              - name: a
+                label: Respuesta
+                widget: text
+                required: false
+              - name: listIntro
+                label: Intro de la lista
+                widget: string
+                required: false
+              - name: list
+                label: Lista
+                widget: list
+                required: false
+              - name: foot
+                label: Texto final
+                widget: string
+                required: false
+      - name: our-team
+        label: Nuestro equipo
+        file: src/content/our-team.json
+        fields:
+          - name: medicalTeam
+            label: Equipo médico
+            widget: list
+            required: false
+            fields:
+              - name: name
+                label: Nombre
+                widget: string
+                required: false
+              - name: people
+                label: Personas
+                widget: list
+                required: false
+                fields:
+                  - name: name
+                    label: Nombre
+                    widget: string
+                    required: false
+                  - name: photo
+                    label: Foto (URL)
+                    widget: string
+                    required: false
+                  - name: roles
+                    label: Cargos
+                    widget: list
+                    required: false
+                  - name: spec
+                    label: Especialidades
+                    widget: list
+                    required: false
+                  - name: social
+                    label: Redes sociales
+                    widget: object
+                    required: false
+                    fields:
+                      - name: linkedin
+                        label: LinkedIn
+                        widget: string
+                        required: false
+                      - name: x
+                        label: X (Twitter)
+                        widget: string
+                        required: false
+          - name: nursingTeam
+            label: Equipo de enfermería
+            widget: list
+            required: false
+            fields:
+              - name: name
+                label: Nombre
+                widget: string
+                required: false
+              - name: photo
+                label: Foto (URL)
+                widget: text
+                required: false
+              - name: role
+                label: role
+                widget: string
+                required: false
+          - name: adminTeam
+            label: Equipo de administración
+            widget: list
+            required: false
+            fields:
+              - name: name
+                label: Nombre
+                widget: string
+                required: false
+              - name: photo
+                label: Foto (URL)
+                widget: string
+                required: false
+              - name: role
+                label: role
+                widget: string
+                required: false
+      - name: rpl
+        label: Recurrent Pregnancy Loss
+        file: src/content/rpl.json
+        fields:
+          - name: rigorItems
+            label: Rigor científico
+            widget: list
+            required: false
+            fields:
+              - name: text
+                label: Texto
+                widget: string
+                required: false
+          - name: evaluateGroups
+            label: Grupos de evaluación
+            widget: list
+            required: false
+            fields:
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: items
+                label: Elementos
+                widget: list
+                required: false
+          - name: processSteps
+            label: Proceso paso a paso
+            widget: list
+            required: false
+            fields:
+              - name: icon
+                label: Icono (URL)
+                widget: string
+                required: false
+              - name: title
+                label: Título
+                widget: string
+                required: false
+              - name: text
+                label: Texto
+                widget: string
+                required: false
+              - name: listIntro
+                label: Intro de la lista
+                widget: string
+                required: false
+              - name: list
+                label: Lista
+                widget: list
+                required: false
+          - name: counters
+            label: Contadores
+            widget: list
+            required: false
+            fields:
+              - name: value
+                label: Número
+                widget: number
+              - name: suffix
+                label: Sufijo (+, %, K+)
+                widget: string
+                required: false
+              - name: label
+                label: Etiqueta
+                widget: string
+                required: false
+              - name: sub
+                label: Texto secundario
+                widget: string
+                required: false
+              - name: subItalic
+                label: Texto en cursiva
+                widget: string
+                required: false
+          - name: intlFaqs
+            label: FAQs internacionales
+            widget: list
+            required: false
+            fields:
+              - name: q
+                label: Pregunta
+                widget: string
+                required: false
+              - name: a
+                label: Respuesta
+                widget: text
+                required: false
+              - name: list
+                label: Lista
+                widget: list
+                required: false
+              - name: foot
+                label: Texto final
+                widget: string
+                required: false
+          - name: faqs
+            label: Preguntas frecuentes
+            widget: list
+            required: false
+            fields:
+              - name: q
+                label: Pregunta
+                widget: string
+                required: false
+              - name: a
+                label: Respuesta
+                widget: text
+                required: false
+          - name: rplTestimonials
+            label: Testimonios
+            widget: list
+            required: false
+            fields:
+              - name: quote
+                label: Cita
+                widget: string
+                required: false
+              - name: author
+                label: Autor
+                widget: string
+                required: false
