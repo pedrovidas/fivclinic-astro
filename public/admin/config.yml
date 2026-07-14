@@ -1,8 +1,8 @@
 backend:
   name: github
-  repo: TU_USUARIO/fivclinic-astro
+  repo: pedrovidas/fivclinic-astro
   branch: main
-  base_url: "https://TU-AUTH.workers.dev"
+  base_url: "https://sveltia-cms-auth.phenriquez.workers.dev"
 media_folder: public/media
 public_folder: /media
 site_url: "https://fivclinicinternational.vercel.app"
